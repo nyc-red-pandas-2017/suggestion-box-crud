@@ -75,7 +75,7 @@
       <p><a href="#">Link</a></p>
     </div>
     <div class="col-sm-8 text-left">
-      <h1><a href="/">Welcome to the suggestion box!</a></h1>
+      <h1><a href="/">The Suggestion Box</a></h1>
 
       <div class="registration-login-choice">
           <form id="new-user-choice" method="GET" action="/">
@@ -90,27 +90,23 @@
       <hr>
 
     <form id="signup-form" action="/users/signup" method="post">
+      <h3>Sign up</h3>
          <table>
           <tr>
-           <td><b>Name:</b> </td> <td><input type="text" name="name"></td>
-          </tr>
-          <tr>
-           <td><b>Username: </b> </td> <td><input type="text" name="username"></td>
-          </tr>
-          <tr>
-           <td><b>Email:</b> </td> <td><input type="email" name="email"></td>
+           <td><b>Username:</b> </td> <td><input type="text" name="name"></td>
           </tr>
           <tr>
            <td><b>Password:</b> </td> <td><input type="password" name="password"></td>
           </tr>
          </table>
-         <!-- <br> -->
+         <br>
          <div class="buttonHolder">
-                  <input type="submit" value="Go!">
+                  <input type="submit" value="Register!">
          </div>
     </form>
 
     <form id="login-form" action="/users/login" method="post">
+      <h3>Log In</h3>
          <table>
           <tr>
            <td><b>Username: </b></td> <td><input type="text" name="username"></td>
@@ -119,10 +115,10 @@
            <td><b>Password: </b></td> <td><input type="password" name="password"></td>
           </tr>
          </table>
-     <br>
-     <div class="buttonHolder">
-              <input type="submit" value="Go!">
-     </div>
+         <br>
+         <div class="buttonHolder">
+                  <input type="submit" value="Log In!">
+         </div>
     </form>
 
     </div>

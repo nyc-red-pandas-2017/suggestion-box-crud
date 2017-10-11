@@ -1,10 +1,9 @@
 <h1>Suggestion Box</h1>
+<h3><a href='/suggestions/new'>New Suggestion</a></h3>
 
 <% @suggestions.each do |s| %>
   <ul>
-
-    <li>Title: <%= s.title %> <br>
-      Description: <%= s.description %>
+    <li><%= s.title %> <a href="/suggestions/<%= s.id %>"> details...</a>
     </li>
   </ul>
 <% end %>

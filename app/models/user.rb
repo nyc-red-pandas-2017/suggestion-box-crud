@@ -1,14 +1,16 @@
 class User < ApplicationRecord
   # Remember to create a migration!
+  include BCrypt
+
   validates :first_name, presence: true
   validates :last_name, presence: true
   validates :username, presence: true, uniqueness: true
-  validates :password , presence: true
+  validates :password, presence: true
 
   has_many :suggestions
 
   #creating a user password
-    def password
+  def password
     @password ||= Password.new(password_hash)
   end
 

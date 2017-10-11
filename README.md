@@ -22,4 +22,4 @@ For this release, user should be able to
 
 - create an account with a username (which are unique) and password of at least six character
 - see a list of suggestions they've posted
-- not see who posted suggestions other than their own
+- see other suggestions, but not the author

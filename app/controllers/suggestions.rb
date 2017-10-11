@@ -22,3 +22,24 @@ get '/suggestions/:id' do
   @suggestion = Suggestion.find(params[:id])
   erb :'/suggestions/show'
 end
+
+get '/suggestions/:id/edit' do
+  @suggestion = Suggestion.find(params[:id])
+  erb :'/suggestions/edit'
+end
+
+put '/suggestions/:id' do
+  @suggestion = Suggestion.find(params[:id])
+  @suggestion.assign_attributes(params[:suggestion])
+  if @suggestion.save
+    redirect '/suggestions'
+  else
+    erb :'/suggestions/edit'
+  end
+end
+
+delete '/suggestions/:id' do
+  @suggestion = Suggestion.find(params[:id])
+  @suggestion.destroy
+  redirect '/suggestions'
+end

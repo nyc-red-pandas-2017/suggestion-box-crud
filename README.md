@@ -8,8 +8,8 @@ Create a CRUD app that allows user to submit an anonymous suggestion for DBC.
 
 For this release, user should be able to
 
-- give a suggestion which includes a title and description
-- see a list suggestions listed by the title that are linkable to page where the user could see all the details
+- post a suggestion which includes a title and description
+- see a list suggestions listed by the title that are linkable to page where the user could see all the details on the home page
 - view a suggestion to see the description
 
 ## Release 2
@@ -33,4 +33,5 @@ Make sure to complete Release 2 before proceeding. For this release, add the abi
 For this release, user should be able to
 
 - thumbs up posted suggestions
+- see a list of suggestions on the home page ordered by the number of thumbs up
 - a list of suggestions they thumbs upped on their profile page

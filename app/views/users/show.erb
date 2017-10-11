@@ -1,0 +1,13 @@
+<p><a href="/logout">Logout</a></p>
+<h1>My Profile</h1>
+<h2>My Suggestions:</h2>
+  <%@suggestions.each do |suggestion| %>
+    <ul>
+      <h3><a href="/suggestions/<%=suggestion.id%>"><%=suggestion.title%></a></h3>
+      <li><%=suggestion.description%></li>
+    </ul>
+<%end%>
+<p><a href="/suggestions/new">Make a suggestion</a></p>
+<p><a href="/suggestions">See all suggestions</a></p>
+<p><a href="/users">See all users</a></p>
+

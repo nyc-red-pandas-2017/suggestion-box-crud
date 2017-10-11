@@ -8,7 +8,8 @@ post '/suggestions' do
   if @suggestion.save
     redirect "/"
   else
-    #errors
+    #error
+    erb :"index"
   end
 end
 

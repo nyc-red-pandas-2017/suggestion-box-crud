@@ -16,10 +16,17 @@
 </form>
 
 <h3>Your suggestions:</h3>
+
 <% current_user.suggestions.each do |suggestion| %>
 <h4><%= suggestion.title %></h4>
 <p><%= suggestion.details %></p>
-<% end %>
+
+    <form action="/suggestions/<%= suggestion.id %>" method="post">
+    <input type="hidden" name="_method" value="delete">
+    <input type="submit" class="button" value="delete">
+    </form>
+    <a href="/suggestions/<%= suggestion.id %>/edit">Update</a>
+  <% end %>
 
 <br>
 <br>

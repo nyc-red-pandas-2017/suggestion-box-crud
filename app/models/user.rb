@@ -2,6 +2,8 @@ class User < ApplicationRecord
 validates :username,:password, presence: true
 validates :username, uniqueness: true
 
+has_many :suggestions
+
   def password
     @password ||= BCrypt::Password.new(password_hash)
   end

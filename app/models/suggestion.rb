@@ -1,3 +1,3 @@
 class Suggestion < ApplicationRecord
-  # Remember to create a migration!
+  has_one :user
 end

@@ -28,9 +28,18 @@ get "/suggestions/:id/edit" do
 end
 
 put "/suggestions/:id" do
-  "Put Edit Hello"
+  @suggestion = Suggestion.find_by(id: params[:id])
+  @suggestion.assign_attributes(params[:suggestion])
+  if @suggestion.save
+    redirect "/"
+  else
+    @errors = @suggestion.errors.full_messages
+    erb :'suggestion/edit'
+  end
 end
 
 delete "/suggestions/:id" do
-  "Delete Hello"
+  @suggestion = Suggestion.find_by(id: params[:id])
+  @suggestion.destroy!
+  redirect "/"
 end

@@ -2,4 +2,9 @@
 
 <p><%= @suggestion.body %></p>
 
+<a href="/suggestions/<%= @suggestion.id %>/edit">Edit</a>
+<%= erb :"suggestions/_delete", layout: false, locals: {suggestion: @suggestion} %>
+
+
+<br><br>
 <a href="/">Home</a>

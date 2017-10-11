@@ -3,6 +3,7 @@ class CreateSuggestions < ActiveRecord::Migration[5.1]
     create_table :suggestions do |t|
       t.column :title, :string
       t.column :description, :string
+      t.column :user_id, :string
 
       t.timestamps
     end

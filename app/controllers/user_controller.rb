@@ -12,14 +12,28 @@ get '/users/new' do
 end
 
 get '/users/login' do
-  redirect '/'
+  @user = User.find_by(id: session[:user_id])
+  if @user
+     # User publications
+    @user_own_suggestions = Suggestion.where(user_id: session[:user_id])
+    puts @user_own_suggestions
+    # Other users' publications
+    @user_other_suggestions = Suggestion.where.not(user_id: session[:user_id])
+    erb :'/users/login'
+  else
+    "Am I in the session?"
+  end
 end
 
 post '/users/login' do
   @user = User.find_by(:name => params[:user][:name])
   if @user && @user.authenticate(params[:user][:password])
     session[:user_id] = @user.id
-    erb :'users/login'
+    # User publications
+    @user_own_suggestions = Suggestion.where(user_id: session[:user_id])
+    # Other users' publications
+    @user_other_suggestions = Suggestion.where.not(user_id: session[:user_id])
+    erb :'/users/login'
   else
     "Cannot log in, user not registered"
   end

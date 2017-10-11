@@ -1,0 +1,21 @@
+<div>
+  <h1>Edit Suggestion</h1>
+
+  <form action="/suggestions/<%= @suggestions.id %>" method="post">
+  <input type="hidden" name="_method" value="patch">
+  <input
+    type="text"
+    name="suggestion[title]"
+    value="<%= @suggestions.title %>" />
+    <br>
+
+  <input
+    type="text"
+    name="suggestion[description]"
+    value="<%= @suggestions.description %>" />
+  <br>
+  <input
+    type="submit" />
+</form>
+</div
+</div>

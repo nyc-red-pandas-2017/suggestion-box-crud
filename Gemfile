@@ -13,6 +13,8 @@ gem 'activerecord', '~>5.1.0'
 gem 'rake'
 
 gem 'shotgun', '~>0.9.1'
+gem 'pry'
+gem 'pry-byebug'
 
 group :test do
   gem 'shoulda-matchers'

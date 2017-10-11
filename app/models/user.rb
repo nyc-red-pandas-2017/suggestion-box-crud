@@ -5,6 +5,7 @@ class User < ApplicationRecord
   has_many :suggestions
   has_many :votes
 
+#Will look into has_secure_password
   def password
     @password ||=BCrypt::Password.new(password_hash)
   end

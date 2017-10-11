@@ -1,6 +1,6 @@
 get '/suggestions' do
   @suggestions = Suggestion.all
-  sorted_suggestions = Suggestion.order("votes DESC")
+  # sorted_suggestions = Suggestion.left_joins(:votes).group(:id).order('COUNT(votes.id) DESC').each { |x| x.votes.length}
   @user = User.find(session[:id])
   erb :'/suggestions/index'
 end

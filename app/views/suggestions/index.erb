@@ -1,9 +1,11 @@
-<h1>Suggestion Box</h1>
-<h3><a href='/suggestions/new'>New Suggestion</a></h3>
+<div class="container">
+  <h1>Suggestion Box</h1>
+  <h3><a href='/suggestions/new'>New Suggestion</a></h3>
 
-<% @suggestions.each do |s| %>
-  <ul>
-    <li><%= s.title %> <a href="/suggestions/<%= s.id %>"> details</a> - <a href="/suggestions/<%= s.id %>/edit"> edit</a>
-    </li>
-  </ul>
-<% end %>
+  <% @suggestions.each do |s| %>
+    <ul>
+      <li><%= s.title %> <a href="/suggestions/<%= s.id %>"> details</a>
+      </li>
+    </ul>
+  <% end %>
+</div

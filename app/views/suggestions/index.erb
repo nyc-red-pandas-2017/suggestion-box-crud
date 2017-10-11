@@ -1,1 +1,10 @@
-<h1>hello world</h1>
+<h1>Suggestion Box</h1>
+
+<% @suggestions.each do |s| %>
+  <ul>
+
+    <li>Title: <%= s.title %> <br>
+      Description: <%= s.description %>
+    </li>
+  </ul>
+<% end %>

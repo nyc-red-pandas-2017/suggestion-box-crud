@@ -16,6 +16,7 @@ end
 
 get "/suggestions/:id" do
   @suggestion = Suggestion.find_by(id: params[:id])
+  puts @suggestion
   if @suggestion
     erb :"/suggestions/show"
   else
@@ -41,5 +42,15 @@ post "/suggestions/login" do
     redirect '/users/login'
   else
     "Cannot add the suggestion"
+  end
+end
+
+post "/suggestions/:id" do
+  @suggestion = Suggestion.find_by(id: params[:id])
+  if @suggestion
+    @suggestion.destroy
+    redirect '/users/login'
+  else
+    "Suggestion not found"
   end
 end

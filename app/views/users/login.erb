@@ -67,10 +67,21 @@
 
 <div id="own-suggestions">
   <% if @user_own_suggestions %>
-  <h4><b>Your</b> suggestions</h4>
+  <h4><b>Your own</b> suggestions</h4>
     <ul>
       <% @user_own_suggestions.reverse.each do |suggestion| %>
-      <li> <a href="/suggestions/<%= suggestion.id %>"><%= suggestion.title %> </a> | Created at: <%= suggestion.created_at %> | <a href="#">delete</a> | <a href="#">edit</a> </li>
+      <li>
+        <a href="/suggestions/<%= suggestion.id %>"><%= suggestion.title %> </a> |
+        Created at: <%= suggestion.created_at %> |
+        <a href="#delete">delete</a> | <a href="#edit">edit</a>
+        <div class="delete-suggestion" style="display: none">
+          <form action="/suggestions/<%= suggestion.id %>" method="delete">
+          <p>Click below to confirm the deletion of this suggestion | Or <a href="#hide-delete">hide</a> </p>
+            <input name="_method" type="Submit" value="delete">
+          </form>
+        </div>
+      </li>
+      <!-- Hidden on load -->
     <% end %>
     </ul>
   <% else %>

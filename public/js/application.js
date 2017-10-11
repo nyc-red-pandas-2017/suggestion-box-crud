@@ -6,6 +6,7 @@ $(document).ready(function() {
   // See: http://docs.jquery.com/Tutorials:Introducing_$(document).ready()
   $("#signup-form").hide();
   $("#login-form").hide();
+  //$(".delete-suggestion").hide();
   //$("#create-new-tweet").hide();
 
   $("#new-user-choice").on("submit", function(event) {
@@ -19,4 +20,17 @@ $(document).ready(function() {
     $("#signup-form").hide();
     $("#login-form").show();
     });
+
+  $("a[href = '#delete']").on("click", function(event) {
+    event.preventDefault();
+    $(this).parent().parent().find('.delete-suggestion')
+    $(this).parent().find('.delete-suggestion').show()
+    // $(".delete-suggestion").show();
+    });
+
+  $("a[href = '#hide-delete']").on("click", function(event) {
+    event.preventDefault();
+    $(this).parent().parent().parent().hide();
+    });
+
 });

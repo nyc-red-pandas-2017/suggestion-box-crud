@@ -58,3 +58,9 @@ patch '/suggestions/:id' do
     erb :'suggestions/edit'
   end
 end
+
+delete '/suggestions/:id' do
+  @suggestions = Suggestion.find(params[:id])
+  @suggestions.destroy!
+  redirect '/'
+end

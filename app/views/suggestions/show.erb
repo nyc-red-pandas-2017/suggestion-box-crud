@@ -7,5 +7,10 @@
   <ul>
     <li>Suggestion: <%= @suggestions.title %></li>
     <li>Description: <%= @suggestions.description %></li>
+
   </ul>
+  <form action="/suggestions/<%= @suggestions.id %>" method="post">
+          <input type="hidden" id="hidden" name="_method" value="delete">
+          <input type="submit" class="btn btn-danger" value="Delete!">
+        </form>
 </div>

@@ -19,6 +19,13 @@
 </head>
 <body>
   <h1> Anonymous Suggestion box</h1>
+  <div id="banner">
+    <!-- refactor to show New Suggestion only when logged in -->
+    <a href="/users/new">Create User</a>
+    <a href="#">Log in</a>
+    <a href="/suggestions/new">New Suggestion</a>
+  </div>
+
   <%= yield %>
   <footer><a href="/">home</a></footer>
 </body>

@@ -40,10 +40,7 @@ put '/suggestions/:id' do
 end
 
 delete "/suggestions/:id" do
-  puts params
-  puts "**************************************"
-  p @suggestion = Suggestion.find_by(id: params[:id])
-  puts "**************************************"
+  @suggestion = Suggestion.find_by(id: params[:id])
   @suggestion.destroy!
   redirect "/"
 end

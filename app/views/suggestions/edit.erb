@@ -1,3 +1,13 @@
+<h1>Edit your suggestion</h1>
+<a href="/users/current_user.id"> Profile </a>
+
+<br>
+<br>
+<h3>Original suggestion:</h3>
+<b><%= @suggestion.title %></b>
+<br>
+<p><%= @suggestion.details %></p>
+
 <form action="/suggestions/<%= @suggestion.id %>" method="post">
   <input type="hidden" name="_method" value="put">
   <label for="suggestion[title]">Title:</label>

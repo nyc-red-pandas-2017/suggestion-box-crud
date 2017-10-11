@@ -75,27 +75,55 @@
       <p><a href="#">Link</a></p>
     </div>
     <div class="col-sm-8 text-left">
-      <h1>Welcome to the suggestion box!</h1>
-      <p> You can give us a suggestion in the box below (and give us your name... if you want ;) ).</p>
+      <h1><a href="/">Welcome to the suggestion box!</a></h1>
 
-      <form action="/" method="post">
-        <textarea name="suggestion" rows="3" col="10"></textarea> <br>
-        <input type="submit" value="Submit">
-      </form>
+      <div class="registration-login-choice">
+          <form id="new-user-choice" method="GET" action="/">
+            <button type="submit">Sign up</button>
+          </form>
+          <br>
+          <form id="login-user-choice" method="GET" action="/">
+            <button type="submit">Sign in</button>
+          </form>
+        </div>
 
       <hr>
-      <h3>Suggestions</h3>
 
-      <% if @dogs.empty? %>
-        <p>No puppers found. Add some!</p>
-      <% end %>
+    <form id="signup-form" action="/users/signup" method="post">
+         <table>
+          <tr>
+           <td><b>Name:</b> </td> <td><input type="text" name="name"></td>
+          </tr>
+          <tr>
+           <td><b>Username: </b> </td> <td><input type="text" name="username"></td>
+          </tr>
+          <tr>
+           <td><b>Email:</b> </td> <td><input type="email" name="email"></td>
+          </tr>
+          <tr>
+           <td><b>Password:</b> </td> <td><input type="password" name="password"></td>
+          </tr>
+         </table>
+         <!-- <br> -->
+         <div class="buttonHolder">
+                  <input type="submit" value="Go!">
+         </div>
+    </form>
 
-      <ol>
-        <% @dogs.each do |dog| %>
-          <li><%= dog.name %>, a <%= dog.breed %>, is a good dog!</li>
-        <% end %>
-      </ol>
-
+    <form id="login-form" action="/users/login" method="post">
+         <table>
+          <tr>
+           <td><b>Username: </b></td> <td><input type="text" name="username"></td>
+          </tr>
+          <tr>
+           <td><b>Password: </b></td> <td><input type="password" name="password"></td>
+          </tr>
+         </table>
+     <br>
+     <div class="buttonHolder">
+              <input type="submit" value="Go!">
+     </div>
+    </form>
 
     </div>
     <div class="col-sm-2 sidenav">
@@ -112,6 +140,7 @@
 <footer class="container-fluid text-center">
   <p>Footer Text</p>
 </footer>
+
 
 </body>
 </html>

@@ -1,6 +1,11 @@
 get "/" do
-  redirect "/suggestions"
+  erb :index
 end
+
+# Route for release1
+# get "/" do
+#   redirect "/suggestions"
+# end
 
 
 get "/suggestions" do

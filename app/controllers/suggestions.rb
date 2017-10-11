@@ -1,17 +1,36 @@
 get "/suggestions" do
-  Hello World
+  redirect "/"
 end
 
 get "/suggestions/new" do
-  New Hello World
-end
-
-get "suggestions/edit" do
-  Edit Hello
+  erb :"suggestions/new"
 end
 
 post "/suggestions" do
-  Post Route
+  @new_suggestion = Suggestion.new(params[:suggestion])
+  if @new_suggestion.save
+    redirect "/"
+  else
+    @errors = @new_suggestion.errors.full_messages
+    erb :"suggestions/new"
+  end
 end
 
+# Why does this route have to be below "/suggestions/new" to work
+get "/suggestions/:id" do
+  @suggestion = Suggestion.find_by(id: params[:id])
+  erb :"suggestions/show"
+end
 
+get "/suggestions/:id/edit" do
+  @suggestion = Suggestion.find_by(id: params[:id])
+  erb :"suggestions/edit"
+end
+
+put "/suggestions/:id" do
+  "Put Edit Hello"
+end
+
+delete "/suggestions/:id" do
+  "Delete Hello"
+end

@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   has_many :suggestions
+  # has_many :upvotes
 
   validates :username,:password, presence: true
   validates :username, uniqueness: true

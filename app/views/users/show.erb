@@ -5,10 +5,8 @@
     <% if own_suggetion?(suggestion) %>
       <h4><%= suggestion.title %> </h4>
       <p><%= suggestion.body %> </p>
-      <% if own_suggetion?(suggestion) %>
         <a href="/suggestions/<%= suggestion.id %>/edit">Edit</a>
         <%= erb :"suggestions/_delete", layout: false, locals: {suggestion: suggestion} %>
-      <% end %>
     <% end %>
   <% end %>
 </div>

@@ -1,18 +1,29 @@
 <h1>All Suggestions</h1>
 <% @suggestions.each do |suggestion| %>
-  <ul>
-    <h3><a href="<%="/suggestions/#{suggestion.id}"%>"><%=suggestion.title%></a></h3>
-    <li><%=suggestion.description%></li>
-  </ul>
-  <div>
-    <p>Thumbs Up:</p>
-    <form action ="/suggestions/<%=suggestion.id%>/upvote" method="post" id="upvote">
-    <input type="hidden" name="suggestion_id" value="<%= params[:vote] %>">
-    <button id="button" type="submit" name="submit" value="submit_value"</button>
+  <div id="suggestion">
+    <ul>
+      <h3><a href="<%="/suggestions/#{suggestion.id}"%>"><%=suggestion.title%></a></h3>
+      <li><%=suggestion.description%></li>
+    </ul>
+    <div>
+        <form action ="/suggestions/<%=suggestion.id%>/upvote" method="post" id="upvote">
+          <input type="hidden" name="suggestion_id" value="<%= params[:vote] %>">
+          <button id="button" type="submit" name="submit" value="submit_value">
+          <p> Thumbs Up</p>
+          </button>
+        </form>
+    </div>
+    <br />
+      <form action ="/suggestions/<%=suggestion.id%>/undo" method="post" id="undo">
+        <input type="hidden" name="suggestion_id" value="<%= params[:vote] %>">
+        <button id="button" type="submit" name="submit" value="submit_value">
+        <p>Undo Thumbs Up</p>
+        </button>
+      </form>
+    <p>Total Thumbs Ups: <%=suggestion.votes.count%></p>
   </div>
-<p>Total Thumbs Ups: <%=suggestion.votes.count%></p>
-<% end %>
-
+  <% end %>
+</div>
 
 <p><a href="<%="/users/#{@user.id}"%>">Back to profile</a></p>
 

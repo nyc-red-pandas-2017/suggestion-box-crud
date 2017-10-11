@@ -1,6 +1,6 @@
 get '/suggestions' do
   @suggestions = Suggestion.all
-  # @suggestion = Suggestion.find_by(id: )
+  sorted_suggestions = Suggestion.order("votes DESC")
   @user = User.find(session[:id])
   erb :'/suggestions/index'
 end
@@ -56,7 +56,8 @@ end
 
 post '/suggestions/:id/upvote' do
   @suggestion = Suggestion.find(params[:id])
-  @suggestion.votes.new(vote: true, user_id: current_user.id)
+  #Check to see that current user has not voted already
+  @suggestion.votes.new(vote: true, user: current_user)
   if @suggestion.save
     redirect '/suggestions'
   else
@@ -64,5 +65,18 @@ post '/suggestions/:id/upvote' do
     erb :"/suggestions/show"
   end
 end
+
+post '/suggestions/:id/undo' do
+  @suggestion = Suggestion.find(params[:id])
+  if @suggestion.user == current_user
+    @suggestion.votes.find_by(user: current_user).destroy
+    redirect '/suggestions'
+  else
+    @error = "Error"
+    erb :'/suggestions/show'
+  end
+end
+
+
 
 

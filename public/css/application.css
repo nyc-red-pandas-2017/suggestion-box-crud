@@ -2,3 +2,15 @@ h1, h2, h3 {
   text-decoration: underline;
 }
 
+div form #button {
+  max-height: 50%;
+  max-width: 50%;
+  background-color: LightBlue;
+}
+
+#suggestion {
+  border: 2px solid pink;
+  padding: 5px;
+  margin: 5px;
+}
+

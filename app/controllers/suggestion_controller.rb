@@ -1,3 +1,4 @@
+# Route for release2
 get "/" do
   erb :index
 end

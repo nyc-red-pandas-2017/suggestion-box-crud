@@ -6,9 +6,9 @@ Go through each release in order. There is a recommended completion time, but if
 
 **Due:** 2:00pm
 
-Create a CRUD app that allows user to submit an anonymous suggestion for DBC. 
+Create an initial app that allows user to submit an anonymous suggestion for DBC. 
 
-For this release, user should be able to
+For this release, users should be able to
 
 - post a suggestion which includes a title and description
 - see a list suggestions listed by the title that are linkable to page where the user could see all the details on the home page
@@ -20,7 +20,7 @@ For this release, user should be able to
 
 Make sure to complete Release 1 before proceeding. For this release, you'll be adding user authentication and linking a suggestion created to the creator. The user should now be able to track suggestions they post, however, the suggestion should still be displayed anonymously to other users.
 
-For this release, user should be able to
+For this release, users should be able to
 
 - create an account with a username (which are unique) and password of at least six character
 - see a list of suggestions they've posted on their profile page
@@ -31,7 +31,7 @@ For this release, user should be able to
 **Due:** 4:00pm
 Make sure to complete Release 2 before proceeding. For this release, you'll be adding the ability for a user to edit and delete a suggestion that they own.
 
-For this release, user should be able to
+For this release, users should be able to
 
 - edit a suggestion they own
 - delete a suggestion they own
@@ -43,7 +43,7 @@ For this release, user should be able to
 
 Make sure to complete Release 3 before proceeding. For this release, add the ability for users thumbs up a suggestion.
 
-For this release, user should be able to
+For this release, users should be able to
 
 - thumbs up posted suggestions
 - undo thumbs up on posted suggestions
@@ -56,7 +56,7 @@ For this release, user should be able to
 
 Make sure to complete Release 4 before proceeding. For this release, add the ability for users to comment on suggestions.
 
-For this release, user should be able to
+For this release, users should be able to
 
 - comment on a suggestion
 - edit a comment they own

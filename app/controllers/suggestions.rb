@@ -8,7 +8,7 @@ get '/suggestions/new' do
 end
 
 post '/suggestions' do
-  @suggestion = Suggestion.create(params[:suggestion])
+  @suggestion = current_user.suggestions.create(params[:suggestion])
   redirect '/suggestions'
 end
 

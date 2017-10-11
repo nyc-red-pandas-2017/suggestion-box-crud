@@ -3,10 +3,14 @@ get "/suggestions" do
 end
 
 get "/suggestions/new" do
+  current_user
+  redirect '/' unless authorized?(current_user)
   erb :"suggestions/new"
 end
 
 post "/suggestions" do
+  current_user
+  redirect '/' unless authorized?(current_user)
   @new_suggestion = Suggestion.new(user_id: current_user.id, title: params[:suggestion][:title], body: params[:suggestion][:body])
   if @new_suggestion.save
     redirect "/"
@@ -29,16 +33,19 @@ end
 
 put "/suggestions/:id" do
   @suggestion = Suggestion.find_by(id: params[:id])
+  redirect "/" unless own_suggetion?(@suggestion)
   @suggestion.assign_attributes(params[:suggestion])
   if @suggestion.save
     redirect "/"
   else
     @errors = @suggestion.errors.full_messages
-    erb :'suggestion/edit'
+    erb :'suggestions/edit'
   end
 end
 
 delete "/suggestions/:id" do
+  @suggestion = Suggestion.find_by(id: params[:id])
+  redirect "/" unless own_suggetion?(@suggestion)
   @suggestion = Suggestion.find_by(id: params[:id])
   @suggestion.destroy!
   redirect "/"

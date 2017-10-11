@@ -1,8 +1,16 @@
 <h1> Welcome to Thomas's Suggetion Site! </h1>
 
 <nav>
-  <a href ="/suggestions/new">New Suggestion</a>
+  <% if logged_in? %>
+    <h3> Current User: <a href="/users/<%= @current_user.id %>"> <%= @current_user.username %> </a><br>
+    <a href ="/suggestions/new">New Suggestion</a><br>
+    <a href="/sessions/logout"> Log Out</a><br>
+  <% else %>
+    <a href="/sessions/new"> Login </a> <p><br>
+    <a href="/users/new"> Register!</a>
+  <% end %>
 </nav>
+
 <!-- Style Nav Bar in future -->
 <br><br>
 

@@ -1,0 +1,12 @@
+<h2>Suggestion content</h2>
+<% if @suggestion %>
+  <h3>Title</h3>
+  <p><%= @suggestion.title %></p>
+  <h3>Description</h3>
+  <p><%= @suggestion.description %></p>
+<% else %>
+  <p>No suggestion found. Add some!</p>
+<% end %>
+
+<a href="/">Return to Homepage</a>
+

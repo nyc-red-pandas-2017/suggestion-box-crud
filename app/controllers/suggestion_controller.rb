@@ -8,6 +8,15 @@ get "/suggestions" do
   erb :"/suggestions/index"
 end
 
+get "/suggestions/:id" do
+  @suggestion = Suggestion.find_by(id: params[:id])
+  if @suggestion
+    erb :"/suggestions/show"
+  else
+    "Suggestion not found"
+  end
+end
+
 post "/suggestions" do
   @suggestion = Suggestion.new(title: params[:suggestion][:title],
     description: params[:suggestion][:description])

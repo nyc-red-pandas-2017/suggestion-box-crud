@@ -101,8 +101,9 @@
       <% end %>
 
       <ul>
+        <!-- Most recent first -->
         <% @suggestions.reverse.each do |suggestion| %>
-          <li> <a href="#"><%= suggestion.title %></a></li>
+          <li> <a href="/suggestions/<%= suggestion.id %>"><%= suggestion.title %></a></li>
         <% end %>
       </ul>
 

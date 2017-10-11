@@ -13,6 +13,10 @@ post '/users' do
   end
 end
 
-get '/users/login' do
+get '/login' do
   erb :"/users/login"
+end
+
+post '/login' do
+  "Hello world"
 end

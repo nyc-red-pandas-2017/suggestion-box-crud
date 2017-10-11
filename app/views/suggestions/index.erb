@@ -1,0 +1,7 @@
+<h1>All Suggestions</h1>
+<% @suggestions.each do |suggestion| %>
+<ul>
+  <h3><a href="<%="/suggestions/#{suggestion.id}"%>"><%=suggestion.title%></a></h3>
+  <li><%=suggestion.description%></li>
+</ul>
+<% end %>

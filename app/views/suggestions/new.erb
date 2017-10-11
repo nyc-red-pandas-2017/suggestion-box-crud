@@ -1,0 +1,12 @@
+<container>
+  <h1>Suggestion Form</h1>
+  <form action="/suggestions/new" method="post" id="form">
+    <label for="title">Title:</label>
+    <input type="text" name="suggestion[title]">
+    <input type="submit" value="Submit">
+  </form>
+  <br />
+
+  <textarea rows="4" cols="50" name="suggestion[description]" form="form">
+    Enter text here</textarea>
+</container>

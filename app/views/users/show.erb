@@ -1,0 +1,8 @@
+<h1>My Profile</h1>
+  <%@suggestions.each do |suggestion| %>
+    <ul>
+      <h3><%=suggestion.title%><h3>
+      <li><%=suggestion.description%></li>
+    </ul>
+<%end%>
+<p><a href="/suggestions/new">Make a suggestion</a></p>

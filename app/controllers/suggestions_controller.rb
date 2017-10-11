@@ -1,6 +1,6 @@
-get '/' do
-  redirect '/suggestions'
-end
+# get '/' do
+#   redirect '/suggestions'
+# end
 
 get "/suggestions" do
   @suggestions = Suggestion.all

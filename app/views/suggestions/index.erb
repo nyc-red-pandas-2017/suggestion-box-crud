@@ -1,0 +1,11 @@
+<h1>Welcome to the Suggestion Website..</h1>
+
+<a href='/suggestions/new'>Click here to make a suggestion</a>
+
+
+<h4>See Suggestions Below</h4>
+<div class="suggestions">
+    <% @suggestions.each do |suggestion| %>
+        <a href="/suggestions/<%= suggestion.id %>"><h4><%= "#{suggestion.title}  " %></h4></a>
+    <% end %>
+</div>

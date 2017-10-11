@@ -1,5 +1,7 @@
 # Suggestion Box
 
+Go through each release in order. There is a specified time for compeletion, but if you happen to finish a release before the specified time, you should proceed to the next release.
+
 ## Release 1
 
 **Due:** 2:00pm
@@ -27,11 +29,35 @@ For this release, user should be able to
 ## Release 3
 
 **Due:** 4:00pm
+Make sure to complete Release 2 before proceeding. For this release, you'll be adding the ability for a user to edit and delete a suggestion that they own.
 
-Make sure to complete Release 2 before proceeding. For this release, add the ability for users thumbs up a suggestion.
+For this release, user should be able to
+
+- edit a suggestion they own
+- delete a suggestion they own
+
+
+## Release 4
+
+**Due:** 5:00pm
+
+Make sure to complete Release 3 before proceeding. For this release, add the ability for users thumbs up a suggestion.
 
 For this release, user should be able to
 
 - thumbs up posted suggestions
+- undo thumbs up on posted suggestions
 - see a list of suggestions on the home page ordered by the number of thumbs up
-- a list of suggestions they thumbs upped on their profile page
+- see a list of suggestions they thumb upped on their profile page
+
+## Release 5
+
+**Due:** 6:00pm
+
+Make sure to complete Release 4 before proceeding. For this release, add the ability for users to comment on suggestions.
+
+For this release, user should be able to
+
+- comment on a suggestion
+- edit a comment they own
+- delete a comment they own

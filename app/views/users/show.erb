@@ -1,4 +1,11 @@
-
+<div name="container">
+  <% @suggestions.each do |suggestion| %>
+    <% if own_suggetion?(suggestion) %>
+      <h4><%= suggestion.title %> </h4>
+      <p><%= suggestion.body %> </p>
+    <% end %>
+  <% end %>
+</div>
 
 <br><br><br>
 <a href="/">Home</a><br>

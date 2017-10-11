@@ -4,8 +4,8 @@
 <nav>
   <% if logged_in? %>
     <h3> Current User: <a href="/users/<%= @current_user.id %>"> <%= @current_user.username %> </a><br></h3>
-    <p><a href ="/suggestions/new">New Suggestion</a></p><br>
-    <p><a href="/sessions/logout"> Log Out</a></p><br>
+    <p><a href ="/suggestions/new">New Suggestion</a></p>
+    <p><a href="/sessions/logout"> Log Out</a></p>
   <% else %>
     <p><a href="/sessions/new"> Login </a></p>
     <p><a href="/users/new"> Sign Up!</a></p>

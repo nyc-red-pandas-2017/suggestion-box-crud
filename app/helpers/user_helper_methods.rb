@@ -14,6 +14,6 @@ def own_suggetion?(suggestion)
   logged_in? && suggestion.user == current_user
 end
 
-# def user_tweet?(tweet, user)
-#   tweet.user == user
-# end
+def user_suggestion?(suggestion, user)
+  suggestion.user == user
+end

@@ -7,7 +7,7 @@ get "/suggestions/new" do
 end
 
 post "/suggestions" do
-  @new_suggestion = Suggestion.new(params[:suggestion])
+  @new_suggestion = Suggestion.new(user_id: current_user.id, title: params[:suggestion][:title], body: params[:suggestion][:body])
   if @new_suggestion.save
     redirect "/"
   else

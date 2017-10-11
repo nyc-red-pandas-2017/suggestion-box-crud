@@ -25,7 +25,8 @@ end
 
 post "/suggestions" do
   @suggestion = Suggestion.new(title: params[:suggestion][:title],
-    description: params[:suggestion][:description])
+    description: params[:suggestion][:description], user_id: session[:user_id])
+  puts params
   if @suggestion.save
     redirect "/suggestions"
   else

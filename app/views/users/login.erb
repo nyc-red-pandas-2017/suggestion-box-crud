@@ -52,6 +52,19 @@
 <br>
 <br>
 
+<p> You can give us a suggestion in the box below, or read the current suggestions <br> </p>
+
+      <form action="/suggestions" method="post">
+        <b> &nbsp; Title *</b><br>
+        <textarea name="suggestion[title]" rows="1" col="10"></textarea><br>
+        <b> &nbsp; Description *</b><br>
+        <textarea name="suggestion[description]" rows="3" col="10"></textarea> <br>
+        <input type="submit" value="Submit">
+      </form>
+      <p> &nbsp; <b>*: required field</b></p>
+
+<br>
+
 <div id="own-suggestions">
   <% if @user_own_suggestions.length %>
   <p><b>Your</b> suggestions</p>

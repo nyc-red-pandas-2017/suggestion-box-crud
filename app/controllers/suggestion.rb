@@ -35,6 +35,6 @@ end
 
 put '/suggestions/:id' do
   @suggestion = Suggestion.find_by(id: params[:id])
-  @suggestion.update
+  @suggestion.update(params[:suggestion])
   redirect "/users/#{current_user.id}"
 end

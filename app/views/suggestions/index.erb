@@ -3,7 +3,7 @@
 
 <% @suggestions.each do |s| %>
   <ul>
-    <li><%= s.title %> <a href="/suggestions/<%= s.id %>"> details...</a>
+    <li><%= s.title %> <a href="/suggestions/<%= s.id %>"> details</a> - <a href="/suggestions/<%= s.id %>/edit"> edit</a>
     </li>
   </ul>
 <% end %>

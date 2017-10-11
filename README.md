@@ -61,6 +61,7 @@ For this release, users should be able to
 **Due:** 6:00pm
 
 Did you commit your changes? Are you working on a separate branch? Also make sure to complete Release 4 before proceeding.
+
 For this release, add the ability for users to comment on suggestions.
 
 For this release, users should be able to

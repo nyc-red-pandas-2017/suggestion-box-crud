@@ -1,8 +1,8 @@
+<p><a href="/suggestions">Home</a></p>
+
 <h3><%=@suggestion.title%></h3>
 <p><%=@suggestion.description%></p>
 <p><a href="/suggestions/<%=@suggestion.id%>/edit">Edit</a></p>
 
-<form action="/suggestions/<%=@suggestion.id%>" method="post">
-  <input type="hidden" name="_method" value="delete">
-  <input type="submit" value="Delete">
-</form>
+<%= erb :'suggestions/_delete', layout: false  %>
+

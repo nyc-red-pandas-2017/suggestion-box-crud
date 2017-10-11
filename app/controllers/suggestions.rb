@@ -1,5 +1,6 @@
 get '/suggestions' do
   @suggestions = Suggestion.all
+  @user = User.find(session[:id])
   erb :'/suggestions/index'
 end
 
@@ -15,6 +16,30 @@ post '/suggestions/new' do
     redirect '/suggestions'
   else
     erb :'/suggestions/new'
+  end
+end
+
+post '/suggestions/:id/upvote' do
+  @vote = Vote.new(vote: true)
+  @votes = Vote.where(id: params[:suggestion_id])
+  @suggestion = Suggestion.find(params[:id])
+  if @vote.save
+    redirect '/suggestions/#{params[:suggestion_id]}'
+  else
+    @errors = "Error"
+    erb :"/suggestions/show"
+  end
+end
+
+post '/suggestions/:id/downvote' do
+  @vote = Vote.new(vote: false)
+  @votes = Vote.where(id: params[:suggestion_id])
+  @suggestion = Suggestion.find(params[:id])
+  if @vote.save
+    redirect '/suggestions/#{params[:suggestion_id]}'
+  else
+    @errors = "Error"
+    erb :"/suggestions/show"
   end
 end
 

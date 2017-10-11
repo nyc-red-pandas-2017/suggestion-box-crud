@@ -1,6 +1,6 @@
 # Suggestion Box
 
-Go through each release in order. There is a specified time for compeletion, but if you happen to finish a release before the specified time, you should proceed to the next release.
+Go through each release in order. There is a recommended completion time, but if you need more time definitely take it and if you happen to finish a release early you should proceed to the next release.
 
 ## Release 1
 

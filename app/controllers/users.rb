@@ -4,5 +4,11 @@ get '/users/new' do
 end
 
 post '/users' do
-  "Hello world"
+  @user = User.new(params[:user])
+  if @user.save
+    session[:user_id] = @user.id
+    redirect "/users/login"
+  else
+    erb :"users/new"
+  end
 end

@@ -1,4 +1,4 @@
-get 'suggestions' do
+get '/suggestions' do
   @suggestions = Suggestion.all
   erb :"suggestions/index"
 end
@@ -9,12 +9,9 @@ get '/suggestions/new' do
 end
 
 post '/suggestions' do
-  @suggestion = Suggestion.new(params[:suggestion])
+  @suggestion = Suggestion.new(user_id: current_user.id, title: params[:suggestion][:title], details: params[:suggestion][:details])
   if @suggestion.save
-    redirect "/suggestions"
-  else
-    #error
-    erb :"suggestions/index"
+    redirect "/users/#{current_user.id}"
   end
 end
 

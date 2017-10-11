@@ -36,7 +36,7 @@ end
 #LAST METHOD
 get '/users/:id' do
   @user = User.find_by(id: params[:id])
-  @suggestions = Suggestion.all
+  @suggestions = Suggestion.find_by(user_id: params[:user_id])
   redirect '/' unless current_user.id == session[:user_id]
   erb :'users/show'
 end

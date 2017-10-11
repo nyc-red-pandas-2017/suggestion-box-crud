@@ -1,0 +1,16 @@
+<center>
+  <h1>Inspirational vibes coming your way!</h1>
+
+  <div>
+    <h3><%= @suggestion.title %></h3>
+    <h3><%= @suggestion.description %></h3>
+  </div>
+
+  <a href="/">Home</a>
+  <br>
+  <a href="/suggestions/<%= @suggestion.id%>/edit">Edit Suggestion</a>
+  <form action="/suggestions/<%= @suggestion.id %>" method="post">
+    <input type="hidden" name="_method" value="delete">
+    <input type="submit" value="Delete Suggestion">
+  </form>
+</center>

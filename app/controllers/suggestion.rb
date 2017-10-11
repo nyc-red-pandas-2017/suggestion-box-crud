@@ -1,15 +1,20 @@
+get 'suggestions' do
+  @suggestions = Suggestion.all
+  erb :"suggestions/index"
+end
+
 get '/suggestions/new' do
   @suggestion = Suggestion.new
-  erb :"index"
+  erb :"suggestions/index"
 end
 
 post '/suggestions' do
   @suggestion = Suggestion.new(params[:suggestion])
   if @suggestion.save
-    redirect "/"
+    redirect "/suggestions"
   else
     #error
-    erb :"index"
+    erb :"suggestions/index"
   end
 end
 

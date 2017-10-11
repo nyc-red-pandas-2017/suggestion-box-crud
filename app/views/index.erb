@@ -1,15 +1,3 @@
-<form action="/suggestions" method="post">
-  <label for="suggestion[title]">Title:</label>
-  <input type="text" name="suggestion[title]"placeholder="title">
-  <br>
-  <label for="suggestion[details]">Details:</label>
-  <input type="text" name="suggestion[details]"placeholder="details">
-  <br>
-  <input type="submit" value="submit">
-</form>
-
-<% if @suggestions %>
-<% @suggestions.each do |suggestion| %>
-<a href="/suggestions/<%= suggestion.id %>"><ul><li><%= suggestion.title %></li></ul></a>
-<% end %>
-<% end %>
+<a href="/users/new"> Sign Up </a>
+<br>
+<a href=""> Log In </a>

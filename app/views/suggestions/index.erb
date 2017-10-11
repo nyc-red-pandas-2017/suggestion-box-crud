@@ -1,0 +1,10 @@
+<header><a href="/suggestions/new">New Suggestion</a></header>
+<div class="container">
+  <p>Suggestions</p>
+    <ul>
+      <%@suggestions.each do |suggestion|%>
+      <a href="/suggestions/<%=suggestion.id%>"><li> <%= suggestion.title %></li></a>
+      <% end %>
+    </ul>
+</div>
+

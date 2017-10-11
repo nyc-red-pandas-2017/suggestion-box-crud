@@ -1,0 +1,19 @@
+<div class='container'>
+  <h2>Write a Suggestion:</h2>
+
+  <form id= 'suggestion-form' action='/suggestions' method='POST'>
+    <label for="suggestion[user_id]" class="label">Username:</label>
+    <input type="text" name="suggestion[user_id]"  class="input input-round" placeholder="Anonymous">
+
+    Title:<br>
+    <input type='text' name='suggestion[title]' class="input input-round" placeholder="Untitled"><br>
+
+    Description:<br>
+    <textarea rows='3' cols='50' name='suggestion[description]' class="input input-round" </textarea>
+
+
+    <input type='submit' value='Submit Suggestion'>
+
+  </form>
+</div>
+

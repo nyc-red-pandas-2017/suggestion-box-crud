@@ -1,0 +1,31 @@
+<h1> Suggestion Submitted !</h1>
+
+<li>
+<div class='single-suggestion'>
+      <form action='/suggestions/index' method='POST'>
+        <input type='hidden' name='_method' value='DELETE'>
+        <input class='delete-button' type='submit' value='x'></input>
+      </form>
+</div>
+</li>
+
+
+<!-- <article id="suggestions-<%= suggestion.id %>" class="suggestion"> -->
+  <div class="suggestion-details">
+    <h1 class="suggestion-title">
+      <a href="/suggestions/<%= suggestion.id %>" class="link-coral"><%= suggestion.title %></a>
+    </h1>
+
+    <p class="suggestion-detail-line"><%= authorship_tagline(suggestion) %></p>
+    <p class="suggestion-detail-line"><%= thumbs_up_report(suggestion) %></p>
+  </div>
+
+  <p class="suggestion-body handwritten light">
+    <%= with_line_breaks(suggestion.description) %>
+  </p>
+
+  <form class="form" action="/suggestions/<%= suggestion.id %>/thumbs_up" method="POST">
+  <input type="hidden" name="_method" value="PUT">
+  <input type="submit" class="input input-no-margin button button-applaud button-coral" value="Applaud">
+</form>
+<!-- </article> -->

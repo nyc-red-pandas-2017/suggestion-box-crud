@@ -1,0 +1,38 @@
+<section id="sidebar" class="sidebar">
+  <h1 class="sidebar-heading">
+    Give a Suggestion
+  </h1>
+
+    <p>
+      Submit the form below to submit a suggestion. If you would like to post anonymously, don't include your username.
+    </p>
+
+</section>
+
+
+
+<section id="suggestion" class="content content-left">
+  <ul id="suggestion-list" class="suggestion-list">
+
+  <% @suggestions.each do |suggestion| %>
+      <li class="suggestion-list-item">
+        <%= erb :'suggestions/show' %>
+       <!--  <h3><%= suggestion.user_id%></h3>
+        <h4><%= suggestion.title%></h4>
+        <p><%= suggestion.description%></p> -->
+      </li>
+  <% end %>
+  </ul>
+</section>
+
+<%= erb :'suggestions/new' %>
+
+
+
+
+
+
+
+
+
+

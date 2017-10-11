@@ -1,4 +1,6 @@
-    <% if @user.errors.any? %>
+  <a href="/"> Home </a>
+
+<% if @user.errors.any? %>
   <div>
     <ul>
     <% @user.errors.full_messages.each do |msg| %>
@@ -6,7 +8,7 @@
     <% end %>
     </ul>
   </div>
-  <% end %>
+<% end %>
 
   <form action="/users" method="post">
     <label for="user[first_name]">First Name:</label>

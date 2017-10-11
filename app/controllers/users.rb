@@ -18,5 +18,20 @@ get '/login' do
 end
 
 post '/login' do
-  "Hello world"
+  @user = User.authenticate(params[:username], params[:password])
+  if @user
+    session[:user_id] = @user.id
+    redirect "/users/#{@user.id}"
+  else
+    @error = "Invalid login, please try again!"
+    erb :'users/login'
+  end
+end
+
+#LAST METHOD
+get '/users/:id' do
+  @user = User.find_by(id: params[:id])
+  @suggestions = Suggestion.all
+  redirect '/' unless current_user.id == session[:user_id]
+  erb :'users/show'
 end

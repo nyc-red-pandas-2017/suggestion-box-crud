@@ -1,3 +1,9 @@
+  <a href="/"> Home </a>
+
+  <% if @error %>
+  <%= @error %>
+  <% end %>
+
   <form action="/login" method="post">
     <label for="user[username]">Username:</label>
     <input type="username" name="username"  placeholder="username">

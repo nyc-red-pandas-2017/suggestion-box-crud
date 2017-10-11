@@ -18,7 +18,9 @@ For this release, users should be able to
 
 **Due:** 3:00pm
 
-Make sure to complete Release 1 before proceeding. For this release, you'll be adding user authentication and linking a suggestion created to the creator. The user should now be able to track suggestions they post, however, the suggestion should still be displayed anonymously to other users.
+Did you commit your changes? Are you working on a separate branch? Also make sure to complete Release 1 before proceeding.
+
+For this release, you'll be adding user authentication and linking a suggestion created to the creator. The user should now be able to track suggestions they post, however, the suggestion should still be displayed anonymously to other users.
 
 For this release, users should be able to
 
@@ -29,7 +31,9 @@ For this release, users should be able to
 ## Release 3
 
 **Due:** 4:00pm
-Make sure to complete Release 2 before proceeding. For this release, you'll be adding the ability for a user to edit and delete a suggestion that they own.
+Did you commit your changes? Are you working on a separate branch? Also make sure to complete Release 2 before proceeding.
+
+For this release, you'll be adding the ability for a user to edit and delete a suggestion that they own.
 
 For this release, users should be able to
 
@@ -41,7 +45,9 @@ For this release, users should be able to
 
 **Due:** 5:00pm
 
-Make sure to complete Release 3 before proceeding. For this release, add the ability for users thumbs up a suggestion.
+Did you commit your changes? Are you working on a separate branch? Also make sure to complete Release 3 before proceeding.
+
+For this release, add the ability for users thumbs up a suggestion.
 
 For this release, users should be able to
 
@@ -54,7 +60,8 @@ For this release, users should be able to
 
 **Due:** 6:00pm
 
-Make sure to complete Release 4 before proceeding. For this release, add the ability for users to comment on suggestions.
+Did you commit your changes? Are you working on a separate branch? Also make sure to complete Release 4 before proceeding.
+For this release, add the ability for users to comment on suggestions.
 
 For this release, users should be able to
 

@@ -12,3 +12,7 @@ post '/users' do
     erb :"users/new"
   end
 end
+
+get '/users/login' do
+  erb :"/users/login"
+end

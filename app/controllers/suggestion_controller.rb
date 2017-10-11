@@ -34,3 +34,12 @@ post "/suggestions" do
   end
 end
 
+post "/suggestions/login" do
+  @suggestion = Suggestion.new(title: params[:suggestion][:title],
+    description: params[:suggestion][:description], user_id: session[:user_id])
+  if @suggestion.save
+    redirect '/users/login'
+  else
+    "Cannot add the suggestion"
+  end
+end

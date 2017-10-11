@@ -16,7 +16,6 @@ get '/users/login' do
   if @user
      # User publications
     @user_own_suggestions = Suggestion.where(user_id: session[:user_id])
-    puts @user_own_suggestions
     # Other users' publications
     @user_other_suggestions = Suggestion.where.not(user_id: session[:user_id])
     erb :'/users/login'

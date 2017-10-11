@@ -5,15 +5,14 @@
     <li><%=suggestion.description%></li>
   </ul>
   <div>
+    <p>Thumbs Up:</p>
     <form action ="/suggestions/<%=suggestion.id%>/upvote" method="post" id="upvote">
-    <input type="hidden" name="suggestion_id" value="<%= params[:id] %>">
-    <button id="button" type="submit" name="submit" value="submit_value"</button>
-
-    <form action ="/suggestions/<%=suggestion.id%>/downvote" method="post" id="downvote">
-    <input type="hidden" name="suggestion_id" value="<%= params[:id] %>">
+    <input type="hidden" name="suggestion_id" value="<%= params[:vote] %>">
     <button id="button" type="submit" name="submit" value="submit_value"</button>
   </div>
+<p>Total Thumbs Ups: <%=suggestion.votes.count%></p>
 <% end %>
+
 
 <p><a href="<%="/users/#{@user.id}"%>">Back to profile</a></p>
 

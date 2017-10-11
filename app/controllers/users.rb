@@ -13,7 +13,7 @@ post '/users' do
     session[:user_id] = @user.id
     redirect '/users/#{@user.id}'
   else
-    erb :'/users/new'
+    erb :'/index'
   end
 end
 

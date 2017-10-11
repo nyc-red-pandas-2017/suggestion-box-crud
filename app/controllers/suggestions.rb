@@ -1,5 +1,6 @@
 get '/suggestions' do
   @suggestions = Suggestion.all
+  # @suggestion = Suggestion.find_by(id: )
   @user = User.find(session[:id])
   erb :'/suggestions/index'
 end
@@ -19,30 +20,6 @@ post '/suggestions/new' do
   end
 end
 
-post '/suggestions/:id/upvote' do
-  @vote = Vote.new(vote: true)
-  @votes = Vote.where(id: params[:suggestion_id])
-  @suggestion = Suggestion.find(params[:id])
-  if @vote.save
-    redirect '/suggestions/#{params[:suggestion_id]}'
-  else
-    @errors = "Error"
-    erb :"/suggestions/show"
-  end
-end
-
-post '/suggestions/:id/downvote' do
-  @vote = Vote.new(vote: false)
-  @votes = Vote.where(id: params[:suggestion_id])
-  @suggestion = Suggestion.find(params[:id])
-  if @vote.save
-    redirect '/suggestions/#{params[:suggestion_id]}'
-  else
-    @errors = "Error"
-    erb :"/suggestions/show"
-  end
-end
-
 get '/suggestions/:id' do
   @suggestion = Suggestion.find(params[:id])
   erb :'/suggestions/show'
@@ -50,7 +27,11 @@ end
 
 get '/suggestions/:id/edit' do
   @suggestion = Suggestion.find(params[:id])
-  erb :'/suggestions/edit'
+  if @suggestion.user == current_user
+    erb :'/suggestions/edit'
+  else
+    @error = "You are not authorized to edit this."
+  end
 end
 
 put '/suggestions/:id' do
@@ -64,7 +45,24 @@ put '/suggestions/:id' do
 end
 
 delete '/suggestions/:id' do
-  @suggestion = Suggestion.find(params[:id])
-  @suggestion.destroy
-  redirect '/suggestions'
+    @suggestion = Suggestion.find(params[:id])
+    if @suggestion.user == current_user
+    @suggestion.destroy
+    redirect '/suggestions'
+  else
+    @error = "You are not authorized to delete this."
+  end
 end
+
+post '/suggestions/:id/upvote' do
+  @suggestion = Suggestion.find(params[:id])
+  @suggestion.votes.new(vote: true, user_id: current_user.id)
+  if @suggestion.save
+    redirect '/suggestions'
+  else
+    @errors = "Error"
+    erb :"/suggestions/show"
+  end
+end
+
+

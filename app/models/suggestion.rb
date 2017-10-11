@@ -6,15 +6,9 @@ class Suggestion < ApplicationRecord
   belongs_to :user
   has_many :votes
 
-  def upvote_total
-    return votes.count(true)
-  end
-
-  def downvote_total
-    return votes.count(false)
-  end
-
   def vote_total
+    upvotes = votes.count(true)
+    downvotes = votes.count(false)
     return upvote_total - downvote_total
   end
 

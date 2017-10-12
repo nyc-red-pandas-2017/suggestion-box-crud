@@ -1,6 +1,10 @@
 class User < ApplicationRecord
   has_many :suggestions
-  # has_many :upvotes
+  has_many :up_votes
+  has_many :up_voted_suggestions, through: :up_votes, source: :suggestion
+  has_many :supports, through: :up_voted_suggestions, source: :user
+  has_many :suggestions_up_voted, through: :suggestions, source: :up_votes
+  has_many :supporters, through: :suggestions_up_voted, source: :user
 
   validates :username,:password, presence: true
   validates :username, uniqueness: true

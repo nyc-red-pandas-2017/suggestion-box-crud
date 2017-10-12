@@ -1,4 +1,4 @@
-# UpVote.delete_all
+UpVote.delete_all
 Suggestion.delete_all
 User.delete_all
 
@@ -10,7 +10,7 @@ S1 = Suggestion.create!(title: "Get Sleep", body: "It is not a government conspi
 S2 = Suggestion.create!(title: "Eat Dumplings", body: "The are afforable and delicous!", user: thomas)
 S3 = Suggestion.create!(title: "Get Revenge", body: "Enough Said", user: penn)
 
-# T1 = UpVote.create!(user: thomas, suggestion: S3)
-# T2 = UpVote.create!(user: penn, suggestion: S1)
-# T3 = UpVote.create!(user: penn, suggestion: S2)
-# T4 = UpVote.create!(user: david, suggestion: S3)
+T1 = UpVote.create!(user: thomas, suggestion: S3)
+T2 = UpVote.create!(user: penn, suggestion: S1)
+T3 = UpVote.create!(user: penn, suggestion: S2)
+T4 = UpVote.create!(user: david, suggestion: S3)

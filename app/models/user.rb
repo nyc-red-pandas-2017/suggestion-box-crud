@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   has_many :suggestions
   validates :username, :password,  presence: true
+  validates :password, length: {minimum: 6}
   validates :username, uniqueness: true
 
   def password

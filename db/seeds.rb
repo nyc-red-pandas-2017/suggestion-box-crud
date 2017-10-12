@@ -2,7 +2,7 @@ User.delete_all
 Suggestion.delete_all
 
 10.times do
-  User.create!(username: Faker::Name.first_name, password: Faker::Internet.free_email )
+  User.create!(username: Faker::Name.first_name, password: 'password' )
 end
 
 user = User.create(username: 'sam', password: 'asd')

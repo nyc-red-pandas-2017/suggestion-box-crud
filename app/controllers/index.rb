@@ -35,6 +35,7 @@ post '/suggestions' do
 end
 
 get '/suggestions/:id' do
+  @user = User.find(params[:id])
   @suggestion = Suggestion.find(params[:id])
    if !logged_in?
     redirect '/suggestions'

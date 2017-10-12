@@ -1,5 +1,5 @@
 <h1>All Suggestions</h1>
-<% @suggestions.each do |suggestion| %>
+<% @sorted_suggestions.each do |suggestion| %>
   <div id="suggestion">
     <ul>
       <h3><a href="<%="/suggestions/#{suggestion.id}"%>"><%=suggestion.title%></a></h3>

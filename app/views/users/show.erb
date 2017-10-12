@@ -7,7 +7,14 @@
       <li><%=suggestion.description%></li>
     </ul>
 <%end%>
-<p><a href="/suggestions/new">Make a suggestion</a></p>
+<p><a href="/suggestions/new">New suggestion</a></p>
 <p><a href="/suggestions">See all suggestions</a></p>
 <p><a href="/users">See all users</a></p>
 
+<p>You upvoted:</p>
+<%@upvotes.each do |upvote|%>
+<ul>
+  <li>Title: <%=upvote.suggestion.title%></li>
+  <li>Description: <%=upvote.suggestion.description%></li>
+</ul>
+  <%end%>

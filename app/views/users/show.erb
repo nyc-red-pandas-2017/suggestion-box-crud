@@ -1,0 +1,33 @@
+<style>
+  form { display: inline; }
+</style>
+
+<h1><%= current_user.username %>'s Profile</h1>
+
+<a href='/suggestions/new'>Click here to make a suggestion</a>
+
+<div class="user_suggestions">
+  <h3><%= current_user.username %>'s Suggestions:</h3>
+  <% @suggestions.each do |suggestion| %>
+    <% if suggestion.user == current_user %>
+      <a href="/suggestions/<%= suggestion.id %>"><h4><%= suggestion.title %></h4></a>
+      <p><%= suggestion.description %></p>
+      <a href="/suggestions/<%= suggestion.id %>/edit">Edit</a>
+      <%= erb :"suggestions/_delete", layout: false, locals: {suggestion: suggestion} %>
+      <p>*********************************************************************************</p>
+    <% end %>
+  <% end %>
+</div>
+
+
+<div class="other_suggestions">
+  <h3>Other Folks' Suggestions:</h3>
+    <% @suggestions.each do |suggestion| %>
+      <% if suggestion.user != current_user %>
+      <a href="/suggestions/<%= suggestion.id %>"><h4><%= suggestion.title %></h4></a>
+      <p><%= suggestion.description %></p>
+      <p>*********************************************************************************</p>
+      <% end %>
+    <% end%>
+</div>
+

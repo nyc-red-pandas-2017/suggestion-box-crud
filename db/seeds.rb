@@ -1,4 +1,4 @@
-b -UpVote.delete_all
+UpVote.delete_all
 Suggestion.delete_all
 User.delete_all
 
@@ -23,7 +23,3 @@ UpVote.create!(user: andres, suggestion: s2)
 UpVote.create!(user: david, suggestion: s1)
 UpVote.create!(user: david, suggestion: s2)
 
-# Should Have on other End
-#Penn Up_Voted 5 times, 0 up_votes
-#Thomas Up_Voted 4 times, 1 up_votes
-#David Up_Voted 0 times, 3 up_votes

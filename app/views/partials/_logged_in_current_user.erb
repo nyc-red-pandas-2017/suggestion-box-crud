@@ -1,0 +1,10 @@
+<div>
+  <% if logged_in? %>
+    <h3> Current User: <a href="/users/<%= @current_user.id %>"> <%= @current_user.username %> </a><br></h3>
+    <p> Suggestions <%= @current_user.suggestions.length %></p>
+    <p> Up Votes Given <%= @current_user.up_votes.length %></p>
+    <p> Users Supported <%= @current_user.supports.to_a.uniq.length %></p>
+    <p> Up Votes Recieved <%= @current_user.suggestions_up_voted.length %></p>
+    <p> Supporters <%= @current_user.suggestions_up_voted.to_a.uniq.length %></p>
+    <% end %>
+</div>

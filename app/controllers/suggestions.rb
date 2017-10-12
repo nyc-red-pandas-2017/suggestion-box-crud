@@ -47,8 +47,9 @@ end
 delete "/suggestions/:id" do
   @suggestion = Suggestion.find_by(id: params[:id])
   redirect "/" unless own_suggetion?(@suggestion)
-  @suggestion_up_votes = @suggestion.up_votes
-  @suggestion_up_votes.destroy_all!
+  # NOTE THE USE OF DEPENENT DESTROY in Model(Thanks Roman)
+  # @suggestion_up_votes = @suggestion.up_votes
+  # @suggestion_up_votes.destroy_all!
   @suggestion.destroy!
   redirect "/"
 end

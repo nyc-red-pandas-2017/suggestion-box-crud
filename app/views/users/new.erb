@@ -2,6 +2,6 @@
 
 <form id="new-user" method="POST" action="/users">
   <input type="text" name="user[username]" placeholder="Username">
-  <input type="password" name="user[password" placeholder="Password">
+  <input type="password" name="user[password]" placeholder="Password, min 6 chars" pattern=".{6,}" required>
   <input type="submit" name="CREATE A NEW USER">
 </form>

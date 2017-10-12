@@ -25,7 +25,11 @@ end
 
 get '/suggestions/:id/edit' do
   @suggestion = Suggestion.find(params[:id])
-  erb :'suggestions/edit'
+  if session[:user_id] == @suggestion.user
+    erb :'suggestions/edit'
+  else
+    erb :'suggestions/show'
+  end
 end
 
 patch '/suggestions/:id' do
@@ -43,6 +47,22 @@ delete '/suggestions/:id' do
   @suggestion = Suggestion.find(params[:id])
 
   @suggestion.destroy
+
+  redirect '/suggestions'
+end
+
+post '/suggestions/:id/upvote' do
+  @suggestion = Suggestion.find(params[:id])
+
+  @suggestion.update_attribute(:votes, @suggestion[:votes] + 1)
+
+  redirect '/suggestions'
+end
+
+post '/suggestions/:id/downvote' do
+  @suggestion = Suggestion.find(params[:id])
+
+  @suggestion.update_attribute(:votes, @suggestion[:votes] - 1)
 
   redirect '/suggestions'
 end

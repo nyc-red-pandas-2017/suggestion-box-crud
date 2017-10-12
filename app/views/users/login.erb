@@ -74,12 +74,15 @@
         <a href="/suggestions/<%= suggestion.id %>"><%= suggestion.title %> </a> |
         Created at: <%= suggestion.created_at %> |
         <a href="#delete">delete</a> | <a href="#edit">edit</a>
+
         <div class="delete-suggestion" style="display: none">
-          <form action="/suggestions/<%= suggestion.id %>" method="delete">
-          <p>Click below to confirm the deletion of this suggestion | Or <a href="#hide-delete">hide</a> </p>
-            <input name="_method" type="Submit" value="delete">
+          <form action="/suggestions/<%= suggestion.id %>" method="post">
+            <p>Click below to confirm the deletion of this suggestion | Or <a href="#hide-delete">hide</a> </p>
+              <input type="hidden" name="_method" value="delete">
+              <input type="submit" value="Delete">
           </form>
         </div>
+
       </li>
       <!-- Hidden on load -->
     <% end %>

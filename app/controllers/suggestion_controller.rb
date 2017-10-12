@@ -45,9 +45,12 @@ post "/suggestions/login" do
   end
 end
 
-post "/suggestions/:id" do
+delete "/suggestions/:id" do
   @suggestion = Suggestion.find_by(id: params[:id])
-  if @suggestion
+  # protect the suggestion
+  puts @suggestion.user_id
+  puts session[:user_id]
+  if @suggestion.user_id.to_i == session[:user_id].to_i
     @suggestion.destroy
     redirect '/users/login'
   else

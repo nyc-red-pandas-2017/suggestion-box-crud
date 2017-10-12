@@ -23,9 +23,8 @@ $(document).ready(function() {
 
   $("a[href = '#delete']").on("click", function(event) {
     event.preventDefault();
-    $(this).parent().parent().find('.delete-suggestion')
-    $(this).parent().find('.delete-suggestion').show()
-    // $(".delete-suggestion").show();
+    $(this).parent().parent().find('.delete-suggestion');
+    $(this).parent().find('.delete-suggestion').show();
     });
 
   $("a[href = '#hide-delete']").on("click", function(event) {

@@ -1,35 +1,34 @@
 <div class="container">
+
   <h2>Welcome, <%= current_user.username %>!</h2>
+
   <h3><a href='/suggestions/new'>New Suggestion</a></h3>
+
   <% @suggestions.each do |s| %>
+
   <% if own_suggestion?(s) %>
+
   <ul>
-    <li><%= s.title %> - <%= s.description %>- <a href="/suggestions/<%= s.id %>">details</a></li>
+
+    <li><%= s.title %> - <%= s.description %>- <a href="/suggestions/<%= s.id %>">details</a>  </li>
+
+
   </ul>
+
+
   <% else %>
+
   <ul>
-    <li><%= s.title %> - <%= s.description %> </li>
+
+    <li><%= s.title %> - <%= s.description %></li>
+
   </ul>
+
   <% end %>
+
   <% end %>
+
 </div>
 
 
-<div class="container">
-  <h2>Welcome, <%= current_user.username %>!</h2>
-  <h3><a href='/suggestions/new'>New Suggestion</a></h3>
-  <% @suggestions.each do |s| %>
-  <% if own_suggestion?(s) %>
-<article id="<%= s.id %>">
-  <h4><%= s.title %> - <%= s.description %>- <a href="/suggestions/<%= s.id %>">details</a></h4>
-  <form method="post" action='/suggestions/<%=s.id %>/vote' class="inline" >
-    <button type="submit" name="submit_param" value="submit_value" class="fa fa-sort-desc vote-button upvote-button"></button>
-      </form>
 
-  </form>
-</article>
-  <% else %>
-
-  <% end %>
-  <% end %>
-</div>

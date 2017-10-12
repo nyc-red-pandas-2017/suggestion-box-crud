@@ -1,9 +1,10 @@
 h1, h2, h3 {
   text-decoration: underline;
+
 }
 
 div form #button {
-  max-height: 50%;
+  max-height: 30%;
   max-width: 50%;
   background-color: LightBlue;
 }
@@ -14,3 +15,15 @@ div form #button {
   margin: 5px;
 }
 
+#profile {
+  padding-left: 20px;
+}
+
+#logout {
+  display: inline block;
+  float: right;
+}
+
+p, h1, h2, h3, a, li {
+  font-family: Consolas;
+}

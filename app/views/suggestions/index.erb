@@ -4,7 +4,7 @@
   <% @suggestions.each do |s| %>
   <% if own_suggestion?(s) %>
   <ul>
-    <li><%= s.title %> - <%= s.description %><a href="/suggestions/<%= s.id %>"> details</a></li>
+    <li><%= s.title %> - <%= s.description %>- <a href="/suggestions/<%= s.id %>">details</a></li>
   </ul>
   <% else %>
   <ul>

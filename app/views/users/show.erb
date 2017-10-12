@@ -1,7 +1,6 @@
 <h1> Accout of : <%= @user.username %> </h1>
 
-
-<div name="user_suggestions">
+<div>
   <h3> Your Suggestions </h3>
   <% @suggestions.each do |suggestion| %>
     <% if own_suggetion?(suggestion) %>
@@ -17,7 +16,7 @@
 <p>***************************************************************************************************************************************************************************************************************************************************************************</p>
 <br>
 
-<div name= "user_up_votes">
+<div>
   <h3> Your Up Votes </h3>
   <% @up_votes.map do |up_vote| %>
     <p><%= up_vote.suggestion.title %></p>

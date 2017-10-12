@@ -1,0 +1,25 @@
+<h1><%= current_user.username %>'s Profile</h1>
+
+<a href='/suggestions/new'>Click here to make a suggestion</a>
+
+<div class="user_suggestions">
+  <h3><%= current_user.username %>'s Suggestions:</h3>
+  <% @suggestions.each do |suggestion| %>
+    <% if suggestion.user == current_user %>
+      <h3><%= suggestion.title %></h3>
+      <p><%= suggestion.description %><p>
+    <% end %>
+  <% end %>
+</div>
+
+
+<div class="other_suggestions">
+  <h3>Other Folks' Suggestions:</h3>
+    <% @suggestions.each do |suggestion| %>
+      <% if suggestion.user != current_user %>
+      <h3><%= suggestion.title %></h3>
+      <p><%= suggestion.description %></p>
+      <% end %>
+    <% end%>
+</div>
+

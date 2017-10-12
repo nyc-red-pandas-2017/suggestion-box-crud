@@ -67,6 +67,6 @@ For this release, add the ability for users to comment on suggestions.
 
 Users should be able to
 
-- comment on a suggestion
+- make multiple comments on suggestions
 - edit a comment they own
 - delete a comment they own

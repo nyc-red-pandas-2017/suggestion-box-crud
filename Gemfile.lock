@@ -1,4 +1,4 @@
-beGEM
+GEM
   remote: https://rubygems.org/
   specs:
     activemodel (5.1.4)

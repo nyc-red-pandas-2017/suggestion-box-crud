@@ -1,10 +1,26 @@
 class Suggestion < ApplicationRecord
-  belongs_to :user
-  has_many :thumbs_up
-  validates :title , :description , presence: true
+  belongs_to :author , class_name: :User
+  has_many :votes , class_name: :ThumbsUp, foreign_key: :suggestion_id
+  has_many :voters , through: :votes, class_name: :User
+  validates :title , :description , :author_id, presence: true
 
   def points
-    thumbs_up.sum(:value)
+    votes.sum(:value)
   end
 
 end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

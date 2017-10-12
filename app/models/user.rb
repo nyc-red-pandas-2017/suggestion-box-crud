@@ -1,6 +1,10 @@
 class User < ApplicationRecord
-  has_many :suggestions
-  has_many :thumb_ups
+  has_many :created_suggestions, class_name: :Suggestion, foreign_key: :author_id
+  has_many :thumbups , class_name: :ThumbsUp, foreign_key: :voter_id
+  has_many :voted_suggestions, through: :thumbups, source: :suggestion
+  has_many :votes , through: :created_suggestions
+  has_many :supported_suggestions, through: :votes, source: :voter
+  has_many :supports_suggestions , through: :voted_suggestions, source: :author
 
   validates :first_name,:last_name,:username,:email,:password,presence:true
   validates :email,:username, uniqueness: true
@@ -21,6 +25,7 @@ class User < ApplicationRecord
     return nil
   end
 end
+
 
 
 

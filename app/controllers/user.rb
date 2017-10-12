@@ -11,6 +11,8 @@ end
 
 get '/users/:id' do
   @user = User.find_by(id: params[:id])
+  @suggestions = @user.suggestions.sort {|a,b| b.votes <=> a.votes}
+
   redirect '/' unless @user.id == session[:user_id]
   erb :'users/show'
   # if logged_in? && user.id == session[:user_id]

@@ -2,24 +2,24 @@
 <h2>Hello <%= @user.username%></h2>
 <h3>Your suggestions:</h3>
 <ul>
-  <% @user.suggestions.each do |user_sugg| %>
+  <% @suggestions.each do |user_sugg| %>
     <li>
       Title: <%= user_sugg.title %>  <br>
       Description: <%= user_sugg.description %>  <br>
       <!-- Created At: <br> -->
+      <p><%= user_sugg.votes %></p>
       <a href="/suggestions/<%= user_sugg.id %>/edit">Edit</a>
+
+      <form action="/suggestions/<%= user_sugg.id %>/upvote" method="post">
+        <input type="submit" value="upvote">
+      </form>
+
+      <form action="/suggestions/<%= user_sugg.id %>/downvote" method="post">
+        <input type="submit" value="downvote">
+      </form>
 
     </li>
   <% end %>
 <ul>
 
 
-<!-- doesn't work -->
-<!-- <form action="/suggestions/<%= suggestion.id %>/downvote" method="post">
-  <input type="submit" value="downvote">
-
-</form>
-
-<form action="/suggestions/<%= suggestion.id %>/upvote" method="post">
-  <input type="submit" value="upvote">
-</form> -->

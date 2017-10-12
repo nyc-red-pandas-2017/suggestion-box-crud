@@ -35,6 +35,7 @@ post '/suggestions' do
 end
 
 get '/suggestions/:id' do
+  # binding.pry
   @user = User.find(params[:id])
   @suggestion = Suggestion.find(params[:id])
    if !logged_in?

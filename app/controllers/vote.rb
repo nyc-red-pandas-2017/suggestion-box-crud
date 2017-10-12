@@ -1,18 +1,24 @@
 
 def upvote
-  @suggestion.find(params[:id])
-  @suggestion.update_attributes(:votes, @suggestion[:votes] -1 )
+  @suggestion = Suggestion.find(params[:id])
+  @suggestion.update(votes: @suggestion.votes + 1)
+  @suggestion.save
 end
 
 def downvote
-  @suggestion.find(params[:id])
-  @suggestion.update_attributes(:votes, @suggestion[:votes] +1 )
+
+  @suggestion = Suggestion.find(params[:id])
+  @suggestion.update(votes: @suggestion.votes - 1)
+  @suggestion.save
 end
 
-post '/votes/:id/upvote' do
+post '/suggestions/:id/upvote' do
   upvote
+  redirect "/users/#{current_user.id}"
 end
 
-post '/votes/:id/downvote' do
+post '/suggestions/:id/downvote' do
+
   downvote
+  redirect "/users/#{current_user.id}"
 end

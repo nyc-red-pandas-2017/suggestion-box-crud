@@ -7,6 +7,12 @@ get '/users/new' do
   erb :'users/new'
 end
 
+get '/users/:id' do
+  @user = User.find_by(id: params[:id])
+  redirect '/' unless @user.id = session[:user_id]
+  erb :'session/login'
+end
+
 post '/users' do
   new_user = User.new(params[:user])
   if new_user.save

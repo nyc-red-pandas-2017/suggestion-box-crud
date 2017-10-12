@@ -2,26 +2,48 @@
   <h1 class="sidebar-heading">
     Give a Suggestion
   </h1>
-
     <p>
       Submit the form below to submit a suggestion. If you would like to post anonymously, don't include your username.
     </p>
-
 </section>
 
 
 
 <section id="suggestion" class="content content-left">
   <ul id="suggestion-list" class="suggestion-list">
-
-  <% @suggestions.each do |suggestion| %>
+    <% @suggestions.each do |suggestion| %>
       <li class="suggestion-list-item">
-        <%= erb :'suggestions/show' %>
-       <!--  <h3><%= suggestion.user_id%></h3>
-        <h4><%= suggestion.title%></h4>
-        <p><%= suggestion.description%></p> -->
+
+      <h3>User:<%= suggestion.user_id%></h3>
+      <h4>Title: <%= suggestion.title%></h4>
+      <a href="suggestions/<%= suggestion.id %>">Details</a>
+
+      <p>Decription<%= suggestion.description%></p>
+
+      <form method="POST" action="/suggestions/<%= suggestion.id %>/upvote">
+      <button type="submit">Upvote</button>
+      </form>
+
+      <form method="POST" action="/suggestions/<%= suggestion.id %>/downvote">
+      <button type="submit">Downvote</button>
+      </form>
+
+      <h2>Thumbs-up</h3>
+
+        <% if authorship_tagline(suggestion) %>
+        <a href="suggestions/<%= suggestion.id %>/edit">Edit Suggestion</a>
+        <br>
+        <%= erb :'/index', layout: false %>
+        <% end %>
+
+    <% end %>
+    <br>
+    <br>
+    <br>
+    <% if session[:user_id] %>
+      <a href="/session/delete">Logout</a>
+    <% end %>
       </li>
-  <% end %>
   </ul>
 </section>
 

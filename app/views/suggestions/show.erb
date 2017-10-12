@@ -9,5 +9,11 @@
   <%= erb :"suggestions/_delete", layout: false, locals: {suggestion: @suggestion} %>
 <% end %>
 
+<% if already_up_voted?(@suggestion, current_user) %>
+  <%= erb :"up_votes/_delete", layout: false, locals: {suggestion: @suggestion} %>
+<% else %>
+  <%= erb :"up_votes/_up_vote_form", layout: false, locals: {suggestion: @suggestion} %>
+<% end %>
+
 <br><br>
 <a href="/">Home</a>

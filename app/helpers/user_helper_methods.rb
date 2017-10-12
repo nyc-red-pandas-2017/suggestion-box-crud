@@ -21,7 +21,7 @@ end
 def already_up_voted?(suggestion, user)
   @suggestion_up_votes = suggestion.up_votes
   if @suggestion_up_votes.find_by(user_id: user.id)
-    return true
+     true
   else
     false
   end

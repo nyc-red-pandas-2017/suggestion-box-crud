@@ -7,13 +7,10 @@ get "/users/new" do
 end
 
 get "/users/:user_id" do
-# Creating a more limited variable for just the user's suggestions might be more secure
-  @suggestions = Suggestion.all
   @user = User.find(params[:user_id])
+  @suggestions = Suggestion.where(user_id: @user.id)
   redirect "/" unless authorized?(@user)
-  @all_users = User.all
   @up_votes = @user.up_votes
-  # @user_id_p = @user.username
   erb :"users/show"
 end
 

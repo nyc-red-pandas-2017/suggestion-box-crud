@@ -44,11 +44,7 @@ get '/suggestions/:id/edit' do
   puts params
   @suggestions = Suggestion.find(params[:id])
   puts @suggestions.id
-  if @suggestions && current_user.id == session[:user_id]
-    erb :'/suggestions/edit'
-  else
-    "Unauthorized to Edit!"
-  end
+  erb :'/suggestions/edit'
 
 end
 
@@ -57,7 +53,7 @@ patch '/suggestions/:id' do
   puts params
 
   @suggestions = Suggestion.find(params[:id])
-  if @suggestions && current_user.id == session[:user_id]
+
     erb :'/suggestions/edit'
 
     puts "*******************"
@@ -67,17 +63,14 @@ patch '/suggestions/:id' do
     puts "*******************"
 
 
-    @suggestions.assign_attributes(title: params[:suggestion][:title],
+    @suggestions.assign_attributes(user_id: current_user.id, title: params[:suggestion][:title],
                                  description: params[:suggestion][:description])
 
-    if @suggestions
+    if @suggestions.save
       redirect '/suggestions'
     else
       erb :'suggestions/edit'
     end
-  else
-    "Unauthorized to Edit!"
-  end
 end
 
 delete '/suggestions/:id' do

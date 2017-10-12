@@ -1,0 +1,7 @@
+<p><a href="/suggestions">Home</a></p>
+
+<h3><%=@suggestion.title%></h3>
+<p><%=@suggestion.description%></p>
+<p><a href="/suggestions/<%=@suggestion.id%>/edit">Edit</a></p>
+
+<%= erb :'suggestions/_delete', layout: false  %>

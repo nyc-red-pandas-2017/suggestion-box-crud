@@ -48,8 +48,6 @@ end
 delete "/suggestions/:id" do
   @suggestion = Suggestion.find_by(id: params[:id])
   # protect the suggestion
-  puts @suggestion.user_id
-  puts session[:user_id]
   if @suggestion.user_id.to_i == session[:user_id].to_i
     @suggestion.destroy
     redirect '/users/login'
@@ -57,3 +55,21 @@ delete "/suggestions/:id" do
     "Suggestion not found"
   end
 end
+
+put "/suggestions/:id" do
+  @suggestion = Suggestion.find_by(id: params[:id])
+  # protect the suggestion
+  if @suggestion.user_id.to_i == session[:user_id].to_i
+    @suggestion.assign_attributes(title: params[:suggestion][:title], description: params[:suggestion][:description], user_id: session[:user_id])
+    if @suggestion.save
+      redirect '/users/login'
+    else
+      "Suggestion not found"
+    end
+  else
+    "Suggestion not found"
+  end
+end
+
+
+

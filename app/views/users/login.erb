@@ -83,6 +83,18 @@
           </form>
         </div>
 
+        <div class="edit-suggestion" style="display: none">
+          <form action="/suggestions/<%= suggestion.id %>" method="post">
+            <p>Edit this suggestion | Or <a href="#hide-delete">hide</a> </p>
+            <b> &nbsp; Title *</b><br>
+            <textarea name="suggestion[title]" rows="1" col="10"><%= suggestion.title %></textarea><br>
+            <b> &nbsp; Description *</b><br>
+            <textarea name="suggestion[description]" rows="3" col="10"><%= suggestion.description %></textarea> <br>
+            <input type="hidden" name="_method" value="put">
+            <input type="submit" value="Submit">
+          </form>
+        </div>
+
       </li>
       <!-- Hidden on load -->
     <% end %>

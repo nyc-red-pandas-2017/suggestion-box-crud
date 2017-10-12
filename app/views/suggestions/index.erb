@@ -1,5 +1,5 @@
 <h1>All Suggestions</h1>
-<% @suggestions.each do |suggestion| %>
+<% @sorted_suggestions.each do |suggestion| %>
   <div id="suggestion">
     <ul>
       <h3><a href="<%="/suggestions/#{suggestion.id}"%>"><%=suggestion.title%></a></h3>
@@ -9,11 +9,12 @@
         <form action ="/suggestions/<%=suggestion.id%>/upvote" method="post" id="upvote">
           <input type="hidden" name="suggestion_id" value="<%= params[:vote] %>">
           <button id="button" type="submit" name="submit" value="submit_value">
-          <p> Thumbs Up</p>
+          <p>Thumbs Up</p>
           </button>
         </form>
     </div>
     <br />
+
       <form action ="/suggestions/<%=suggestion.id%>/undo" method="post" id="undo">
         <input type="hidden" name="suggestion_id" value="<%= params[:vote] %>">
         <button id="button" type="submit" name="submit" value="submit_value">
@@ -21,6 +22,10 @@
         </button>
       </form>
     <p>Total Thumbs Ups: <%=suggestion.votes.count%></p>
+    <%= erb :'/comments/_comment', layout: false  %>
+    <% @comments.each do |comment| %>
+    <%=comment.text%>
+    <%end%>
   </div>
   <% end %>
 </div>

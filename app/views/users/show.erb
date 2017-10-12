@@ -1,4 +1,5 @@
-<p><a href="/logout">Logout</a></p>
+<p><a href="/logout" id="logout">Logout</a></p>
+<div id="profile">
 <h1>My Profile</h1>
 <h2>My Suggestions:</h2>
   <%@suggestions.each do |suggestion| %>
@@ -7,7 +8,15 @@
       <li><%=suggestion.description%></li>
     </ul>
 <%end%>
-<p><a href="/suggestions/new">Make a suggestion</a></p>
+<p><a href="/suggestions/new">New suggestion</a></p>
 <p><a href="/suggestions">See all suggestions</a></p>
 <p><a href="/users">See all users</a></p>
 
+<p>You upvoted:</p>
+<%@upvotes.each do |upvote|%>
+<ul>
+  <li>Title: <%=upvote.suggestion.title%></li>
+  <li>Description: <%=upvote.suggestion.description%></li>
+</ul>
+  <%end%>
+</div>

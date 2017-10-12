@@ -9,7 +9,7 @@ gem 'sinatra-contrib'
 
 gem 'activesupport', '~>5.1.0'
 gem 'activerecord', '~>5.1.0'
-
+gem 'pry'
 gem 'rake'
 gem 'bcrypt'
 gem 'shotgun', '~>0.9.1'

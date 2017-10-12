@@ -1,6 +1,8 @@
 get '/suggestions' do
   @suggestions = Suggestion.all
-  # sorted_suggestions = Suggestion.left_joins(:votes).group(:id).order('COUNT(votes.id) DESC').each { |x| x.votes.length}
+  @sorted_suggestions = @suggestions.sort_by{|suggestion| suggestion.votes.count}.reverse
+  # @comment = Comment.find(id: params[:suggestion_id])
+  @comments = Comment.all
   @user = User.find(session[:id])
   erb :'/suggestions/index'
 end
@@ -9,7 +11,7 @@ get '/suggestions/new' do
   erb :'/suggestions/new'
 end
 
-post '/suggestions/new' do
+post '/suggestions' do
   @suggestion = Suggestion.new(params[:suggestion])
   current_user = User.find(session[:id])
   @suggestion.user = current_user
@@ -47,8 +49,8 @@ end
 delete '/suggestions/:id' do
     @suggestion = Suggestion.find(params[:id])
     if @suggestion.user == current_user
-    @suggestion.destroy
-    redirect '/suggestions'
+      @suggestion.destroy
+      redirect '/suggestions'
   else
     @error = "You are not authorized to delete this."
   end
@@ -76,6 +78,7 @@ post '/suggestions/:id/undo' do
     erb :'/suggestions/show'
   end
 end
+
 
 
 

@@ -11,7 +11,8 @@
   <% @suggestions.each do |suggestion| %>
     <% if suggestion.user == current_user %>
       <a href="/suggestions/<%= suggestion.id %>"><h4><%= suggestion.title %></h4></a>
-      <p><%= suggestion.description %></p>
+      <p><%= suggestion.description %></p><br><br>
+
       <a href="/suggestions/<%= suggestion.id %>/edit">Edit</a>
       <%= erb :"suggestions/_delete", layout: false, locals: {suggestion: suggestion} %>
       <p>*********************************************************************************</p>

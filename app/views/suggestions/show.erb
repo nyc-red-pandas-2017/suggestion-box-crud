@@ -6,8 +6,9 @@
 
 <div class="suggestion_details">
   <h3><%= @suggestion.title %></h3>
-  <%= @suggestion.description %><br>
+  <%= @suggestion.description %><br><br>
   <% if @suggestion.user == current_user %>
+  <%= erb :"_vote_buttons", layout: false, locals: {suggestion: suggestion} %>
   	<a href="/suggestions/<%= @suggestion.id %>/edit">Edit</a>
     <%= erb :"suggestions/_delete", layout: false, locals: {suggestion: @suggestion} %>
   <% end %>

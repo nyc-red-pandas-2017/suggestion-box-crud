@@ -14,16 +14,17 @@ post '/suggestions' do
 end
 
 get '/suggestions/:id' do
-  @suggestion = Suggestion.find(params[:id])
+  @suggestion = Suggestion.find_by(id: params[:id])
   erb :'suggestions/show'
 end
 
 get '/suggestions/:id/edit' do
-  @suggestion = Suggestion.find(params[:id])
+  @suggestion = Suggestion.find_by(id: params[:id])
   if current_user == @suggestion.user
-	erb :'suggestions/edit'
+    erb :'suggestions/edit'
   else
-  	redirect "/suggestions/#{@suggestion.id}"
+    status 401
+    redirect "/suggestions/#{@suggestion.id}"
   end
 end
 
@@ -34,13 +35,41 @@ patch '/suggestions/:id' do
 	redirect "/suggestions"
 end
 
-delete '/suggestions/:id' do 
-	@suggestion = Suggestion.find_by(id: params[:id])
-	if current_user == @suggestion.user
-		Suggestion.find(params[:id]).destroy!
-		redirect '/suggestions'
-	else
-		redirect '/suggestions/:id'
-	end
+delete '/suggestions/:id' do
+  @suggestion = Suggestion.find_by(id: params[:id])
+  if current_user == @suggestion.user
+    Suggestion.find(params[:id]).destroy!
+    redirect '/suggestions/:id'
+  else
+    status 401
+    redirect '/suggestions/:id'
+  end
 end
 
+post '/suggestions/:id/vote' do
+  @suggestion = Suggestion.find_by(id: params[:id])
+  unless @suggestion.votes.find {|vote| vote.user_id == current_user.id}
+  # unless Vote.where(votable: suggestion, user_id: current_user.id)
+    @vote = Vote.new(vote: 1, votable_type: "Suggestion", votable_id: params[:suggestion_id], user_id: current_user.id)
+    @votes = Vote.where(votable_id: params[:suggestion_id])
+    if @vote.save
+      redirect "/suggestions/#{params[:suggestion_id]}"
+    else
+      @errors = "Nope, try again."
+      erb :"/suggestions/show"
+    end
+  end
+  redirect "/suggestions/#{params[:id]}"
+end
+
+post '/suggestions/:id/downvote' do
+  @suggestion = Suggestion.find_by(id: params[:id])
+  @suggestion.votes.find do |vote|
+    if vote.user_id == current_user.id
+    vote.destroy
+      redirect "/suggestions/#{params[:id]}"
+    else
+        redirect "/suggestions/#{params[:id]}"
+    end
+  end
+end

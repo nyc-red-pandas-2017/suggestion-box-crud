@@ -1,4 +1,5 @@
 class Vote < ApplicationRecord
-  belongs_to :user
-  belongs_to :suggestion
+  validates :vote, presence: true
+
+  belongs_to :votable, polymorphic: true
 end

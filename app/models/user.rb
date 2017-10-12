@@ -6,7 +6,7 @@ class User < ApplicationRecord
   validates :password, length: { minimum: 6 }
 
   has_many :suggestions
-  has_many :votes
+  has_many :votes, as: :votable
 
   def password
     @password ||= Password.new(password_hash)

@@ -1,5 +1,6 @@
 get '/suggestions' do
-  @suggestions = Suggestion.joins(:votes).group("votes.id").order("count(votes.id) desc")
+  @suggestions = Suggestion.all
+  @suggestions_by_votecount = @suggestions.sort_by{|suggestion| suggestion.votes.count}.reverse
   erb :'suggestions/index'
 end
 
@@ -64,7 +65,7 @@ end
 post '/suggestions/:id/downvote' do
   @suggestion = Suggestion.find_by(id: params[:id])
   @suggestion.votes.find do |vote|
-    if vote.user_id == current_user.id
+    if @suggestion.votes.find {|vote| vote.user_id == current_user.id}
     vote.destroy
       redirect "/suggestions/#{params[:id]}"
     else

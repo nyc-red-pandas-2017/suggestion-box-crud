@@ -22,6 +22,7 @@ end
 
 # Why does this route have to be below "/suggestions/new" to work
 get "/suggestions/:id" do
+  @user = current_user
   @suggestion = Suggestion.find_by(id: params[:id])
   erb :"suggestions/show"
 end
@@ -46,7 +47,10 @@ end
 delete "/suggestions/:id" do
   @suggestion = Suggestion.find_by(id: params[:id])
   redirect "/" unless own_suggetion?(@suggestion)
-  # @suggestion = Suggestion.find_by(id: params[:id])
+  @suggestion_up_votes = @suggestion.up_votes
+  @suggestion_up_votes.each do |up_vote|
+    up_vote.destroy!
+  end
   @suggestion.destroy!
   redirect "/"
 end
@@ -68,9 +72,12 @@ end
 
 #This method needs to be addjusted in order to figure out how to grab the id of the Upvote to then have it be deleted, had it printing on the web browser just not firing
 delete "/suggestions/:id/upvote" do
+  current_user
   @suggestion = Suggestion.find_by(id: params[:id])
-  redirect "/" unless own_suggetion?(@suggestion)
-  @suggestion = Suggestion.find_by(id: params[:id])
-  @suggestion.destroy!
-  redirect "/"
+  # redirect "/" unless own_suggetion?(@suggestion)
+  @up_vote = UpVote.find(suggestion_id: params[:id], user_id: current_user.id)
+  if @up_vote
+    @up_vote.destroy!
+  end
+  redirect "/users/#{current_user.id}"
 end

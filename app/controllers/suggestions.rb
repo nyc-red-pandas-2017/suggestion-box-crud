@@ -72,12 +72,11 @@ end
 
 post '/suggestions/:id/undo' do
   @suggestion = Suggestion.find(params[:id])
-  if @suggestion.user == current_user
+  if @suggestion.votes.find_by(user_id: current_user.id)
     @suggestion.votes.find_by(user: current_user).destroy
     redirect '/suggestions'
   else
     @error = "Error"
-    erb :'/suggestions/show'
   end
 end
 

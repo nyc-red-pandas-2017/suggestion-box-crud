@@ -7,6 +7,8 @@ get "/users/new" do
 end
 
 get '/users/:id' do
+  puts @user
+  @suggestions = Suggestion.all
   @user = User.find_by(id: params[:id])
   redirect '/' unless @user.id == session[:user_id]
   erb :'users/show'
@@ -21,4 +23,3 @@ post '/users' do
     erb :'users/new'
   end
 end
-

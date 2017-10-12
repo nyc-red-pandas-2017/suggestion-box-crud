@@ -1,11 +1,11 @@
 <div class="container">
-  <h1>Suggestion Box</h1>
   <h3><a href='/suggestions/new'>New Suggestion</a></h3>
-
+<!-- Logic here is not quite working!!!  -->
+<!-- This is mixed up with show.erb in users -->
   <% @suggestions.each do |s| %>
     <ul>
       <li><%= s.title %> <a href="/suggestions/<%= s.id %>"> details</a>
       </li>
     </ul>
   <% end %>
-</div
+</div>

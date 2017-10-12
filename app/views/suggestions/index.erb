@@ -1,18 +1,15 @@
 <div class="container">
+  <h2>Welcome, <%= current_user.username %>!</h2>
   <h3><a href='/suggestions/new'>New Suggestion</a></h3>
-<!-- Logic here is not quite working!!!  -->
-<!-- This is mixed up with show.erb in users -->
-
   <% @suggestions.each do |s| %>
-  <%= puts s.user_id %>
-  <%= puts current_user.id %>
-  <%= puts s.id %>
-  <%= puts s.user.id %>
-  <%= own_suggestion?(s) %>
-
-      <ul>
-        <li><%= s.title %> <a href="/suggestions/<%= s.id %>"> details</a></li>
-      </ul>
+  <% if own_suggestion?(s) %>
+  <ul>
+    <li><%= s.title %> - <%= s.description %><a href="/suggestions/<%= s.id %>"> details</a></li>
+  </ul>
+  <% else %>
+  <ul>
+    <li><%= s.title %> - <%= s.description %> </li>
+  </ul>
+  <% end %>
   <% end %>
 </div>
-

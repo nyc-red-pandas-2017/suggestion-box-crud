@@ -1,0 +1,18 @@
+<div class="container">
+  <h4> <%= @suggestion.title%> </h4>
+    <p> <%= @suggestion.description%> </p>
+    <% if logged_in? && own_suggestion? %>
+      <div>
+        <small><a href="/suggestions/<%=@suggestion.id%>/edit">edit</a></small>
+        <form action="/suggestions/<%= @suggestion.id %>" method="post">
+          <input type="hidden" id="hidden" name="_method" value="delete">
+          <input type="submit" class="btn btn-danger" value="Delete!">
+        </form>
+      </div>
+    <% elsif logged_in? %>
+      <p></p>
+    <%else%>
+      <p><a href="/sessions/new">Log in</a> to edit or post a new suggestion</p>
+    <%end%>
+
+</div>

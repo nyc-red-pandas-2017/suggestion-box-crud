@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- 
+  <!--
     normalize.css removes cross-browser differences in defaults, e.g.,
     differences in how form elements appear between Firefox and IE
     See: http://necolas.github.com/normalize.css/
@@ -18,6 +18,21 @@
   <title></title>
 </head>
 <body>
+  <h1> Anonymous Suggestion box</h1>
+  <nav id="banner">
+    <!-- refactor to show New Suggestion only when logged in -->
+    <% if logged_in? %>
+      <a method ="get" href="/users/<%= current_user.id %>">Your page</a>
+      <a href="/suggestions/new">New Suggestion</a>
+    <% else %>
+      <a href="/users/new">Create User</a>
+      <a href="/sessions/new">Log in</a>
+    <% end %>
+
+
+  </nav>
+
   <%= yield %>
+  <footer><a href="/">home</a></footer>
 </body>
 </html>

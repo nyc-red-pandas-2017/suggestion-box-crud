@@ -1,0 +1,8 @@
+<h1>Welcome <%=@user.first_name%> !</h1>
+<% if @errors %>
+  <% @errors.each do |error_message| %>
+    <%= error_message %>
+  <% end %>
+<% end %>
+<h1>USER PAGE</h1>
+<p>Click <a href="/sessions/logout">here</a> to log out </p>

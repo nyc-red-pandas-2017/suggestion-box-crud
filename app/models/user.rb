@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   has_many :suggestions
+  has_many :thumb_ups
 
   validates :first_name,:last_name,:username,:email,:password,presence:true
   validates :email,:username, uniqueness: true

@@ -20,7 +20,6 @@
 <body>
   <h1> Anonymous Suggestion box</h1>
   <nav id="banner">
-    <!-- refactor to show New Suggestion only when logged in -->
     <% if logged_in? %>
       <a method ="get" href="/users/<%= current_user.id %>">Your page</a>
       <a href="/suggestions/new">New Suggestion</a>

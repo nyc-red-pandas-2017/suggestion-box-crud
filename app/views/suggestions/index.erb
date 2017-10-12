@@ -14,6 +14,7 @@
         </form>
     </div>
     <br />
+
       <form action ="/suggestions/<%=suggestion.id%>/undo" method="post" id="undo">
         <input type="hidden" name="suggestion_id" value="<%= params[:vote] %>">
         <button id="button" type="submit" name="submit" value="submit_value">
@@ -21,6 +22,10 @@
         </button>
       </form>
     <p>Total Thumbs Ups: <%=suggestion.votes.count%></p>
+    <%= erb :'/comments/_comment', layout: false  %>
+    <% @comments.each do |comment| %>
+    <%=comment.text%>
+    <%end%>
   </div>
   <% end %>
 </div>

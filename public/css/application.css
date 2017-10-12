@@ -27,3 +27,8 @@ div form #button {
 p, h1, h2, h3, a, li {
   font-family: Consolas;
 }
+
+form #undo {
+  display: inline block;
+
+}

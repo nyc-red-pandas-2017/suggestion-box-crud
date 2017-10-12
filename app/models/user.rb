@@ -1,23 +1,26 @@
 class User < ApplicationRecord
   has_many :suggestions
 
-  validates :first_name,:last_name,:username,:email,:hashed_password,presence:true
+  validates :first_name,:last_name,:username,:email,:password,presence:true
   validates :email,:username, uniqueness: true
-  validates :hashed_password, length: {minimum: 6}
+  validates :password, length: {minimum: 6}
 
-  def password
-    @password ||= BCrypt::Password.new(hashed_password)
+ def password
+    @password ||= BCrypt::Password.new(password_hash)
   end
 
   def password=(new_password)
-    @password = BCrypt::Password.create(new_password)
-    self.hashed_password = @password
+    @password = new_password
+    self.password_hash = BCrypt::Password.create(new_password)
   end
 
-  def self.authenticate(email,user_password)
-    return nil unless user = find_by(email: email)
-    return user if user.password == user_password
+  def self.authenticate(username, plaintext_password)
+    return nil unless user = find_by(username: username)
+    return user if user.password == plaintext_password
     return nil
   end
-
 end
+
+
+
+

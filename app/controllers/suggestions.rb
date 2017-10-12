@@ -9,7 +9,8 @@ get '/suggestions/new' do
 end
 
 post '/suggestions' do
-  @suggestion = Suggestion.new(params)
+  current_user
+  @suggestion = Suggestion.new(user_id: current_user.id, title: params[:title], description: params[:description])
   if @suggestion.save
     redirect '/'
   else
@@ -30,17 +31,28 @@ end
 
 put '/suggestions/:id' do
   @suggestion = Suggestion.find_by(id: params[:id])
-  @suggestion.assign_attributes(params[:suggestion])
-  if @suggestion.save
-    redirect "/"
+  if own_suggestion?
+    @suggestion.assign_attributes(params[:suggestion])
+    if @suggestion.save
+      redirect "/"
+    else
+      @errors = @suggestion.errors.full_messages
+      erb :'suggestion/edit'
+    end
   else
-    @errors = @suggestion.errors.full_messages
-    erb :'suggestion/edit'
+      @errors = "Not your suggestion to update"
+      erb :'/'
   end
+
 end
 
 delete "/suggestions/:id" do
   @suggestion = Suggestion.find_by(id: params[:id])
-  @suggestion.destroy!
-  redirect "/"
+  if own_suggestion?
+    @suggestion.destroy!
+    redirect "/"
+  else
+    @errors = "Not your suggestion to delete"
+    erb :'/'
+  end
 end

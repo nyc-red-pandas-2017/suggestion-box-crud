@@ -19,12 +19,18 @@
 </head>
 <body>
   <h1> Anonymous Suggestion box</h1>
-  <div id="banner">
+  <nav id="banner">
     <!-- refactor to show New Suggestion only when logged in -->
-    <a href="/users/new">Create User</a>
-    <a href="#">Log in</a>
-    <a href="/suggestions/new">New Suggestion</a>
-  </div>
+    <% if logged_in? %>
+      <a method ="get" href="/users/<%= current_user.id %>">Your page</a>
+      <a href="/suggestions/new">New Suggestion</a>
+    <% else %>
+      <a href="/users/new">Create User</a>
+      <a href="/sessions/new">Log in</a>
+    <% end %>
+
+
+  </nav>
 
   <%= yield %>
   <footer><a href="/">home</a></footer>

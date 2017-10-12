@@ -1,7 +1,7 @@
 get '/suggestions' do
   @suggestions = Suggestion.all
   @sorted_suggestions = @suggestions.sort_by{|suggestion| suggestion.votes.count}.reverse
-  @comment = Comment.new(params[:comment])
+  # @comment = Comment.find(id: params[:suggestion_id])
   @comments = Comment.all
   @user = User.find(session[:id])
   erb :'/suggestions/index'
@@ -11,7 +11,7 @@ get '/suggestions/new' do
   erb :'/suggestions/new'
 end
 
-post '/suggestions/new' do
+post '/suggestions' do
   @suggestion = Suggestion.new(params[:suggestion])
   current_user = User.find(session[:id])
   @suggestion.user = current_user

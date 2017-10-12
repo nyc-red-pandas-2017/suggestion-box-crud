@@ -20,9 +20,9 @@
 <body>
 
   <nav>
-  <% if session[:user_id] %>
+  <% if logged_in? %>
     <a href="/">Home</a>
-    <a href="/users/<%=current_user.id%>">Profile</a>
+    <a href="/suggestions">Profile</a>
     <a href="/sessions/logout">Logout</a></h2>
   <% else %>
     <a href="/users/new">Register</a>

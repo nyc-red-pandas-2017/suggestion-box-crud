@@ -1,8 +1,6 @@
-# get '/' do
-#   redirect '/suggestions'
-# end
-
 get "/suggestions" do
+  puts "*******************"
+  puts current_user.user_id
   @suggestions = Suggestion.all
   # puts @suggestions
   erb :'suggestions/index'
@@ -28,9 +26,14 @@ end
 
 
 get '/suggestions/:id' do
-  puts params
+  puts "*******************"
+
+  puts "current_user.id:#{current_user.id}"
+  puts "*******************"
+
   @suggestions = Suggestion.find(params[:id])
   erb :'/suggestions/show'
+  # erb :'/suggestions/index'
 end
 
 get '/suggestions/:id/edit' do
@@ -49,11 +52,13 @@ patch '/suggestions/:id' do
   puts params[:suggestion][:title]
   puts "*******************"
   puts params[:suggestion][:description]
+  puts "*******************"
+
 
   @suggestions.assign_attributes(title: params[:suggestion][:title],
                                  description: params[:suggestion][:description])
 
-  if @suggestions.save
+  if @suggestions
     redirect '/suggestions'
   else
     erb :'suggestions/edit'

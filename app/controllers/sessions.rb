@@ -8,7 +8,7 @@ post '/sessions' do
   if @user
     session[:user_id] = @user.id
     "login success"
-    redirect "/users/#{@user.id}"
+    redirect "/suggestions/#{@user.id}"
   else
     @error = "Invalid login, try again"
     erb :'sessions/new'
@@ -19,3 +19,6 @@ get '/sessions/logout' do
   session.clear
   redirect '/'
 end
+
+
+

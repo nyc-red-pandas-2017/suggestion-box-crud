@@ -7,4 +7,9 @@
     <% @suggestions.each do |suggestion| %>
         <a href="/suggestions/<%= suggestion.id %>"><h3><%= "#{suggestion.title}  " %></h3></a>
     <% end %>
+
 </div>
+
+<!--
+  @suggestions.sort { |suggestion| suggestion.votes.count }.reverse
+ -->

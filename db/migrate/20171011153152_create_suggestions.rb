@@ -10,3 +10,4 @@ class CreateSuggestions < ActiveRecord::Migration[5.1]
 end
 
 #       t.references :user
+# select votes.count from votes join

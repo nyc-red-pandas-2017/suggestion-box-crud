@@ -12,7 +12,7 @@
     <% if suggestion.user == current_user %>
       <a href="/suggestions/<%= suggestion.id %>"><h4><%= suggestion.title %></h4></a>
       <p><%= suggestion.description %></p><br>
-      <span class='votes'>Votes: <%= suggestion.vote_sum %></span>
+      <span class='votes'>Thumbs Up: <%= suggestion.vote_sum %></span>
       <%= erb :'users/_vote_buttons_user', layout: false, locals: {suggestion: suggestion} %>
       <a href="/suggestions/<%= suggestion.id %>/edit">Edit</a>
       <%= erb :"suggestions/_delete", layout: false, locals: {suggestion: suggestion} %>
@@ -28,6 +28,8 @@
       <% if suggestion.user != current_user %>
       <a href="/suggestions/<%= suggestion.id %>"><h4><%= suggestion.title %></h4></a>
       <p><%= suggestion.description %></p>
+      <span class='votes'>Thumbs Up: <%= suggestion.vote_sum %></span>
+      <%= erb :'users/_vote_buttons_user', layout: false, locals: {suggestion: suggestion} %>
       <p>*********************************************************************************</p>
       <% end %>
     <% end%>

@@ -1,0 +1,27 @@
+  <a href="/"> Home </a>
+
+<% if @user.errors.any? %>
+  <div>
+    <ul>
+    <% @user.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
+  <form action="/users" method="post">
+    <label for="user[first_name]">First Name:</label>
+    <input type="text" name="user[first_name]" placeholder="first name">
+    <br>
+    <label for="user[last_name]">Last Name:</label>
+    <input type="text" name="user[last_name]" placeholder="last name">
+    <br>
+    <label for="user[username]">Username:</label>
+    <input type="username" name="user[username]"  placeholder="username">
+    <br>
+    <label for="user[password]">Password:</label>
+    <input type="password" name="user[password]"  placeholder="password">
+    <br>
+    <input type="submit" value="submit">
+  </form>

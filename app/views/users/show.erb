@@ -1,0 +1,31 @@
+<h1> Accout of : <%= @user.username %> </h1>
+
+<div>
+  <h3> Your Suggestions </h3>
+  <% @suggestions.each do |suggestion| %>
+    <% if own_suggetion?(suggestion) %>
+      <h4><%= suggestion.title %> </h4>
+      <p><%= suggestion.body %> </p>
+        <a href="/suggestions/<%= suggestion.id %>/edit">Edit</a>
+        <%= erb :"suggestions/_delete", layout: false, locals: {suggestion: suggestion} %>
+    <% end %>
+  <% end %>
+</div>
+
+<br>
+<p>***************************************************************************************************************************************************************************************************************************************************************************</p>
+<br>
+
+<div>
+  <h3> Your Up Votes </h3>
+  <% @up_votes.map do |up_vote| %>
+    <p><%= up_vote.suggestion.title %></p>
+    <%= erb :"up_votes/_delete", layout: false, locals: {suggestion: up_vote.suggestion} %>
+  <% end %>
+</div>
+
+
+<br><br><br>
+<a href="/">Home</a><br>
+<a href="/sessions/logout"> Log Out</a>
+

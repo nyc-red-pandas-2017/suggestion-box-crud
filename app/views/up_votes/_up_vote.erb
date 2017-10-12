@@ -1,0 +1,11 @@
+#This Does not work :(  -- Maybe look into helper method logic
+#Is it wrong to have nested partials?
+#Do I need to pass user in through the local - erb partial
+
+<% if already_up_voted?(@suggestion, @user.id) %>
+  <h4>Delete Your Up Vote!</h4><br>
+  <%= erb :"up_votes/_delete", layout: false, locals: {suggestion: @suggestion} %>
+ <% else %>
+ <h4>Up Vote this Post!</h4><br>
+   <%= erb :"up_votes/_up_vote_form", layout: false, locals: {suggestion: @suggestion} %>
+<% end %>

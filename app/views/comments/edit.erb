@@ -1,0 +1,7 @@
+<h3>New Comment</h3>
+  <form action="/suggestions/<%=@suggestion.id%>/comments/<%=@comment.id%>" method="post">
+    <input type="hidden" name="_method" value="put">
+    <label for="text">Text:</label>
+    <input type="text" name="comment[text]" value='<%=@comment.try(:text)%>'>
+    <input type="submit" value="Submit">
+  </form>

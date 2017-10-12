@@ -21,11 +21,8 @@ get '/users/:id' do
   @user = User.find(params[:id])
   @suggestion = Suggestion.find(params[:id])
   @suggestions = @user.suggestions
-  # binding.pry
   @upvotes = current_user.votes
   redirect '/' unless session[:id] == @user.id
   erb :'/users/show'
 end
 
-# .each {|vote| vote.suggestion.title}
- # @user_upvotes = @current_user.votes each {|vote| vote.suggestion.title}

@@ -48,9 +48,7 @@ delete "/suggestions/:id" do
   @suggestion = Suggestion.find_by(id: params[:id])
   redirect "/" unless own_suggetion?(@suggestion)
   @suggestion_up_votes = @suggestion.up_votes
-  @suggestion_up_votes.each do |up_vote|
-    up_vote.destroy!
-  end
+  @suggestion_up_votes.destroy_all!
   @suggestion.destroy!
   redirect "/"
 end
@@ -59,7 +57,7 @@ end
 
 post "/suggestions/:id/upvote" do
   if logged_in?
-    @suggestion = Suggestion.find(params[:id])
+    @suggestion = Suggestion.find_by(params[:id])
     @up_vote = @suggestion.up_votes.create(user_id: current_user.id, suggestion_id: params[:id])
     if @up_vote.save
       redirect "/suggestions/#{@suggestion.id}"
@@ -70,14 +68,14 @@ post "/suggestions/:id/upvote" do
   end
 end
 
-#This method needs to be addjusted in order to figure out how to grab the id of the Upvote to then have it be deleted, had it printing on the web browser just not firing
 delete "/suggestions/:id/upvote" do
-  current_user
-  @suggestion = Suggestion.find_by(id: params[:id])
-  # redirect "/" unless own_suggetion?(@suggestion)
-  @up_vote = UpVote.find(suggestion_id: params[:id], user_id: current_user.id)
-  if @up_vote
-    @up_vote.destroy!
+  user = current_user
+  suggestion = Suggestion.find_by(id: params[:id])
+  to_destroy_up_vote = UpVote.find_by(suggestion_id: params[:id], user_id: current_user.id)
+# binding.pry
+  if user_up_vote?(to_destroy_up_vote, user)
+# binding.pry
+    to_destroy_up_vote.destroy!
   end
   redirect "/users/#{current_user.id}"
 end

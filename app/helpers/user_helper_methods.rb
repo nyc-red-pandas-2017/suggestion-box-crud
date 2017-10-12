@@ -18,11 +18,15 @@ def user_suggestion?(suggestion, user)
   suggestion.user == user
 end
 
-def already_up_voted?(suggestion, user)
-  @suggestion_up_votes = suggestion.up_votes
-  if @suggestion_up_votes.find_by(user_id: user.id)
-     true
-  else
-    false
-  end
+def user_up_vote?(up_voteee, user_s)
+  up_voteee.user == user_s
 end
+
+# def already_up_voted?(suggestion, user)
+#   @suggestion_up_votes = suggestion.up_votes
+#   if @suggestion_up_votes.find_by(user_id: user.id)
+#      true
+#   else
+#     false
+#   end
+# end

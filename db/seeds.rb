@@ -1,4 +1,4 @@
-UpVote.delete_all
+b -UpVote.delete_all
 Suggestion.delete_all
 User.delete_all
 

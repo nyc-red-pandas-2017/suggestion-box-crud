@@ -78,6 +78,11 @@ end
 
 delete '/suggestions/:id' do
   @suggestions = Suggestion.find(params[:id])
-  @suggestions.destroy!
-  redirect '/'
+  if own_suggestion?(@suggestions)
+    @suggestions.destroy
+    redirect '/suggestions'
+  else
+    redirect '/suggestions'
+  end
+
 end

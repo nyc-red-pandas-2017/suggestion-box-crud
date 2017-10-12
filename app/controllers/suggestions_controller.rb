@@ -43,9 +43,12 @@ end
 get '/suggestions/:id/edit' do
   puts params
   @suggestions = Suggestion.find(params[:id])
-  puts @suggestions.id
-  erb :'/suggestions/edit'
-
+  if own_suggestion?(@suggestions)
+    puts @suggestions.id
+    erb :'/suggestions/edit'
+  else
+    redirect "suggestions"
+  end
 end
 
 patch '/suggestions/:id' do

@@ -7,5 +7,6 @@ def logged_in?
 end
 
 def own_suggestion?(suggestion)
-  logged_in? && suggestion.id == current_user
+  logged_in? && suggestion.user == current_user
+  # logged_in? && suggestion.user_id == current_user.id
 end

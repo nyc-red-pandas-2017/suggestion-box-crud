@@ -1,0 +1,7 @@
+<h1>hello</h1>
+
+    <ul>
+      <% @user.suggestions.each do |user_sugg| %>
+        <li><%= user_sugg.title %></li>
+      <% end %>
+    <ul>

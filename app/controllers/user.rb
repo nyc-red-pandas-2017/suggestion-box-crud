@@ -1,12 +1,18 @@
 get '/users/new' do
   @user = User.new
+  # if @user.valid?
+  #   redirect '/'
+  # else
+  #   status 422
+  #   @errors = user.errors.full_messages
   erb :'users/new'
+  # end
 end
 
 get '/users/:id' do
-  @user = User.find_by(params[:user])
+  @user = User.find_by(id: params[:id])
   redirect '/' unless @user.id == session[:user_id]
-  erb :'users/new'
+  erb :'users/show'
 end
 
 post '/users' do
@@ -18,3 +24,4 @@ post '/users' do
     erb :'users/new'
   end
 end
+

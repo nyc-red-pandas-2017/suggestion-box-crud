@@ -3,12 +3,26 @@ get '/' do
 end
 
 get '/suggestions' do
+  p session
   @suggestions = Suggestion.all
   erb :'suggestions/index'
 end
 
 get '/suggestions/new' do
-  erb :'suggestions/new'
+  # @user = User.find_by(params[:id])
+  # if @user.valid?
+  #   redirect '/'
+  # else
+  #   status 422
+  #   @errors = user.errors.full_messages
+  #   erb :'suggestions/new'
+  # end
+
+  if !logged_in?
+    redirect '/suggestions'
+  else
+    erb :'suggestions/new'
+  end
 end
 
 post '/suggestions' do

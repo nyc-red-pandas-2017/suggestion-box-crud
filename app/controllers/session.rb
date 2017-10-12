@@ -7,7 +7,7 @@ post '/sessions' do
 
   if @user && User.authenticate(params[:username], params[:password])
     session[:user_id] = @user.id
-    redirect "/users/#{@user.id}"
+    redirect "/"
   else
     @error = "Invalid login, try again"
     erb :'sessions/new'

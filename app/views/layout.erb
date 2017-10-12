@@ -19,10 +19,12 @@
 </head>
 <body>
   <%= yield %>
-  <a href="/">Home</a>
+  <center><a href="/">Home</a>
   <% if session[:user_id] %>
-    <p>Hey There</p>
-    <a href="sessions/logout">Logout</a>
+      <p>Hey There</p>
+      <a href="sessions/logout">Logout</a>
+    <!--   <a href="">Profile Page</a> -->
+    </center>
   <% else %>
     <a href="/users/new">Register</a>
     <a href="/sessions/new">Login</a>

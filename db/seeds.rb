@@ -5,6 +5,8 @@ Suggestion.delete_all
   User.create!(username: Faker::Name.first_name, password: Faker::Internet.free_email )
 end
 
+user = User.create(username: 'sam', password: 'asd')
+
 10.times do
-  Suggestion.create!(title: Faker::Lorem.words(4, true), description: Faker::Lorem.paragraphs )
+    user.suggestions.create!(title: Faker::Lorem.words(4, true), description: Faker::Lorem.paragraphs, )
 end

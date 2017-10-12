@@ -1,0 +1,17 @@
+<h1> Your Suggestions </h1>
+
+<div name="container">
+  <% @suggestions.each do |suggestion| %>
+    <% if own_suggetion?(suggestion) %>
+      <h4><%= suggestion.title %> </h4>
+      <p><%= suggestion.body %> </p>
+        <a href="/suggestions/<%= suggestion.id %>/edit">Edit</a>
+        <%= erb :"suggestions/_delete", layout: false, locals: {suggestion: suggestion} %>
+    <% end %>
+  <% end %>
+</div>
+
+<br><br><br>
+<a href="/">Home</a><br>
+<a href="/sessions/logout"> Log Out</a>
+

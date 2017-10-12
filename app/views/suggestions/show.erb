@@ -1,0 +1,11 @@
+<h3><%= @suggestion.title %></h3><br>
+
+<p><%= @suggestion.body %></p>
+
+<% if own_suggetion?(@suggestion) %>
+  <a href="/suggestions/<%= @suggestion.id %>/edit">Edit</a>
+  <%= erb :"suggestions/_delete", layout: false, locals: {suggestion: @suggestion} %>
+<% end %>
+
+<br><br>
+<a href="/">Home</a>

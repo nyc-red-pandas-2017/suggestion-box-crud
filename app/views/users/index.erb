@@ -1,0 +1,14 @@
+<nav>
+  <% if session[:user_id] %>
+    <h1>Welcome to the Suggestion Box!</h1>
+    <a href="/">Home</a>
+    <a href="/">Profile</a>
+    <a href="/sessions/logout">Logout</a></h2>
+  <% else %>
+    <h1>Welcome to the Suggestion Box!</h1>
+    <a href="/users/new">Register</a>
+  <br>
+  <a href="/sessions/new">Login</a>
+  <% end %>
+</nav>
+

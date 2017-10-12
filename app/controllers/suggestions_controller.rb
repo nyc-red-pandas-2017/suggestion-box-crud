@@ -87,7 +87,5 @@ delete '/suggestions/:id' do
 end
 
 post '/suggestions/:id/vote' do
-  suggestions = Suggestion.find(params[:id])
-  suggestions.vote.create(value: 1)
-  redirect "/suggestions"
+  "Hello World"
 end

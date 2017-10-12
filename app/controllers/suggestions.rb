@@ -46,6 +46,30 @@ end
 delete "/suggestions/:id" do
   @suggestion = Suggestion.find_by(id: params[:id])
   redirect "/" unless own_suggetion?(@suggestion)
+  # @suggestion = Suggestion.find_by(id: params[:id])
+  @suggestion.destroy!
+  redirect "/"
+end
+
+#############################################################################
+
+post "/suggestions/:id/upvote" do
+  if logged_in?
+    @suggestion = Suggestion.find(params[:id])
+    @up_vote = @suggestion.up_votes.create(user_id: current_user.id, suggestion_id: params[:id])
+    if @up_vote.save
+      redirect "/suggestions/#{@suggestion.id}"
+    else
+      # Check into errors here
+      redirect '/'
+    end
+  end
+end
+
+#This method needs to be addjusted in order to figure out how to grab the id of the Upvote to then have it be deleted, had it printing on the web browser just not firing
+delete "/suggestions/:id/upvote" do
+  @suggestion = Suggestion.find_by(id: params[:id])
+  redirect "/" unless own_suggetion?(@suggestion)
   @suggestion = Suggestion.find_by(id: params[:id])
   @suggestion.destroy!
   redirect "/"

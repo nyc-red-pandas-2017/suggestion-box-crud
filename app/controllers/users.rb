@@ -27,5 +27,3 @@ get '/users/:id' do
   erb :'/users/show'
 end
 
-# .each {|vote| vote.suggestion.title}
- # @user_upvotes = @current_user.votes each {|vote| vote.suggestion.title}

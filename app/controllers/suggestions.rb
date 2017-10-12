@@ -78,7 +78,6 @@ post '/suggestions/:id/undo' do
 end
 
 post '/suggestions/:id/comments' do
-
   @suggestion = Suggestion.find(params[:id])
   @suggestion.comments.new(params[:comment])
   if @suggestion.save
@@ -86,9 +85,43 @@ post '/suggestions/:id/comments' do
   else
     @errors ="Error"
     erb :'/suggestions/index'
-
   end
 end
+
+get '/suggestions/:id/comments/:comment_id/edit' do
+  @comment = Comment.find(params[:comment_id])
+   @suggestion = Suggestion.find(params[:id])
+   if @suggestion.user == current_user
+  @suggestion.comments.find_by(suggestion_id: @suggestion.id)
+    erb :'/comments/edit'
+  else
+    @error = "You cannot edit this."
+  end
+end
+
+put '/suggestions/:id/comments/:comment_id' do
+  @comment = Comment.find(params[:comment_id])
+    @comment.assign_attributes(params[:comment])
+    if @comment.save
+      redirect '/suggestions'
+    else
+      @error = "Error"
+      erb :'/suggestions/index'
+    end
+end
+
+delete '/suggestions/:id/comments/:comment_id' do
+  @comment = Comment.find(params[:comment_id])
+  @suggestion = Suggestion.find(params[:id])
+  if @suggestion.user == current_user
+    @comment.destroy
+    redirect '/suggestions'
+  else
+    @error = "You are not authorized to delete this."
+  end
+end
+
+
 
 
 

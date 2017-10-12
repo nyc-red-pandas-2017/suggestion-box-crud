@@ -30,9 +30,15 @@
         <input type="submit" value="Submit">
       </form>
 
+
     <% suggestion.comments.each do |comment| %>
     <ul>
     <li><%=comment.text%></li>
+     <p><a href="/suggestions/<%=suggestion.id%>/comments/<%=comment.id%>/edit">Edit Comment</a></p>
+     <form action= '/suggestions/<%=suggestion.id%>/comments/<%=comment.id%>' method= "post">
+      <input type="hidden" name="_method" value="delete">
+      <input type="Submit" value="Delete">
+    </form>
   </ul>
     <%end%>
   </div>

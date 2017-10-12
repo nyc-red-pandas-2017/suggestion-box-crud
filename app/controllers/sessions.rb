@@ -19,6 +19,3 @@ get '/sessions/logout' do
   session.clear
   redirect '/'
 end
-
-
-

@@ -7,9 +7,9 @@ post '/session' do
   user = User.authenticate(params[:user])
   if user
     session['user_id'] = user.id
-    redirect '/'
+    redirect '/suggestions'
   else
-    @wrong_login = "Error"
+    @error = "Error"
     erb :'/session/new'
   end
 end

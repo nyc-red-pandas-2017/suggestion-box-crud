@@ -1,10 +1,11 @@
 <h1> Suggestion Detail</h1>
-
+<!-- <span class= -->
 <ul>
   <li>User: <%=suggestion.user_id %></li>
   <li>Title: <%=suggestion.title%></li>
   <li>Description: <%=suggestion.description%></li>
   <li>Posted time: <%=suggestion.timestamps%></li>
+  <a class="delete" href='/suggestions/<%= @suggestion.id %>'></a>
 </ul>
 
 <a href="/suggestions"> Suggestions </a>

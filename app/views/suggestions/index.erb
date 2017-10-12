@@ -3,13 +3,17 @@
     Give a Suggestion
   </h1>
     <p>
-      Submit the form below to submit a suggestion. If you would like to post anonymously, don't include your username.
+  <div style="color: DodgerBlue">
+    <h4>
+      Submit the form below to submit a suggestion. If you would like to post anonymously, omit your username.
+    </h4>
+  </div>
     </p>
 </section>
 
 
 
-<section id="suggestion" class="content content-left">
+<section id="suggestion" class="content-left">
   <ul id="suggestion-list" class="suggestion-list">
     <% @suggestions.each do |suggestion| %>
       <li class="suggestion-list-item">
@@ -18,22 +22,25 @@
       <h4>Title: <%= suggestion.title%></h4>
       <a href="suggestions/<%= suggestion.id %>">Details</a>
 
-      <p>Decription<%= suggestion.description%></p>
+      <p>Description: <%= suggestion.description%></p>
 
-      <form method="POST" action="/suggestions/<%= suggestion.id %>/upvote">
-      <button type="submit">Upvote</button>
+      <form method="POST" action="/suggestions/<%= suggestion.id %>/thumbs_up">
+      <input type="hidden" name="_method" value="PUT">
+      <input type="submit" class="button" value="Thumbs Up">
       </form>
 
-      <form method="POST" action="/suggestions/<%= suggestion.id %>/downvote">
-      <button type="submit">Downvote</button>
+      <form method="POST" action="/suggestions/<%= suggestion.id %>/thumbs_down">
+      <input type="hidden" name="_method" value="PUT">
+      <input type="submit" class="button" value="Thumbs Down">
       </form>
-
-      <h2>Thumbs-up</h3>
 
         <% if authorship_tagline(suggestion) %>
         <a href="suggestions/<%= suggestion.id %>/edit">Edit Suggestion</a>
         <br>
+
+       <!--  <h5>
         <%= erb :'/index', layout: false %>
+        </h5> -->
         <% end %>
 
     <% end %>

@@ -1,5 +1,5 @@
 class Suggestion < ApplicationRecord
   belongs_to :user
 
-  validates :user_id, presence: true
+  validates :title, :description, :user, presence: true
 end

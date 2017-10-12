@@ -4,18 +4,22 @@ get '/suggestions' do
 end
 
 get '/suggestions/new' do
+  @suggestion = Suggestion.new
   erb :'suggestions/new' #show new suggestions view
 end
 
 post '/suggestions' do
-  # get userid from session
-  user_id = 1
-  user = User.find_by(id: user_id)
-  @suggestion = user.suggestions.new(params[:suggestion])
-  # @suggestion = Suggestion.new(params[:suggestion])
+
+  puts "============================================"
+  #user = User.find_by(id: @user_id)
+  #@suggestion = user.suggestions.new(params[:suggestion])
+   binding.pry
+   @suggestion = Suggestion.new(params[:suggestion])
+   @suggestion.user = current_user
   if @suggestion.save
     redirect '/suggestions'
   else
+    @errors = @suggestion.errors.full_messages
     erb :'suggestions/new'
   end
 end
@@ -26,32 +30,47 @@ get '/suggestions/:id' do
   erb :'suggestions/show' #show single suggestion view
 end
 
-put '/suggestions/:id/thumbs_up' do
-  suggestion = Suggestion.find(params[:id])
-  sugestion.increment!(:thumbs_up)
-  redirect '/suggestions/#{suggestion.id}'
-end
-
-
 get '/suggestions/:id/edit' do
-  @suggestion = Suggestion.find(params[:id]) #define intstance variable for view
-  erb :'suggestions/edit' #show edit suggestion view
+  @suggestion = Suggestion.find_by(id: params[:id])
+  if @suggestion #define intstance variable for view
+    erb :'suggestions/edit' #show edit suggestion view
+  else
+    erb :'suggestions/index'
+  end
 end
 
 put '/suggestions/:id' do
-  @suggestion = Suggestion.find(params[:id]) #define variable to edit
-  @suggestion.assign_attributes(params[:suggestion]) #assign new attributes
-  if @suggestion.save #saves new suggestion or returns false if unsuccessful
-    redirect '/suggestions' #redirect back to suggestions index page
+  suggestion = Suggestion.find_by(id: params[:id]) #define variable to edit
+
+  if suggestion && suggestion.user.id == session[:user_id] #saves new suggestion or returns false if unsuccessful
+    suggestion.update(params[:suggestion])
+    redirect '/suggestions/#{suggestion.id}' #redirect back to suggestions index page
   else
     erb :'suggestions/edit' #show edit suggestion view again(potentially displaying errors)
   end
 end
 
 delete '/suggestions/:id' do
-  @suggestion = Suggestion.find(params[:id]) #define suggestion to delete
-  @suggestion.destroy #delete suggestion
-  redirect '/suggestions' #redirect back to suggestions index page
+  @suggestion = Suggestion.find_by(id: params[:id]) #define suggestion to delete
+  if @suggestion && suggestion.user.id == session[:user_id]
+    suggestion.destroy #delete suggestion
+    redirect '/suggestions' #redirect back to suggestions index page
+  else
+    "error"
+  end
+end
+
+
+put "/suggestions/:id/thumbs_up" do
+  suggestion = suggestion.find(params[:id])
+  suggestion.increment!(:thumbs_up)
+  redirect "/suggestions/#{suggestion.id}"
+end
+
+put "/suggestions/:id/thumbs_down" do
+  suggestion = suggestion.find(params[:id])
+  suggestion.decrement!(:thumbs_up)
+  redirect "/suggestions/#{suggestion.id}"
 end
 
 

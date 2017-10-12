@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  #include 'Bcrypt'
+
   has_many :suggestions
 
   # validates :username, :email, :password, presence: true

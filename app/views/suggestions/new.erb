@@ -1,19 +1,31 @@
 <div class='container'>
+  <% if @errors %>
+    <% @errors.each do |error| %>
+      <div style="color: red"><%= error %></div>
+    <% end %>
+  <% end %>
   <h2>Write a Suggestion:</h2>
 
-  <form id= 'suggestion-form' action='/suggestions' method='POST'>
-    <label for="suggestion[user_id]" class="label">Username:</label>
-    <input type="text" name="suggestion[user_id]"  class="input input-round" placeholder="Anonymous">
-
+    Username:<br>
+  <form id='suggestion-form' action='/suggestions' method='POST'>
+    <label for="suggestion[user_id]" class="label"></label>
+    <input type="text" name="suggestion[user]"  class="input input-round" placeholder="Anonymous">
+    <br>
+    <br>
     Title:<br>
     <input type='text' name='suggestion[title]' class="input input-round" placeholder="Untitled"><br>
+    <br>
+    <br>
 
     Description:<br>
-    <textarea rows='3' cols='50' name='suggestion[description]' class="input input-round" </textarea>
+      <label for="suggestion[description]" class="label"></label>
+    <textarea name="suggestion[description]" class="textarea rows='10' cols='100' input input-round"><%= @suggestion.try(:description) %></textarea>
+    <br>
+
+  <input type="submit" name="submit" value="Submit" class="input button">
+</form>
 
 
-    <input type='submit' value='Submit Suggestion'>
 
-  </form>
 </div>
 

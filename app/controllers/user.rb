@@ -4,6 +4,7 @@ get '/users' do
 end
 
 get '/users/new' do
+  @user = User.new
   erb :'users/new'
 end
 
@@ -14,13 +15,13 @@ get '/users/:id' do
 end
 
 post '/users' do
-  new_user = User.new(params[:user])
-  if new_user.save
-    session[:user_id] = new_user.id
-    redirect '/users/:id'
+  user = User.new(params[:user])
+  if user.save
+    session[:user_id] = user.id
+    redirect '/users'
   else
-    get_errors(new_user)
-    redirect '/users/new'
+    @errors = @user.errors.values.flatten
+    erb :'/users/new'
   end
 end
 

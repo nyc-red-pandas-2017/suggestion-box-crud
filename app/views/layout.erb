@@ -24,12 +24,9 @@
     <a href="/">Home</a>
     <a href="/users/<%=current_user.id%>">Profile</a>
     <a href="/sessions/logout">Logout</a></h2>
-    <h1>Suggestion Box!</h1>
   <% else %>
-    <h1>Welcome to the Suggestion Box!</h1>
     <a href="/users/new">Register</a>
-  <br>
-  <a href="/sessions/new">Login</a>
+    <a href="/sessions/new">Login</a>
   <% end %>
 </nav>
 <%= yield %>

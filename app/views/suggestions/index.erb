@@ -3,9 +3,16 @@
 <!-- Logic here is not quite working!!!  -->
 <!-- This is mixed up with show.erb in users -->
   <% @suggestions.each do |s| %>
-    <ul>
-      <li><%= s.title %> <a href="/suggestions/<%= s.id %>"> details</a>
-      </li>
-    </ul>
+    <%if own_suggestion?(s) %>
+  <ul>
+    <li><%= s.title %> <a href="/suggestions/<%= s.id %>"> details</a></li>
+  </ul>
+
+  <% else %>
+  <ul>
+    <li><%= s.title %> - <%= s.description %> </li>
+  </ul>
+    <% end %>
   <% end %>
 </div>
+

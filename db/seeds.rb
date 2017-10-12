@@ -2,9 +2,9 @@ UpVote.delete_all
 Suggestion.delete_all
 User.delete_all
 
+david = User.create!(username: "david", password: "123456")
 penn = User.create!(username: "penn", password: "123456")
 thomas = User.create!(username: "thomas", password: "123456")
-david = User.create!(username: "david", password: "123456")
 andres = User.create!(username: "andres", password: "123456")
 chris = User.create!(username: "chris", password: "123456")
 amber = User.create!(username: "amber", password: "123456")

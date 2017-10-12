@@ -12,14 +12,18 @@
 </nav>
 
 <br><br>
-
-<%= erb :"partials/_logged_in_current_user", layout: false, locals: {suggestion: @suggestion} %>
-
+<div>
+  <% if logged_in? %>
+    <h3> Current User: <a href="/users/<%= @current_user.id %>"> <%= @current_user  .username %> </a><br></h3>
+    <%= erb :"partials/_logged_in_current_user", layout: false, locals: {user: @current_user} %>
+  <% end %>
+</div>
 <br><br>
 
-
+<!-- Once tested turn into partial, file already made -->
 <div>
   <% @suggestions.each do |suggestion| %>
     <h4><a href="/suggestions/<%= suggestion.id %>"><%= suggestion.title %></a> </h4>
   <% end %>
 </div>
+

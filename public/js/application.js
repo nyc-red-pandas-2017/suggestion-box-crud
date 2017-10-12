@@ -23,11 +23,13 @@ $(document).ready(function() {
 
   $("a[href = '#delete']").on("click", function(event) {
     event.preventDefault();
+    $(this).parent().find('.edit-suggestion').hide();
     $(this).parent().find('.delete-suggestion').show();
     });
 
   $("a[href = '#edit']").on("click", function(event) {
     event.preventDefault();
+    $(this).parent().find('.delete-suggestion').hide();
     $(this).parent().find('.edit-suggestion').show();
     });
 

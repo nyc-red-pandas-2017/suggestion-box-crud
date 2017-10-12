@@ -1,7 +1,9 @@
+<% if @error %>
+  <%= @error %>
+<% end %>
+  <center><h1>Suggestions Box</h1></center>
 
 <center>
-  <h1>Suggestions Box</h1>
-
   <strong><a href="/suggestions/new">Make a suggestion!</a></strong>
     <ul>
       <% @suggestions.each do |suggestion|%>

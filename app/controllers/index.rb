@@ -3,7 +3,6 @@ get '/' do
 end
 
 get '/suggestions' do
-  p session
   @suggestions = Suggestion.all
   erb :'suggestions/index'
 end
@@ -27,16 +26,27 @@ end
 
 post '/suggestions' do
   # binding.pry
-  @suggestion = Suggestion.create(params[:suggestion])
-  redirect '/'
+  if logged_in?
+    @suggestion = Suggestion.create(params[:suggestion])
+    redirect '/'
+  else
+    erb :'sugestions/new'
+  end
 end
 
 get '/suggestions/:id' do
   @suggestion = Suggestion.find(params[:id])
-  erb :'suggestions/show'
+   if !logged_in?
+    redirect '/suggestions'
+  else
+    @error = 'No Dice!'
+    erb :'suggestions/show'
+  end
+
 end
 
 get '/suggestions/:id/edit' do
+  @user = User.find_by(id: params[:id])
   @suggestion = Suggestion.find(params[:id])
   erb :'suggestions/edit'
 end

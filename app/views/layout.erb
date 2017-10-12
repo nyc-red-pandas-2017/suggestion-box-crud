@@ -22,12 +22,13 @@
   <center><a href="/">Home</a>
   <% if session[:user_id] %>
       <p>Hey There</p>
+
       <a href="sessions/logout">Logout</a>
-    <!--   <a href="">Profile Page</a> -->
+      <!-- <a href="/users/">Profile Page</a> -->
     </center>
   <% else %>
+      <a href="/sessions/new">Login</a>
     <a href="/users/new">Register</a>
-    <a href="/sessions/new">Login</a>
   <% end %>
 </body>
 </html>

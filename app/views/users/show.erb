@@ -1,7 +1,14 @@
-<h1>hello</h1>
 
-    <ul>
-      <% @user.suggestions.each do |user_sugg| %>
-        <li><%= user_sugg.title %></li>
-      <% end %>
-    <ul>
+<h2>Hello <%= @user.username%></h2>
+<h3>Your suggestions:</h3>
+<ul>
+  <% @user.suggestions.each do |user_sugg| %>
+    <li>
+      Title: <%= user_sugg.title %>  <br>
+      Description: <%= user_sugg.description %>  <br>
+      <!-- Created At: <br> -->
+      <a href="/suggestions/<%= user_sugg.id %>/edit">Edit</a>
+
+    </li>
+  <% end %>
+<ul>

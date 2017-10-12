@@ -8,5 +8,5 @@ end
 user = User.create(username: 'sam', password: 'asd')
 
 10.times do
-    user.suggestions.create!(title: Faker::Lorem.words(4, true), description: Faker::Lorem.paragraphs, )
+    user.suggestions.create!(title: Faker::Lorem.words(4, true).join(' '), description: Faker::Lorem.paragraphs.join(' '))
 end

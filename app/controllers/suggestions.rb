@@ -1,8 +1,6 @@
 get '/suggestions' do
   @suggestions = Suggestion.all
   @sorted_suggestions = @suggestions.sort_by{|suggestion| suggestion.votes.count}.reverse
-  # @comment = Comment.find(id: params[:suggestion_id])
-  @comments = Comment.all
   @user = User.find(session[:id])
   erb :'/suggestions/index'
 end
@@ -76,6 +74,19 @@ post '/suggestions/:id/undo' do
   else
     @error = "Error"
     erb :'/suggestions/show'
+  end
+end
+
+post '/suggestions/:id/comments' do
+
+  @suggestion = Suggestion.find(params[:id])
+  @suggestion.comments.new(params[:comment])
+  if @suggestion.save
+    redirect '/suggestions'
+  else
+    @errors ="Error"
+    erb :'/suggestions/index'
+
   end
 end
 

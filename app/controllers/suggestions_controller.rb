@@ -16,7 +16,7 @@ end
 post '/suggestions' do
   puts params[:suggestion][:title]
 
-  @new_suggestion = Suggestion.create(title: params[:suggestion][:title],
+  @new_suggestion = Suggestion.new(user_id: current_user.id, title: params[:suggestion][:title],
                                       description: params[:suggestion][:description])
   if @new_suggestion.save
 

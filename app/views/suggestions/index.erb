@@ -16,12 +16,13 @@
   </form>
 
   <h3>Votes: <%= suggestion.votes %></h3>
-
-  <% if owns_suggestion(suggestion) %>
-  <a href="suggestions/<%= suggestion.id %>/edit">Edit a Suggestion</a>
-  <br>
-  <%= erb :'/suggestions/_delete', layout: false, locals: { suggestion: suggestion} %>
+    <% if owns_suggestion(suggestion) %>
+      <a href="suggestions/<%= suggestion.id %>/edit">Edit a Suggestion</a>
+      <br>
+      <%= erb :'/suggestions/_delete', layout: false, locals: { suggestion: suggestion} %>
   <% end %>
+    <a href="comments/new">Create a comment</a>
+
 <% end %>
 <br>
 <br>

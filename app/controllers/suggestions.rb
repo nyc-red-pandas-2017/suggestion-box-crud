@@ -1,5 +1,6 @@
 get '/suggestions' do
   @suggestion = Suggestion.all
+  @comment = Comment.all
   erb :'suggestions/index'
 end
 

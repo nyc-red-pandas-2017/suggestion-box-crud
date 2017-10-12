@@ -9,3 +9,9 @@ end
 def owns_suggestion(suggestion)
   logged_in? && suggestion.user == current_user
 end
+
+def current_suggestion
+
+end
+
+

@@ -8,7 +8,9 @@
 
 <p><%= @suggestion.body %></p>
 
-<%= erb :"partials/_suggestions", layout: false, locals: {suggestion: suggestion } %>
+<% if logged_in? %>
+  <%= erb :"partials/_suggestions", layout: false, locals: {suggestion: @suggestion } %>
+<% end %>
 
 <br><br>
 <a href="/">Home</a>

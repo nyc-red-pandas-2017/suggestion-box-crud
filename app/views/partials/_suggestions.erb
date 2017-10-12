@@ -1,7 +1,7 @@
 <div>
   <% if own_suggetion?(@suggestion) %>
     <a href="/suggestions/<%= @suggestion.id %>/edit">Edit</a>
-    <%= erb :"suggestions/_delete", layout: false, locals: {suggestion: suggestion} %>
+    <%= erb :"suggestions/_delete", layout: false, locals: {suggestion: @suggestion} %>
   <% end %>
 
   <% if already_up_voted?(@suggestion, current_user) %>

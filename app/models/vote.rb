@@ -3,3 +3,7 @@ class Vote < ApplicationRecord
 
   belongs_to :votable, polymorphic: true
 end
+
+
+# <a href="/suggestions/<%= suggestion.id %>">
+# </a>

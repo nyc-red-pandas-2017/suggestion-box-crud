@@ -6,6 +6,7 @@
 <div class="suggestions">
     <% @suggestions_by_votecount.each do |suggestion| %>
         <a href="/suggestions/<%= suggestion.id %>"><h3><%= "#{suggestion.title}  " %></h3></a>
+        <p>-----------------------------------------------------------------</p>
     <% end %>
 
 </div>

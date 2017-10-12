@@ -17,6 +17,7 @@ get '/users/:id' do
   if current_user
     # @user = User.find(params[:id])
     @suggestions = Suggestion.all
+    @votes = Vote.all
     erb :'users/show'
   else
     redirect '/'

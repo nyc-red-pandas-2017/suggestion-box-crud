@@ -1,6 +1,9 @@
 get "/suggestions" do
   puts "*******************"
-  puts current_user.user_id
+  puts "current_user.id:#{current_user.id}"
+  puts "*******************"
+  puts "session user id:#{session[:user_id]}"
+  puts "*******************"
   @suggestions = Suggestion.all
   # puts @suggestions
   erb :'suggestions/index'
@@ -16,8 +19,8 @@ post '/suggestions' do
   @new_suggestion = Suggestion.create(title: params[:suggestion][:title],
                                       description: params[:suggestion][:description])
   if @new_suggestion.save
-     erb :'/suggestions'
-    # redirect '/suggestions'
+
+    redirect '/suggestions'
   else
     puts @errors
     erb :'/suggestions/new'
@@ -30,16 +33,23 @@ get '/suggestions/:id' do
 
   puts "current_user.id:#{current_user.id}"
   puts "*******************"
+  puts "session user id:#{session[:user_id]}"
+  puts "*******************"
 
   @suggestions = Suggestion.find(params[:id])
   erb :'/suggestions/show'
-  # erb :'/suggestions/index'
 end
 
 get '/suggestions/:id/edit' do
   puts params
   @suggestions = Suggestion.find(params[:id])
-  erb :'/suggestions/edit'
+  puts @suggestions.id
+  if @suggestions && current_user.id == session[:user_id]
+    erb :'/suggestions/edit'
+  else
+    "Unauthorized to Edit!"
+  end
+
 end
 
 patch '/suggestions/:id' do
@@ -47,21 +57,26 @@ patch '/suggestions/:id' do
   puts params
 
   @suggestions = Suggestion.find(params[:id])
+  if @suggestions && current_user.id == session[:user_id]
+    erb :'/suggestions/edit'
 
-  puts "*******************"
-  puts params[:suggestion][:title]
-  puts "*******************"
-  puts params[:suggestion][:description]
-  puts "*******************"
+    puts "*******************"
+    puts params[:suggestion][:title]
+    puts "*******************"
+    puts params[:suggestion][:description]
+    puts "*******************"
 
 
-  @suggestions.assign_attributes(title: params[:suggestion][:title],
+    @suggestions.assign_attributes(title: params[:suggestion][:title],
                                  description: params[:suggestion][:description])
 
-  if @suggestions
-    redirect '/suggestions'
+    if @suggestions
+      redirect '/suggestions'
+    else
+      erb :'suggestions/edit'
+    end
   else
-    erb :'suggestions/edit'
+    "Unauthorized to Edit!"
   end
 end
 

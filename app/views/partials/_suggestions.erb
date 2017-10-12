@@ -1,9 +1,12 @@
-    <% if own_suggestion?(suggestion, current_user) %>
-      <a href="/suggestions/<%= suggestion.id %>/edit">Edit</a>
-      <%= erb :"suggestions/_delete", layout: false, locals: {suggestion: suggestion} %>
-    <% end %>
-    <% if already_up_voted?(suggestion, current_user) %>
-      <%= erb :"up_votes/_delete", layout: false, locals: {suggestion: suggestion} %>
-    <% else %>
-      <%= erb :"up_votes/_up_vote_form", layout: false, locals: {suggestion: suggestion} %>
-    <% end %>
+<div>
+  <% if own_suggetion?(@suggestion) %>
+    <a href="/suggestions/<%= @suggestion.id %>/edit">Edit</a>
+    <%= erb :"suggestions/_delete", layout: false, locals: {suggestion: suggestion} %>
+  <% end %>
+
+  <% if already_up_voted?(@suggestion, current_user) %>
+    <%= erb :"up_votes/_delete", layout: false, locals: {suggestion: @suggestion} %>
+  <% else %>
+    <%= erb :"up_votes/_up_vote_form", layout: false, locals: {suggestion: @suggestion} %>
+  <% end %>
+</div>

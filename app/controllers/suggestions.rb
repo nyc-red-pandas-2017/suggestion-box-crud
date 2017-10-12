@@ -57,17 +57,14 @@ end
 #############################################################################
 
 post "/suggestions/:id/upvote" do
-# binding.pry
   if logged_in?
-
     @suggestion = Suggestion.find_by(id: params[:id])
     @up_vote = @suggestion.up_votes.new(user_id: current_user.id, suggestion_id: params[:id])
-
     if @up_vote.save
-      redirect "/suggestions/#{@suggestion.id}"
+      redirect "/"
     else
-      # Check into errors here
-      redirect '/'
+      @errors = @up_vote.errors.full_messages
+      redirect "/suggestions/#{@suggestion.id}"
     end
   end
   redirect '/'
@@ -75,10 +72,10 @@ end
 
 delete "/suggestions/:id/upvote" do
   user = current_user
-  suggestion = Suggestion.find_by(id: params[:id])
+  @suggestion = Suggestion.find_by(id: params[:id])
   to_destroy_up_vote = UpVote.find_by(suggestion_id: params[:id], user_id: current_user.id)
   if user_up_vote?(to_destroy_up_vote, user)
     to_destroy_up_vote.destroy!
   end
-  redirect "/users/#{current_user.id}"
+  redirect "/"
 end

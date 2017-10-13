@@ -1,14 +1,57 @@
-<h1> Suggestion Detail</h1>
-<!-- <span class= -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Suggestion Box</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <style>
+    /* Set height of the grid so .sidenav can be 100% (adjust if needed) */
+    .row.content {height: 1500px}
+
+    /* Set gray background color and 100% height */
+    .sidenav {
+      background-color: #f1f1f1;
+      height: 100%;
+    }
+
+    /* Set black background color, white text and some padding */
+    footer {
+      background-color: #555;
+      color: white;
+      padding: 15px;
+    }
+
+    /* On small screens, set height to 'auto' for sidenav and grid */
+    @media screen and (max-width: 767px) {
+      .sidenav {
+        height: auto;
+        padding: 15px;
+      }
+      .row.content {height: auto;}
+    }
+  </style>
+</head>
+<body>
+
+
+<h2> Suggestion Detail</h2>
+
 <ul>
-  <li>User: <%=suggestion.user_id %></li>
-  <li>Title: <%=suggestion.title%></li>
-  <li>Description: <%=suggestion.description%></li>
-  <li>Posted time: <%=suggestion.timestamps%></li>
-  <a class="delete" href='/suggestions/<%= @suggestion.id %>'></a>
+  <li>User: <%=@suggestion.user.firstname %></li>
+  <li><%= @suggestion.thumbs_up %> readers have thumbs up'd this suggestion.</li>
+  <li>Title: <%=@suggestion.title%></li>
+  <li>Description: <%=@suggestion.description%></li>
+  <li>Posted time: <%=longform_date(@suggestion.created_at)%></li>
+  <a class="edit" href='/suggestions/<%= @suggestion.id %>/edit'> Edit </a>
+
+  <br>
+  <a class="delete" href='/suggestions/<%= @suggestion.id %>'> Delete </a>
 </ul>
 
-<a href="/suggestions"> Suggestions </a>
+<a href="/suggestions"> Profile </a>
 
 
 
@@ -16,33 +59,4 @@
 
 
 
-
-<!-- <li>
-<div class='single-suggestion'>
-      <form action='/suggestions/index' method='POST'>
-        <input type='hidden' name='_method' value='DELETE'>
-        <input class='delete-button' type='submit' value='x'></input>
-      </form>
-</div>
-</li>
- -->
-
- <!-- <article id="suggestions-<%= suggestion.id %>" class="suggestion">
-  <div class="suggestion-details">
-    <h1 class="suggestion-title">
-      <a href="/suggestions/<%= suggestion.id %>" class="link-coral"><%= suggestion.title %></a>
-    </h1>
-
-    <p class="suggestion-detail-line"><%= authorship_tagline(suggestion) %></p>
-    <p class="suggestion-detail-line"><%= thumbs_up_report(suggestion) %></p>
-  </div>
-
-  <p class="body">
-    <%= with_line_breaks(suggestion.description) %>
-  </p>
-
-  <form class="form" action="/suggestions/<%= suggestion.id %>/thumbs_up" method="POST">
-  <input type="hidden" name="_method" value="PUT">
-  <input type="submit" class=" button" value="Thumbs-up">
-</form> -->
 

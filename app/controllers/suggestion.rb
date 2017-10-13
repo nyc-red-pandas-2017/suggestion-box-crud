@@ -10,13 +10,11 @@ get '/suggestions/new' do
 end
 
 post '/suggestions' do
-
-  puts "============================================"
-  #user = User.find_by(id: @user_id)
-  #@suggestion = user.suggestions.new(params[:suggestion])
+  # user = User.find_by(id: @user)
+  # @suggestion = user.suggestions.new(params[:suggestion])
    # binding.pry
    @suggestion = Suggestion.new(params[:suggestion])
-   @suggestion.user = current_user
+   #@suggestion.user = current_user
    #binding.pry
   if @suggestion.save
     redirect '/suggestions'
@@ -44,10 +42,11 @@ end
 put '/suggestions/:id' do
   @suggestion = Suggestion.find_by(id: params[:id]) #define variable to edit
 
-  if suggestion && suggestion.user.id == session[:user_id] #saves new suggestion or returns false if unsuccessful
-    suggestion.update(params[:suggestion])
-    redirect '/suggestions/#{suggestion.id}' #redirect back to suggestions index page
+  if @suggestion && @suggestion.user.id == session[:user_id] #saves new suggestion or returns false if unsuccessful
+    @suggestion.update(params[:suggestion])
+    redirect '/suggestions/#{@suggestion.id}' #redirect back to suggestions index page
   else
+    puts "Error"
     erb :'suggestions/edit' #show edit suggestion view again(potentially displaying errors)
   end
 end
@@ -55,7 +54,7 @@ end
 delete '/suggestions/:id' do
   @suggestion = Suggestion.find_by(id: params[:id]) #define suggestion to delete
   if @suggestion && suggestion.user.id == session[:user_id]
-    suggestion.destroy #delete suggestion
+    @suggestion.destroy #delete suggestion
     redirect '/suggestions' #redirect back to suggestions index page
   else
     "error"
@@ -63,13 +62,13 @@ delete '/suggestions/:id' do
 end
 
 
-put "/suggestions/:id/thumbs_up" do
+post "/suggestions/:id/thumbs_up" do
   suggestion = Suggestion.find(params[:id])
   suggestion.increment!(:thumbs_up)
   redirect "/suggestions/#{suggestion.id}"
 end
 
-put "/suggestions/:id/thumbs_down" do
+post "/suggestions/:id/thumbs_down" do
   suggestion = Suggestion.find(params[:id])
   suggestion.decrement!(:thumbs_up)
   redirect "/suggestions/#{suggestion.id}"

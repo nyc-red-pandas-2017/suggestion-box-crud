@@ -20,7 +20,7 @@ post '/users' do
     session[:user_id] = user.id
     redirect '/suggestions'
   else
-    @errors = @user.errors.values.flatten
+    @errors = user.errors.full_messages
     erb :'/users/new'
   end
 end

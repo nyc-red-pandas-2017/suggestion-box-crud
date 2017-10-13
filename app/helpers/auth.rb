@@ -15,7 +15,7 @@
   end
 
   def authorship_tagline(suggestion)
-    "Authored by #{suggestion.user_id} on #{longform_date(suggestion.created_at)}."
+    "Posted by #{suggestion.user} on #{longform_date(suggestion.created_at)}."
   end
 
   def thumbs_up_report(suggestion)
@@ -29,7 +29,7 @@
     end
   end
 
-  private
+
   def longform_date(date)
     date.strftime("%B %d, %Y")
   end

@@ -44,7 +44,7 @@
       <h4> Give a Suggestion </h4>
       <ul class="nav nav-pills nav-stacked">
         <li class="active"><a href="/">Home</a></li>
-        <li><a href="/">Blah</a></li>
+        <li><a href="/suggestions/new">Post a Suggestion</a></li>
         <li><a href="/">Blah Blah</a></li>
         <br>
         <% if session[:user_id] %>
@@ -62,13 +62,16 @@
     </div>
 
 
-    <div class="col-sm-9">
+
+<div class="col-sm-9">
+  <h4><small>RECENT SUGGESTIONS</small></h4>
       <% @suggestions.each do |suggestion| %>
-      <h4><small>RECENT SUGGESTIONS</small></h4>
+<div class="col-sm-9">
+
       <hr>
 
       <h4><%= suggestion.title%></h4>
-      <h5><span class="glyphicon glyphicon-time"></span> Post by <%= suggestion.user%> <%= suggestion.created_at%>.</h5>
+      <h5><span class="glyphicon glyphicon-time"></span> <%= authorship_tagline(suggestion)%><br> </h5>
 
       <h5><span class="label label-danger"><a href="suggestions/<%= suggestion.id %>">Details</a></span></h5><br>
 
@@ -77,32 +80,31 @@
           <div class="panel panel-default text-left">
             <div class="panel-body">
               <p contenteditable="true"><p><%= suggestion.description%></p>
-              <button type="button" class="btn btn-default btn-sm">
+
+            </div></div>
+            <p class="suggestion-detail-line"><%= thumbs_up_report(suggestion) %></p>
+
+
+              <form method="post" action="suggestions/<%= suggestion.id %>/thumbs_up">
+              <button type="submit" class="btn btn-default btn-sm">
                 <span class="glyphicon glyphicon-thumbs-up"></span> Thumbs Up
               </button>
-              <button type="button" class="btn btn-default btn-sm">
+            </form>
+
+              <form method="post" action="suggestions/<%= suggestion.id %>/thumbs_down">
+              <button type="submit" class="btn btn-default btn-sm">
                 <span class="glyphicon glyphicon-thumbs-down"></span> Thumbs Down
               </button>
-            </div>
-          </div>
+            </form>
         </div>
       </div>
+
       <br><br>
 
-      <!-- <form method="POST" action="/suggestions/<%= suggestion.id %>/thumbs_up">
-      <input type="hidden" name="_method" value="PUT">
-      <input type="submit" class="button" value="Thumbs Up">
-      </form>
+      <% @suggestion.comments.each do |comment| %>
 
-      <form method="POST" action="/suggestions/<%= suggestion.id %>/thumbs_down">
-      <input type="hidden" name="_method" value="PUT">
-      <input type="submit" class="button" value="Thumbs Down">
-      </form> -->
-
-
-  <% @comments.each do |comment| %>
       <h4>Leave a Comment:</h4>
-      <form role="form">
+        <form role="form">
         <div class="form-group">
           <textarea class="form-control" rows="3" required></textarea>
         </div>
@@ -110,26 +112,27 @@
       </form>
       <br><br>
 
-      <p><span class="badge">2</span> Comments:</p><br>
+      <p>Comments:</p><br>
         <div class="row">
-        <div class="col-sm-2 text-center">
-        </div>
+        <div class="col-sm-2 text-center"></div>
+
         <div class="col-sm-10">
-          <h4><%= comment.user.firstname%><small><%= comment.created_at%></small></h4>
-          <p><%= comment.body%></p>
-          <br>
-        </div>
-          <p><span class="badge">1</span> Comment:</p><br>
-          <div class="row">
-            <div class="col-sm-2 text-center">
-            </div>
-              <div class="col-xs-10">
-              <h4><%= comment.user.firstname%><small><%= comment.created_at%></small></h4>
-              <p><%= comment.body%></p>
-              <br>
-            </div>
-  <% end %>
+          <h4><%= comment.user.firstname%> <small><%= comment.created_at%></small></h4>
+          <p><%= comment.body %></p>
+        <% if comment.user_id == comment_user.id %>
+          <form id="comment_delete_form" action="/comments/<% comment.id %>" method="post">
+          <input name="_method" type="hidden" value="delete" />
+          <input name="commit" type="submit" value="Delete" />
+      </form>
+      </div>
+      </div><br>
+    <% end %>
 <% end %>
+<
+
+
+
+
 
 <footer class="container-fluid">
   <p>Khadija Franklin</p>

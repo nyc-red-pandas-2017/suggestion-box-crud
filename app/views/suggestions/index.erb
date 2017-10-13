@@ -1,30 +1,95 @@
-<section id="sidebar" class="sidebar">
-  <h1 class="sidebar-heading">
-    Give a Suggestion
-  </h1>
-    <p>
-  <div style="color: DodgerBlue">
-    <h4>
-      Submit the form below to submit a suggestion. If you would like to post anonymously, omit your username.
-    </h4>
-  </div>
-    </p>
-</section>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Suggestion Box</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <style>
+    /* Set height of the grid so .sidenav can be 100% (adjust if needed) */
+    .row.content {height: 1500px}
+
+    /* Set gray background color and 100% height */
+    .sidenav {
+      background-color: #f1f1f1;
+      height: 100%;
+    }
+
+    /* Set black background color, white text and some padding */
+    footer {
+      background-color: #555;
+      color: white;
+      padding: 15px;
+    }
+
+    /* On small screens, set height to 'auto' for sidenav and grid */
+    @media screen and (max-width: 767px) {
+      .sidenav {
+        height: auto;
+        padding: 15px;
+      }
+      .row.content {height: auto;}
+    }
+  </style>
+</head>
+<body>
 
 
 
-<section id="suggestion" class="content-left">
-  <ul id="suggestion-list" class="suggestion-list">
-    <% @suggestions.each do |suggestion| %>
-      <li class="suggestion-list-item">
+<div class="container-fluid">
+  <div class="row content">
+    <div class="col-sm-3 sidenav">
+      <h4> Give a Suggestion </h4>
+      <ul class="nav nav-pills nav-stacked">
+        <li class="active"><a href="/">Home</a></li>
+        <li><a href="/">Blah</a></li>
+        <li><a href="/">Blah Blah</a></li>
+        <br>
+        <% if session[:user_id] %>
+        <li><a href="/session/delete">Logout</a>
+        <% end %></li>
+      </ul><br>
+      <div class="input-group">
+        <input type="text" class="form-control" placeholder="Search for suggestions..">
+        <span class="input-group-btn">
+          <button class="btn btn-default" type="button">
+            <span class="glyphicon glyphicon-search"></span>
+          </button>
+        </span>
+      </div>
+    </div>
 
-      <h3>User:<%= suggestion.user_id%></h3>
-      <h4>Title: <%= suggestion.title%></h4>
-      <a href="suggestions/<%= suggestion.id %>">Details</a>
 
-      <p>Description: <%= suggestion.description%></p>
+    <div class="col-sm-9">
+      <% @suggestions.each do |suggestion| %>
+      <h4><small>RECENT SUGGESTIONS</small></h4>
+      <hr>
 
-      <form method="POST" action="/suggestions/<%= suggestion.id %>/thumbs_up">
+      <h4><%= suggestion.title%></h4>
+      <h5><span class="glyphicon glyphicon-time"></span> Post by <%= suggestion.user%> <%= suggestion.created_at%>.</h5>
+
+      <h5><span class="label label-danger"><a href="suggestions/<%= suggestion.id %>">Details</a></span></h5><br>
+
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="panel panel-default text-left">
+            <div class="panel-body">
+              <p contenteditable="true"><p><%= suggestion.description%></p>
+              <button type="button" class="btn btn-default btn-sm">
+                <span class="glyphicon glyphicon-thumbs-up"></span> Thumbs Up
+              </button>
+              <button type="button" class="btn btn-default btn-sm">
+                <span class="glyphicon glyphicon-thumbs-down"></span> Thumbs Down
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <br><br>
+
+      <!-- <form method="POST" action="/suggestions/<%= suggestion.id %>/thumbs_up">
       <input type="hidden" name="_method" value="PUT">
       <input type="submit" class="button" value="Thumbs Up">
       </form>
@@ -32,36 +97,43 @@
       <form method="POST" action="/suggestions/<%= suggestion.id %>/thumbs_down">
       <input type="hidden" name="_method" value="PUT">
       <input type="submit" class="button" value="Thumbs Down">
+      </form> -->
+
+
+  <% @comments.each do |comment| %>
+      <h4>Leave a Comment:</h4>
+      <form role="form">
+        <div class="form-group">
+          <textarea class="form-control" rows="3" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-success">Submit</button>
       </form>
+      <br><br>
 
-        <% if authorship_tagline(suggestion) %>
-        <a href="suggestions/<%= suggestion.id %>/edit">Edit Suggestion</a>
-        <br>
+      <p><span class="badge">2</span> Comments:</p><br>
+        <div class="row">
+        <div class="col-sm-2 text-center">
+        </div>
+        <div class="col-sm-10">
+          <h4><%= comment.user.firstname%><small><%= comment.created_at%></small></h4>
+          <p><%= comment.body%></p>
+          <br>
+        </div>
+          <p><span class="badge">1</span> Comment:</p><br>
+          <div class="row">
+            <div class="col-sm-2 text-center">
+            </div>
+              <div class="col-xs-10">
+              <h4><%= comment.user.firstname%><small><%= comment.created_at%></small></h4>
+              <p><%= comment.body%></p>
+              <br>
+            </div>
+  <% end %>
+<% end %>
 
-       <!--  <h5>
-        <%= erb :'/index', layout: false %>
-        </h5> -->
-        <% end %>
+<footer class="container-fluid">
+  <p>Khadija Franklin</p>
+</footer>
 
-    <% end %>
-    <br>
-    <br>
-    <br>
-    <% if session[:user_id] %>
-      <a href="/session/delete">Logout</a>
-    <% end %>
-      </li>
-  </ul>
-</section>
-
-<%= erb :'suggestions/new' %>
-
-
-
-
-
-
-
-
-
-
+</body>
+</html>

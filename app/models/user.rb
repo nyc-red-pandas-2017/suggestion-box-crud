@@ -1,9 +1,10 @@
 class User < ApplicationRecord
-  #include 'Bcrypt'
+  include BCrypt
+  has_many :comments
 
   has_many :suggestions
 
-  # validates :username, :email, :password, presence: true
+  validates :username, :email, :password, presence: true
   validates :username, uniqueness: true
 
 

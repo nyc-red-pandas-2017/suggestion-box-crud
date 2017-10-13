@@ -6,7 +6,6 @@ class CreateUsers < ActiveRecord::Migration[5.1]
       t.string :username, null: false, unique: true, default: "Anonymous"
       t.string :email, null: false
       t.string :password_hash, null: false
-      t.integer :thumbs_up, { default: 0 }
 
       t.timestamps(null: false)
     end

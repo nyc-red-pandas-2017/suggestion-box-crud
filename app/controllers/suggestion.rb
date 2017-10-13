@@ -1,4 +1,5 @@
 get '/suggestions' do
+  @comments = Comment.all
   @suggestions = Suggestion.all #define instance variable for view
   erb :'suggestions/index' #show all suggestions view (index)
 end
@@ -13,9 +14,10 @@ post '/suggestions' do
   puts "============================================"
   #user = User.find_by(id: @user_id)
   #@suggestion = user.suggestions.new(params[:suggestion])
-   binding.pry
+   # binding.pry
    @suggestion = Suggestion.new(params[:suggestion])
    @suggestion.user = current_user
+   #binding.pry
   if @suggestion.save
     redirect '/suggestions'
   else
@@ -40,7 +42,7 @@ get '/suggestions/:id/edit' do
 end
 
 put '/suggestions/:id' do
-  suggestion = Suggestion.find_by(id: params[:id]) #define variable to edit
+  @suggestion = Suggestion.find_by(id: params[:id]) #define variable to edit
 
   if suggestion && suggestion.user.id == session[:user_id] #saves new suggestion or returns false if unsuccessful
     suggestion.update(params[:suggestion])
@@ -62,13 +64,13 @@ end
 
 
 put "/suggestions/:id/thumbs_up" do
-  suggestion = suggestion.find(params[:id])
+  suggestion = Suggestion.find(params[:id])
   suggestion.increment!(:thumbs_up)
   redirect "/suggestions/#{suggestion.id}"
 end
 
 put "/suggestions/:id/thumbs_down" do
-  suggestion = suggestion.find(params[:id])
+  suggestion = Suggestion.find(params[:id])
   suggestion.decrement!(:thumbs_up)
   redirect "/suggestions/#{suggestion.id}"
 end

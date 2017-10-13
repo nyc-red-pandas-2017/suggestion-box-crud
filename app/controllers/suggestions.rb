@@ -40,7 +40,7 @@ delete '/suggestions/:id' do
   @suggestion = Suggestion.find_by(id: params[:id])
   if current_user == @suggestion.user
     Suggestion.find(params[:id]).destroy!
-    redirect '/suggestions/:id'
+    redirect '/suggestions'
   else
     status 401
     redirect '/suggestions/:id'

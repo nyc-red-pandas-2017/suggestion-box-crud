@@ -7,6 +7,7 @@ class User < ApplicationRecord
 
   has_many :suggestions
   has_many :votes, as: :votable
+  has_many :comments, as: :commentable
 
   def password
     @password ||= Password.new(password_hash)

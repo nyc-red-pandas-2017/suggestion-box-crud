@@ -12,6 +12,8 @@
     <%= erb :"suggestions/_vote_buttons_suggestion", layout: false, locals: {suggestion: @suggestion} %>
   <% if @suggestion.user == current_user %>
     <a href="/suggestions/<%= @suggestion.id %>/edit">Edit</a>
-    <%= erb :"suggestions/_delete", layout: false, locals: {suggestion: @suggestion} %>
+    <%= erb :"suggestions/_delete", layout: false, locals: {suggestion: @suggestion} %><br><br>
   <% end %>
+  	<%= erb :"_comments_form", layout: false %>
+  	<%= erb :"_comments_text", layout: false %>
 </div>

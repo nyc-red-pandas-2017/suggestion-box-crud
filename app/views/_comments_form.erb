@@ -1,0 +1,7 @@
+<form id="new_comment" method="post" action="/comments">
+    <input type="text" id="comment_text" name="comment_text" placeholder="Enter comment">
+    <input type="hidden" name="suggestion_id" value="<%= params[:id] %>">
+    <input type="hidden" name="commentable_type" value="Suggestion">
+    <input type="hidden" name="thing_id" value="<%= params[:id] %>">
+    <input type="Submit" value="Submit New Comment">
+</form>

@@ -16,7 +16,7 @@ end
 
 get "/suggestions/:id" do
   @suggestion = Suggestion.find_by(id: params[:id])
-  puts @suggestion
+  #puts @suggestion
   if @suggestion
     erb :"/suggestions/show"
   else
@@ -25,10 +25,10 @@ get "/suggestions/:id" do
 end
 
 post "/suggestions" do
-  @suggestion = Suggestion.new(title: params[:suggestion][:title],
+  suggestion = Suggestion.new(title: params[:suggestion][:title],
     description: params[:suggestion][:description], user_id: session[:user_id])
   puts params
-  if @suggestion.save
+  if suggestion.save
     redirect "/suggestions"
   else
     "Cannot add the suggestion"

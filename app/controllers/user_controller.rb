@@ -1,13 +1,14 @@
 post '/users/signup' do
   @user = User.new(name: params[:user][:name], password: params[:user][:password])
   if @user.save
-    puts @user.name
-    puts @user.password
+    # puts @user.name
+    # puts @user.password
+    # puts User.select("name")
     erb :'/users/new'
   else
-    if @user.name.nil? || @user.name.empty?
+    if params[:user][:name] == ""
       "username is missing"
-    elsif @user.password.nil? || @user.password.empty?
+    elsif params[:user][:password] == ""
       "password is missing"
     else
       "Cannot sign up, username already exists"
@@ -42,9 +43,9 @@ post '/users/login' do
     @user_other_suggestions = Suggestion.where.not(user_id: session[:user_id])
     erb :'/users/login'
   else
-    if @user.name.nil? || @user.name.empty?
+    if params[:user][:name] == ""
       "username is missing"
-    elsif @user.password.nil? || @user.password.empty?
+    elsif params[:user][:password] == ""
       "password is missing"
     else
       "Cannot log in, you should register first"

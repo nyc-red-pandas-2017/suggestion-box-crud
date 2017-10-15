@@ -1,10 +1,17 @@
 post '/users/signup' do
-  @user = User.new(:name => params[:user][:name], :password => params[:user][:password])
+  @user = User.new(name: params[:user][:name], password: params[:user][:password])
   if @user.save
+    puts @user.name
+    puts @user.password
     erb :'/users/new'
   else
-    "Cannot sign up, username already exists"
-  end
+    if @user.name.nil? || @user.name.empty?
+      "username is missing"
+    elsif @user.password.nil? || @user.password.empty?
+      "password is missing"
+    else
+      "Cannot sign up, username already exists"
+    end
 end
 
 get '/users/new' do
@@ -25,7 +32,7 @@ get '/users/login' do
 end
 
 post '/users/login' do
-  @user = User.find_by(:name => params[:user][:name])
+  @user = User.find_by(name: params[:user][:name])
   if @user && @user.authenticate(params[:user][:password])
     session[:user_id] = @user.id
     # User publications

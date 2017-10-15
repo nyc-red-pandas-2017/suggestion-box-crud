@@ -39,6 +39,7 @@ post '/users/login' do
 end
 
 get '/users/logout' do
-  session[:user_id] = nil
+  session.clear # deletes everything in the hash, but not the hash itself
+  #session[:user_id] = nil
   redirect "/"
 end

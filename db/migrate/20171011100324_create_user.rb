@@ -1,8 +1,8 @@
 class CreateUser < ActiveRecord::Migration[5.1]
   def up
     create_table :users do |t|
-      t.column :name, :string, unique: true
-      t.column :password_digest, :string
+      t.column :name, :string, unique: true, null: false
+      t.column :password_digest, :string, null: false
 
       t.timestamps
     end

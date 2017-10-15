@@ -46,7 +46,7 @@ post '/users/login' do
     elsif @user.password.nil? || @user.password.empty?
       "password is missing"
     else
-      "user now registered"
+      "user not registered"
     end
   end
 end

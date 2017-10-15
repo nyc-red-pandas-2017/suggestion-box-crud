@@ -41,7 +41,13 @@ post '/users/login' do
     @user_other_suggestions = Suggestion.where.not(user_id: session[:user_id])
     erb :'/users/login'
   else
-    "Cannot log in, user not registered"
+    if @user.name.nil? || @user.name.empty?
+      "username is missing"
+    elsif @user.password.nil? || @user.password.empty?
+      "password is missing"
+    else
+      "user now registered"
+    end
   end
 end
 

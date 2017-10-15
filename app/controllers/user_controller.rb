@@ -12,6 +12,7 @@ post '/users/signup' do
     else
       "Cannot sign up, username already exists"
     end
+  end
 end
 
 get '/users/new' do
@@ -46,7 +47,7 @@ post '/users/login' do
     elsif @user.password.nil? || @user.password.empty?
       "password is missing"
     else
-      "user not registered"
+      "Cannot log in, you should register first"
     end
   end
 end

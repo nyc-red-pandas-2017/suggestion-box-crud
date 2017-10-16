@@ -70,3 +70,23 @@ Users should be able to
 - make multiple comments on suggestions
 - edit a comment they own
 - delete a comment they own
+
+## Release 6
+
+**Due:** 10:45am
+
+Ajaxify the thumbs up functionality
+
+
+## Release 7
+
+**Due:** 11:45am
+
+Ajaxify posting a suggestion.
+
+
+## Release 8
+
+**Due:** 2:00pm
+
+Ajaxify posting of a comment

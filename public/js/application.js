@@ -16,10 +16,9 @@ $(document).ready(function() {
 
     .done(function(response) {
       console.log(response)
-      debugger;
       $suggestion_button.hide();
       $("#sug-btn-div").append(response)
-
+      $suggestion_button.show();
     })
 
 

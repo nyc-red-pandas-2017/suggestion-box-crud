@@ -1,0 +1,16 @@
+<h1>Welcome to the Suggestion Interweb Application</h1>
+
+<h2><a href='/suggestions/new'>Click Here to Make a Suggestion</a></h2>
+<h3>See Suggestions Below</h3>
+
+<div class="suggestions">
+    <% @suggestions_by_votecount.each do |suggestion| %>
+        <a href="/suggestions/<%= suggestion.id %>"><h3><%= "#{suggestion.title}  " %></h3></a>
+        <p>-----------------------------------------------------------------</p>
+    <% end %>
+
+</div>
+
+<!--
+  @suggestions.sort { |suggestion| suggestion.votes.count }.reverse
+ -->

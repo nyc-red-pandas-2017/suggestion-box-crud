@@ -1,0 +1,19 @@
+<style>
+  form { display: inline; }
+</style>
+
+
+<h1>Suggestion</h1>
+
+<div class="suggestion_details">
+  <h3><%= @suggestion.title %></h3>
+  <%= @suggestion.description %><br><br>
+    <%= erb :'suggestions/_thumbs_up' %>
+    <%= erb :"suggestions/_vote_buttons_suggestion", layout: false, locals: {suggestion: @suggestion} %>
+  <% if @suggestion.user == current_user %>
+    <a href="/suggestions/<%= @suggestion.id %>/edit">Edit</a>
+    <%= erb :"suggestions/_delete", layout: false, locals: {suggestion: @suggestion} %><br><br>
+  <% end %>
+  	<%= erb :"_comments_form", layout: false %>
+  	<%= erb :"_comments_text", layout: false %>
+</div>

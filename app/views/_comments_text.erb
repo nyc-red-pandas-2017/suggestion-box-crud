@@ -1,0 +1,10 @@
+<h5>Comments:</h5>
+    <% @suggestion.comments.each do |comment| %>
+        <%= comment.comment_text %>
+        <% if comment.user_id == current_user.id %> 
+        	<form id="comment_delete_form" action="/comments/<% comment.id %>" method="post">
+  				<input name="_method" type="hidden" value="delete" />
+  				<input name="commit" type="submit" value="Delete" />
+			</form><br>
+		<% end %>
+<% end %>

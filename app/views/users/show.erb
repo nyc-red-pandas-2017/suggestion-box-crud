@@ -17,8 +17,8 @@
       <span class='votes'>Thumbs Up: <%= suggestion.vote_sum %></span>
       <%= erb :'users/_vote_buttons_user', layout: false, locals: {suggestion: suggestion} %>
       <a href="/suggestions/<%= suggestion.id %>/edit">Edit</a>
-      <%= erb :"suggestions/_delete", layout: false, locals: {suggestion: suggestion} %>
-
+      <%= erb :"suggestions/_delete", layout: false, locals: {suggestion: suggestion} %><br><br>
+      <%= erb :"_comments_form", layout: false %>
     <% end %>
   <% end %>
    <p>*********************************************************************************</p>
@@ -32,7 +32,8 @@
       <a href="/suggestions/<%= suggestion.id %>"><h4><%= suggestion.title %></h4></a>
       <p><%= suggestion.description %></p>
       <span class='votes'>Thumbs Up: <%= suggestion.vote_sum %></span>
-      <%= erb :'users/_vote_buttons_user', layout: false, locals: {suggestion: suggestion} %>
+      <%= erb :'users/_vote_buttons_user', layout: false, locals: {suggestion: suggestion} %><br><br>
+      <%= erb :"_comments_form", layout: false %>
       <p>-----------------------------------------------------------------------------------------------</p>
       <% end %>
     <% end%>
@@ -45,7 +46,8 @@
       <% if vote.user_id == current_user.id %>
         <h4><%= vote.votable.title %></h4>
         <p><%= vote.votable.description %></p>
-        <span class='votes'>Thumbs Up: <%= vote.votable.vote_sum %></span>
+        <span class='votes'>Thumbs Up: <%= vote.votable.vote_sum %></span><br><br>
+        <%= erb :"_comments_form", layout: false %>
       <p>-----------------------------------------------------------------------------------------------</p>
       <% end %>
     <% end%>

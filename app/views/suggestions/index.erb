@@ -12,12 +12,7 @@
  <div class="container">
   <% @suggestions.each do |s| %>
   <ul class="collection">
-    <li class="collection-item"> <%= s.title %> - <%= s.description %>- <a href="/suggestions/<%= s.id %>">details</a>
-      <form id="upvote" method="post" action="###" >
-         <input type="hidden" name="s_id" value="<%= params[:id] %>">
-        <button id="button" type="submit" name="" value=""><i class="material-icons">thumb_up</i></button>
-      </form>
-    </li>
+    <li class="collection-item" ><a href="/suggestions/<%= s.id %>"><%= s.title %></a> - <i><%= s.description %></i></li>
   </ul>
   <% end %>
 </div>

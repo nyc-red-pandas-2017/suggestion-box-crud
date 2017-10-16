@@ -65,5 +65,9 @@ delete '/suggestions/:id' do
 end
 
 post '/suggestions/:id/vote' do
+  # create vote var and set equal to 0
+  # increment vote count by 1
+  # display vote count for each suggestion on '/suggestions'
   "Hello World"
+  redirect '/suggestions'
 end

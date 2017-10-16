@@ -28,6 +28,7 @@
       <div class="nav-wrapper">
         <a href="/" class="brand-logo">Suggestions</a>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
+          <li>Hello, <%= current_user.username %></li>
           <li><a href="/suggestions">Profile</a></li>
           <li><a href="/sessions/logout">Logout</a></li>
       </div>
@@ -35,7 +36,7 @@
   <% else %>
     <nav>
     <div class="nav-wrapper">
-      <a href="#" class="brand-logo">Suggestions</a>
+      <a href="/" class="brand-logo">Suggestions</a>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
         <li><a href="/users/new">Register</a></li>
         <li><a href="/sessions/new">Login</a></li>

@@ -1,32 +1,27 @@
 <!-- if own_suggestion?(suggestion) working in controller. Possibly refactor below logic to not include if/else logic-->
 <div class="container">
-
   <h2>Welcome, <%= current_user.username %>!</h2>
-
-  <h3><a href='/suggestions/new'>New Suggestion</a></h3>
-
-  <% @suggestions.each do |s| %>
-
-  <% if own_suggestion?(s) %>
-
-  <ul>
-
-    <li><%= s.title %> - <%= s.description %>- <a href="/suggestions/<%= s.id %>">details</a>  </li>
-
-
-  </ul>
-
-
-  <% else %>
-
-  <ul>
-
-    <li><%= s.title %> - <%= s.description %></li>
-
-  </ul>
-
-  <% end %>
-
-  <% end %>
-
 </div>
+<div id="sug-btn-div">
+  <form class="flex flex-column" id="new-btn"method="GET" action="/suggestions/new" >
+    <button type="submit">Add New Suggestion</button>
+  </form>
+</div>
+<!-- <div class="container">
+  <h3 id="new-sug-btn"><a id="a"href='/suggestions/new'>New Suggestion</a></h3>
+ </div> -->
+
+ <div class="container">
+  <% @suggestions.each do |s| %>
+  <% if own_suggestion?(s) %>
+  <ul>
+    <li><%= s.title %> - <%= s.description %>- <a href="/suggestions/<%= s.id %>">details</a>  </li>
+  </ul>
+  <% else %>
+  <ul>
+    <li><%= s.title %> - <%= s.description %></li>
+  </ul>
+  <% end %>
+  <% end %>
+</div>
+

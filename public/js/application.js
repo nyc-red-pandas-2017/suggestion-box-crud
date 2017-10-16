@@ -4,4 +4,36 @@ $(document).ready(function() {
   // when we try to bind to them
 
   // See: http://docs.jquery.com/Tutorials:Introducing_$(document).ready()
+  $("#new-btn").on("click", function(event) {
+    event.preventDefault()
+
+    var $suggestion_button = $(event.target);
+
+    $.ajax({
+      url: $(this).attr('action'),
+      method: $(this).attr('method')
+  })
+
+    .done(function(response) {
+      console.log(response)
+      debugger;
+      $suggestion_button.hide();
+      $("#sug-btn-div").append(response)
+
+    })
+
+
+// $("#suggestion-form").on("submit", function(event) {
+//     event.preventDefault()
+
+//     $.ajax({
+//       url: $(this).attr('action'),
+//       method: $(this).attr('method'),
+//       data: $(this).serialize()
+
+//     })
+//     .done(function(response) {
+
+//     })
+  })
 });

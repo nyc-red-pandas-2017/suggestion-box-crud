@@ -1,0 +1,19 @@
+<div class="container">
+  <h1>Suggestion Details</h1>
+
+  <a href="/">Home</a>
+  <a href="/suggestions/<%= @suggestions.id %>/edit"> Edit</a>
+  <form id="upvote" method="post" action="/suggestions/<%= @suggestions.id %>/vote" >
+         <input type="hidden" name="s_id" value="<%= params[:id] %>">
+        <button id="button" type="submit" name="" value=""><i class="material-icons">thumb_up</i></button>
+      </form>
+  <ul class="collection">
+    <li class="collection-item">Suggestion: <%= @suggestions.title %></li>
+    <li class="collection-item">Description: <%= @suggestions.description %></li>
+  </ul>
+
+  <form action="/suggestions/<%= @suggestions.id %>" method="post">
+    <input type="hidden" id="hidden" name="_method" value="delete">
+    <input type="submit" class="btn btn-danger" value="Delete!">
+  </form>
+</div>

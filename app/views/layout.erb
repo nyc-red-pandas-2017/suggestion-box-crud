@@ -1,23 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- 
+  <!--
     normalize.css removes cross-browser differences in defaults, e.g.,
     differences in how form elements appear between Firefox and IE
     See: http://necolas.github.com/normalize.css/
   -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+
+  <!-- Compiled and minified JavaScript -->
+
   <link rel="stylesheet" href="/css/normalize.css">
   <!--
     application.css is where you put your styles
   -->
   <link rel="stylesheet" href="/css/application.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
   <script src="/js/application.js"></script>
 
   <title></title>
 </head>
 <body>
-  <%= yield %>
+  <% if logged_in? %>
+    <nav>
+      <div class="nav-wrapper">
+        <a href="/" class="brand-logo">Suggestions</a>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+          <li>Hello, <%= current_user.username %></li>
+          <li><a href="/suggestions">Profile</a></li>
+          <li><a href="/sessions/logout">Logout</a></li>
+      </div>
+    </nav>
+  <% else %>
+    <nav>
+    <div class="nav-wrapper">
+      <a href="/" class="brand-logo">Suggestions</a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li><a href="/users/new">Register</a></li>
+        <li><a href="/sessions/new">Login</a></li>
+      </ul>
+    </div>
+    </nav>
+  <% end %>
+<%= yield %>
 </body>
 </html>

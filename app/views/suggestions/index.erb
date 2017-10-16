@@ -1,0 +1,19 @@
+<!-- if own_suggestion?(suggestion) working in controller. Possibly refactor below logic to not include if/else logic-->
+<div class="container">
+  <h2>All Suggestions</h2>
+</div>
+<div class="container" id="sug-btn-div">
+  <form class="flex flex-column" id="new-btn"method="GET" action="/suggestions/new" >
+    <button type="submit" class="btn waves-effect waves-light">Add New Suggestion</button>
+  </form>
+  <br>
+</div>
+
+ <div class="container">
+  <% @suggestions.each do |s| %>
+  <ul class="collection">
+    <li class="collection-item" ><a href="/suggestions/<%= s.id %>"><%= s.title %></a> - <i><%= s.description %></i></li>
+  </ul>
+  <% end %>
+</div>
+

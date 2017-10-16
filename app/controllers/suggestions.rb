@@ -32,7 +32,7 @@ end
 put '/suggestions/:id' do
   @suggestion = Suggestion.find_by(id: params[:id])
   if own_suggestion?
-    @suggestion.assign_attributes(params[:suggestion])
+    @suggestion.assign_attributes(params[:title],params[:suggestion])
     if @suggestion.save
       redirect "/"
     else
@@ -41,7 +41,7 @@ put '/suggestions/:id' do
     end
   else
       @errors = "Not your suggestion to update"
-      erb :'/'
+      erb :'/index'
   end
 
 end

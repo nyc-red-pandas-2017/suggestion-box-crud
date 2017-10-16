@@ -1,0 +1,33 @@
+<h1>WELCOME TO THE SUGGESTION BOX!!!!!</h1>
+
+<a href="suggestions/new">CREATE A NEW SUGGESTION</a>
+<br>
+<br>
+<% @suggestion.each do |suggestion| %>
+  <h2>Title: <%= suggestion.title %></h2>
+  <a href="suggestions/<%= suggestion.id %>">More Information about the suggestion</a>
+  <br>
+  <form id="upvote" method="POST" action="/suggestions/<%= suggestion.id %>/upvote">
+  	<button type="submit">Upvote</button>
+  </form>
+
+  <form id="downvote" method="POST" action="/suggestions/<%= suggestion.id %>/downvote">
+  	<button type="submit">Downvote</button>
+  </form>
+  <div class="votes">
+  <h3>Votes: <%= suggestion.votes %></h3>
+</div>
+    <% if owns_suggestion(suggestion) %>
+      <a href="suggestions/<%= suggestion.id %>/edit">Edit a Suggestion</a>
+      <br>
+      <%= erb :'/suggestions/_delete', layout: false, locals: { suggestion: suggestion} %>
+  <% end %>
+    <a href="/suggestions/<%= suggestion.id %>/comments/new">Create a comment</a>
+
+<% end %>
+<br>
+<br>
+<br>
+<% if session[:user_id] %>
+  <a href="/sessions/logout">Logout</a>
+<% end %>

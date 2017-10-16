@@ -1,0 +1,7 @@
+<h1>Update a Suggestion</h1>
+<form id="update-suggestion" method="POST" action="/suggestions/<%= @suggestion.id %>">
+  <input type="hidden" name="_method" value="patch">
+  <input class="text" type="text" name="suggestion[title]" value="<%= @suggestion.title %>">
+  <input class="text" type="text" name="suggestion[description]" value="<%= @suggestion.description %>">
+  <input type="submit" value="Update Suggestion">
+</form>

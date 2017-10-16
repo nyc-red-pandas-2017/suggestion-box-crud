@@ -1,0 +1,20 @@
+<h1>Welcome <%=current_user.first_name%> !</h1>
+<% if @errors %>
+  <% @errors.each do |error_message| %>
+    <%= error_message %>
+  <% end %>
+<% end %>
+
+<div id="user-own-suggestions">
+  <ul>
+    <% @suggestions.each do |suggestion| %>
+    <a href="/suggestions/<%= suggestion.id %>"><li> <%= suggestion.title %></li></a>
+    <% end %>
+
+
+  </ul>
+</div>
+
+
+<p>Click <a href="/sessions/logout">here</a> to log out </p>
+

@@ -1,0 +1,15 @@
+<% if @errors %>
+   <% @errors.each do |error| %>
+     <%= error %>
+   <% end %>
+ <% end %>
+
+<div class="container">
+  <p>Suggestions</p>
+    <ul>
+      <%@suggestions.each do |suggestion|%>
+      <a href="/suggestions/<%=suggestion.id%>"><li> <%= suggestion.title %></li></a>
+      <% end %>
+    </ul>
+</div>
+

@@ -1,0 +1,15 @@
+<% if @errors %>
+   <% @errors.each do |error| %>
+     <%= error %>
+   <% end %>
+ <% end %>
+
+
+<form action="/suggestions/<%=@suggestion.id %>" method="post">
+  <input type="text" name="title" placeholder="Title" />
+  <input type="hidden" name="_method" value="put">
+  <textarea type="text" name="suggestion[description]" cols="45" rows="5" placeholder="Suggestion"></textarea>
+  <br>
+
+   <input type="submit" value="Update Suggestion!">
+ </form>

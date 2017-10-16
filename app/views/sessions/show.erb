@@ -5,8 +5,19 @@
   <% end %>
 <% end %>
 
-<p>Your suggestions</p>
-<%= current_user.attributes %>
+<div id="user-own-suggestions">
+  <ul>
+    <% @suggestions.each do |suggestion| %>
+    <a href="/suggestions/<%= suggestion.id %>"><li> <%= suggestion.title %></li></a>
+    <% end %>
+
+
+  </ul>
+</div>
+
+
+<p>for debugging /sessions/show Current User attributes: <br> <%= current_user.attributes %> </p>
+
 
 
 <p>Click <a href="/sessions/logout">here</a> to log out </p>

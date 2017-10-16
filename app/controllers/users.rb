@@ -18,6 +18,7 @@ end
 
 get '/users/:id' do
   if current_user.id == params[:id].to_i
+    user_suggestions
     @user = User.find(params[:id])
     erb :'/sessions/show'
   else

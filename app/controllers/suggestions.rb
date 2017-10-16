@@ -10,7 +10,9 @@ end
 
 post '/suggestions' do
   current_user
-  @suggestion = Suggestion.new(user_id: current_user.id, title: params[:title], description: params[:description])
+  puts params
+  puts current_user.attributes
+  @suggestion = Suggestion.new(author_id: current_user.id, title: params[:title], description: params[:description])
   if @suggestion.save
     redirect '/'
   else

@@ -7,21 +7,22 @@
   <h2>Title: <%= suggestion.title %></h2>
   <a href="suggestions/<%= suggestion.id %>">More Information about the suggestion</a>
   <br>
-  <form method="POST" action="/suggestions/<%= suggestion.id %>/upvote">
+  <form id="upvote" method="POST" action="/suggestions/<%= suggestion.id %>/upvote">
   	<button type="submit">Upvote</button>
   </form>
 
-  <form method="POST" action="/suggestions/<%= suggestion.id %>/downvote">
+  <form id="downvote" method="POST" action="/suggestions/<%= suggestion.id %>/downvote">
   	<button type="submit">Downvote</button>
   </form>
-
+  <div class="votes">
   <h3>Votes: <%= suggestion.votes %></h3>
+</div>
     <% if owns_suggestion(suggestion) %>
       <a href="suggestions/<%= suggestion.id %>/edit">Edit a Suggestion</a>
       <br>
       <%= erb :'/suggestions/_delete', layout: false, locals: { suggestion: suggestion} %>
   <% end %>
-    <a href="comments/new">Create a comment</a>
+    <a href="/suggestions/<%= suggestion.id %>/comments/new">Create a comment</a>
 
 <% end %>
 <br>

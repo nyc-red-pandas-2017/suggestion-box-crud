@@ -26,7 +26,7 @@ end
 
 get '/suggestions/:id/edit' do
   @suggestion = Suggestion.find(params[:id])
-  if session[:user_id] == @suggestion.user
+  if @suggestion.user == current_user
     erb :'suggestions/edit'
   else
     erb :'suggestions/show'
@@ -57,7 +57,11 @@ post '/suggestions/:id/upvote' do
 
   @suggestion.update_attribute(:votes, @suggestion[:votes] + 1)
 
-  redirect '/suggestions'
+  if request.xhr?
+    return @suggestion.votes.to_s
+  else
+    redirect '/suggestions'
+  end
 end
 
 post '/suggestions/:id/downvote' do
@@ -65,7 +69,11 @@ post '/suggestions/:id/downvote' do
 
   @suggestion.update_attribute(:votes, @suggestion[:votes] - 1)
 
-  redirect '/suggestions'
+  if request.xhr?
+    return @suggestion.votes.to_s
+  else
+    redirect '/suggestions'
+  end
 end
 
 

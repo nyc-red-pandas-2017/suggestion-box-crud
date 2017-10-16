@@ -1,12 +1,14 @@
-get '/comments/new' do
+get '/suggestions/:id/comments/new' do
   erb :'comments/new'
 end
 
-post '/comments' do
+post '/suggestions/:id/comments' do
   @comment = Comment.new(params[:comment])
-  @suggestion = Suggestion.find(params[:suggestion])
+  # binding.pry
+  @suggestion = Suggestion.find(params[:id])
   @user = User.find(params[:user])
   @comment.user = current_user
+  @comment.suggestion = @suggestion
 
   if @comment.save
     redirect '/suggestions'

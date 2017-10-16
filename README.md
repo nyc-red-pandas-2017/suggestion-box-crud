@@ -90,3 +90,9 @@ Ajaxify posting a suggestion.
 **Due:** 2:00pm
 
 Ajaxify posting of a comment
+
+## Release 9
+
+**Due:** 3:30pm
+
+Refactor to utilize event delegation so ajaxification of thumbs up  could take effect on newly posted suggestion

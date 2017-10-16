@@ -17,22 +17,7 @@ $(document).ready(function() {
     .done(function(response) {
       console.log(response)
       $suggestion_button.hide();
-      $("#sug-btn-div").append(response)
-      $suggestion_button.show();
-    })
-
-
-// $("#suggestion-form").on("submit", function(event) {
-//     event.preventDefault()
-
-//     $.ajax({
-//       url: $(this).attr('action'),
-//       method: $(this).attr('method'),
-//       data: $(this).serialize()
-
-//     })
-//     .done(function(response) {
-
-//     })
-  })
+      $("#sug-btn-div").append(response);
+    });
+  });
 });

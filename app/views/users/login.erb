@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/styles.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+
+<% if @user %>
+  <h2>Hey <b><%=@user.name%></b>, you are logged in</h2>
+<% end %>
+
+<a href="/users/logout">Log out</a>
+
+<br>
+<br>
+
+<p> You can give us a suggestion in the box below, or read the current suggestions <br> </p>
+
+      <form action="/suggestions/login" method="post">
+        <b> &nbsp; Title *</b><br>
+        <textarea name="suggestion[title]" rows="1" col="10"></textarea><br>
+        <b> &nbsp; Description *</b><br>
+        <textarea name="suggestion[description]" rows="3" col="10"></textarea> <br>
+        <input type="submit" value="Submit">
+      </form>
+      <p> &nbsp; <b>*: required field</b></p>
+
+<br>
+
+<div id="own-suggestions">
+  <% if @user_own_suggestions %>
+  <h4><b>Your own</b> suggestions</h4>
+    <ul>
+      <% @user_own_suggestions.reverse.each do |suggestion| %>
+      <li>
+          <!-- Vote count -->
+          <button formaction="/votes" formmethod="post" class="upvote" type="button">+1</button> | <button formaction="/votes" formmethod="post" class="downvote" type="button">-1</button> |
+          Votes: <span class="votes-container">0</span> |
+          <!-- End vote count -->
+          <!-- Suggestion title with link -->
+          <a href="/suggestions/<%= suggestion.id %>"><%= suggestion.title %> </a> |
+          <!-- End suggestion title with link -->
+          <!-- Creation date -->
+          Created at: <%= suggestion.created_at %> |
+          <!-- End creation date -->
+          <!-- Delete suggestion -->
+          <a href="#delete">delete</a> |
+          <!-- End delete suggestion -->
+          <!-- Edit suggestion -->
+          <a href="#edit">edit</a>
+          <!-- End edit suggestion -->
+
+        <div class="delete-suggestion" style="display: none">
+          <form action="/suggestions/<%= suggestion.id %>" method="post">
+            <p>Click below to confirm the deletion of this suggestion | Or <a href="#hide-delete">hide</a> </p>
+              <input type="hidden" name="_method" value="delete">
+              <input type="submit" value="Delete">
+          </form>
+          <br>
+        </div>
+
+        <div class="edit-suggestion" style="display: none">
+          <form action="/suggestions/<%= suggestion.id %>" method="post">
+            <p>Edit this suggestion | Or <a href="#hide-delete">hide</a> </p>
+            <b> &nbsp; Title *</b><br>
+            <textarea name="suggestion[title]" rows="1" col="10"><%= suggestion.title %></textarea><br>
+            <b> &nbsp; Description *</b><br>
+            <textarea name="suggestion[description]" rows="3" col="10"><%= suggestion.description %></textarea> <br>
+            <input type="hidden" name="_method" value="put">
+            <input type="submit" value="Submit">
+          </form>
+          <br>
+        </div>
+      </li>
+      <br>
+      <!-- Hidden on load -->
+    <% end %>
+    </ul>
+  <% else %>
+  <p>You have no suggestions so far: <a href="#">Create one</a></p>
+
+  <% end %>
+</div>
+
+
+<div id="others-suggestions">
+  <% if @user_other_suggestions %>
+  <h4><b>Other</b> users' suggestions</h4>
+    <ul>
+      <% @user_other_suggestions.reverse.each do |suggestion| %>
+       <li> <!-- Vote count -->
+          <button formaction="/votes" formmethod="post" class="upvote" type="button">+1</button> | <button formaction="/votes" formmethod="post" class="downvote" type="button">-1</button> |
+          Votes: <span class="votes-container">0</span> |
+          <!-- End vote count -->
+          <a href="/suggestions/<%= suggestion.id %>"><%= suggestion.title %></a> |
+          Created at: <%= suggestion.created_at %></li>
+          <br>
+      <% end %>
+    </ul>
+  <% else %>
+  <p>There are no suggestions so far: <a href="#">Create one</a></p>
+  <% end %>
+</div>
+
+
+
+
+
+</body>

@@ -7,39 +7,7 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <style>
-    /* Remove the navbar's default margin-bottom and rounded borders */
-    .navbar {
-      margin-bottom: 0;
-      border-radius: 0;
-    }
 
-    /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
-    .row.content {height: 450px}
-
-    /* Set gray background color and 100% height */
-    .sidenav {
-      padding-top: 20px;
-      background-color: #f1f1f1;
-      height: 100%;
-    }
-
-    /* Set black background color, white text and some padding */
-    footer {
-      background-color: #555;
-      color: white;
-      padding: 15px;
-    }
-
-    /* On small screens, set height to 'auto' for sidenav and grid */
-    @media screen and (max-width: 767px) {
-      .sidenav {
-        height: auto;
-        padding: 15px;
-      }
-      .row.content {height:auto;}
-    }
-  </style>
 </head>
 <body>
 
@@ -71,9 +39,21 @@
     <ul>
       <% @user_own_suggestions.reverse.each do |suggestion| %>
       <li>
-        <a href="/suggestions/<%= suggestion.id %>"><%= suggestion.title %> </a> |
-        Created at: <%= suggestion.created_at %> |
-        <a href="#delete">delete</a> | <a href="#edit">edit</a>
+          <!-- Vote count -->
+          <button class="upvote" type="button">+1</button> | <button class="downvote" type="button">-1</button> | Votes: <span class="count-votes">8</span> |
+          <!-- End vote count -->
+          <!-- Suggestion title with link -->
+          <a href="/suggestions/<%= suggestion.id %>"><%= suggestion.title %> </a> |
+          <!-- End suggestion title with link -->
+          <!-- Creation date -->
+          Created at: <%= suggestion.created_at %> |
+          <!-- End creation date -->
+          <!-- Delete suggestion -->
+          <a href="#delete">delete</a> |
+          <!-- End delete suggestion -->
+          <!-- Edit suggestion -->
+          <a href="#edit">edit</a>
+          <!-- End edit suggestion -->
 
         <div class="delete-suggestion" style="display: none">
           <form action="/suggestions/<%= suggestion.id %>" method="post">
@@ -111,7 +91,9 @@
   <h4><b>Other</b> users' suggestions</h4>
     <ul>
       <% @user_other_suggestions.reverse.each do |suggestion| %>
-       <li> <a href="/suggestions/<%= suggestion.id %>"><%= suggestion.title %></a> | Created at: <%= suggestion.created_at %></li>
+       <li> <!-- Vote count -->
+          <button class="upvote" type="button">+1</button> | <button class="downvote" type="button">-1</button> | Votes: <span class="count-votes">8</span> |
+          <!-- End vote count --> <a href="/suggestions/<%= suggestion.id %>"><%= suggestion.title %></a> | Created at: <%= suggestion.created_at %></li>
       <% end %>
     </ul>
   <% else %>

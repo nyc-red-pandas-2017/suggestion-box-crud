@@ -38,4 +38,14 @@ $(document).ready(function() {
     $(this).parent().parent().parent().hide();
     });
 
+  $(".upvote").on("click", function(event) {
+    event.preventDefault();
+    console.log("upvoted");
+    });
+
+  $(".downvote").on("click", function(event) {
+    event.preventDefault();
+    console.log("downvoted");
+    });
+
 });

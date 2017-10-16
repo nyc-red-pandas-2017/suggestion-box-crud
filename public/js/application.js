@@ -40,12 +40,43 @@ $(document).ready(function() {
 
   $(".upvote").on("click", function(event) {
     event.preventDefault();
-    console.log("upvoted");
-    });
+    //console.log("upvoted");
+
+    var $button = $(event.target);
+    var url = $button.attr("formaction");
+    var method = $button.attr("formmethod");
+
+    $.ajax({
+      method: method,
+      url: url
+    })
+
+    .done(function(response) {
+      //console.log(response)
+      $(".votes-container").html(response);
+    })
+
+});
 
   $(".downvote").on("click", function(event) {
     event.preventDefault();
-    console.log("downvoted");
+    //console.log("downvoted");
+
+    var $button = $(event.target);
+    var url = $button.attr("formaction");
+    var method = $button.attr("formmethod");
+
+    $.ajax({
+      method: method,
+      url: url
+    })
+
+    .done(function(response) {
+      //console.log(event.target)
+      //console.log(this)
+      $(".votes-container").html(response);
+    })
+
     });
 
 });

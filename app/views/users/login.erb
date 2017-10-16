@@ -5,6 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/styles.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
@@ -40,7 +41,8 @@
       <% @user_own_suggestions.reverse.each do |suggestion| %>
       <li>
           <!-- Vote count -->
-          <button class="upvote" type="button">+1</button> | <button class="downvote" type="button">-1</button> | Votes: <span class="count-votes">8</span> |
+          <button formaction="/votes" formmethod="post" class="upvote" type="button">+1</button> | <button formaction="/votes" formmethod="post" class="downvote" type="button">-1</button> |
+          Votes: <span class="votes-container">0</span> |
           <!-- End vote count -->
           <!-- Suggestion title with link -->
           <a href="/suggestions/<%= suggestion.id %>"><%= suggestion.title %> </a> |
@@ -61,6 +63,7 @@
               <input type="hidden" name="_method" value="delete">
               <input type="submit" value="Delete">
           </form>
+          <br>
         </div>
 
         <div class="edit-suggestion" style="display: none">
@@ -73,9 +76,10 @@
             <input type="hidden" name="_method" value="put">
             <input type="submit" value="Submit">
           </form>
+          <br>
         </div>
-
       </li>
+      <br>
       <!-- Hidden on load -->
     <% end %>
     </ul>
@@ -92,8 +96,12 @@
     <ul>
       <% @user_other_suggestions.reverse.each do |suggestion| %>
        <li> <!-- Vote count -->
-          <button class="upvote" type="button">+1</button> | <button class="downvote" type="button">-1</button> | Votes: <span class="count-votes">8</span> |
-          <!-- End vote count --> <a href="/suggestions/<%= suggestion.id %>"><%= suggestion.title %></a> | Created at: <%= suggestion.created_at %></li>
+          <button formaction="/votes" formmethod="post" class="upvote" type="button">+1</button> | <button formaction="/votes" formmethod="post" class="downvote" type="button">-1</button> |
+          Votes: <span class="votes-container">0</span> |
+          <!-- End vote count -->
+          <a href="/suggestions/<%= suggestion.id %>"><%= suggestion.title %></a> |
+          Created at: <%= suggestion.created_at %></li>
+          <br>
       <% end %>
     </ul>
   <% else %>

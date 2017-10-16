@@ -8,7 +8,7 @@
 <div class="suggestion_details">
   <h3><%= @suggestion.title %></h3>
   <%= @suggestion.description %><br><br>
-  <span class='votes'>Thumbs Up: <%= @suggestion.vote_sum %></span>
+    <%= erb :'suggestions/_thumbs_up' %>
     <%= erb :"suggestions/_vote_buttons_suggestion", layout: false, locals: {suggestion: @suggestion} %>
   <% if @suggestion.user == current_user %>
     <a href="/suggestions/<%= @suggestion.id %>/edit">Edit</a>

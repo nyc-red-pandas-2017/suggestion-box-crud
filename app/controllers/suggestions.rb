@@ -40,7 +40,7 @@ delete '/suggestions/:id' do
   @suggestion = Suggestion.find_by(id: params[:id])
   if current_user == @suggestion.user
     Suggestion.find(params[:id]).destroy!
-    redirect '/suggestions/:id'
+    redirect '/suggestions'
   else
     status 401
     redirect '/suggestions/:id'
@@ -52,14 +52,23 @@ post '/suggestions/:id/vote' do
   unless @suggestion.votes.find {|vote| vote.user_id == current_user.id}
     @vote = Vote.new(vote: 1, votable_type: "Suggestion", votable_id: params[:suggestion_id], user_id: current_user.id)
     @votes = Vote.where(votable_id: params[:suggestion_id])
-    if @vote.save
-      redirect "/suggestions/#{params[:suggestion_id]}"
+
+    if request.xhr?
+      if @vote.save
+        erb :'suggestions/_thumbs_up', layout: false
+      else
+        "Fail"
+      end
     else
-      @errors = "Nope, try again."
-      erb :"/suggestions/show"
+      if @vote.save
+        redirect "/suggestions/#{params[:suggestion_id]}"
+      else
+        @errors = "Nope, try again."
+        erb :"/suggestions/show"
+      end
     end
   end
-  redirect "/suggestions/#{params[:id]}"
+  # redirect "/suggestions/#{params[:id]}"
 end
 
 post '/suggestions/:id/downvote' do

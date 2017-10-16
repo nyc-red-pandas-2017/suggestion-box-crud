@@ -1,7 +1,14 @@
 $(document).ready(function() {
-  // This is called after the document has loaded in its entirety
-  // This guarantees that any elements we bind to will exist on the page
-  // when we try to bind to them
-
-  // See: http://docs.jquery.com/Tutorials:Introducing_$(document).ready()
+  $("#upvote").on("submit", function(event){
+    event.preventDefault();
+    var myUrl = $(this).attr('action'),
+        myMethod = $(this).attr('method');
+    $.ajax({
+      url: $(this).attr('action'),
+      method: $(this).attr('method'),
+      data: $(this).serialize()
+    }).done(function(response){
+      $('#thumbs-up').html(response)
+    })
+  })
 });

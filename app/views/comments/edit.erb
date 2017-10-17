@@ -1,8 +1,8 @@
-<h1>Edit Suggestion</h1>
-<form id="edit-comment" method="POST" action="/comments/<%= @comment.id %>">
+<h1>Edit Comment</h1>
+<form id="edit-comment" method="POST" action="/comments/<%= @comment.user_id %>">
   <input type="hidden" name="_method" value="put">
 
-  <input class="text" type="text" name="comment[user_id]" value="<%= @comment.user_id %>">
+  <h3><%= @comment.user.firstname %></h3>
   <input class="text" type="text" name="comment[body]" value="<%= @comment.body %>">
   <input type="submit" value="Edit Comment">
 </form>

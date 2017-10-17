@@ -62,7 +62,7 @@ end
 
 delete '/suggestions/:id' do
   @suggestion = Suggestion.find_by(id: params[:id]) #define suggestion to delete
-  if @suggestion && suggestion.user.id == session[:user_id]
+  if @suggestion && @suggestion.user.id == session[:user_id]
     @suggestion.destroy #delete suggestion
     redirect '/suggestions' #redirect back to suggestions index page
   else

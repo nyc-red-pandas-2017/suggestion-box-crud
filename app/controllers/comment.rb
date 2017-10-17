@@ -15,7 +15,7 @@ post '/suggestions/:suggestion_id/comments/new' do
 end
 
 get '/comments/:id' do
-  @comment = Comment.find(params[:id]) #define instance variable for view
+  @comment = Comment.find_by(id: params[:comment_id]) #define instance variable for view
   erb :'comments/show' #show single comment view
 end
 
@@ -24,16 +24,16 @@ get '/comments/:id/edit' do
   if @comment #define intstance variable for view
     erb :'comments/edit' #show edit comment view
   else
-    erb :'comments/index'
+    redirect "/suggestions"
   end
 end
 
 put '/comments/:id' do
   @comment = Comment.find_by(id: params[:id]) #define variable to edit
 
-  if @comment && @Comment.user.id == session[:user_id] #saves new comment or returns false if unsuccessful
+  if @comment && @comment.user.id == session[:user_id] #saves new comment or returns false if unsuccessful
     @comment.update(params[:comment])
-    redirect '/comments/#{@comment.id}' #redirect back to comments index page
+    redirect "/suggestions" #redirect back to comments index page
   else
     puts "Error"
     erb :'comments/edit' #show edit comment view again(potentially displaying errors)
@@ -42,9 +42,9 @@ end
 
 delete '/comments/:id' do
   @comment = Comment.find_by(id: params[:id]) #define comment to delete
-  if @comment && comment.user.id == session[:user_id]
-    comment.destroy #delete comment
-    redirect "/suggestion/#{params[:suggestion_id]}"#redirect back to comments index page
+  if @comment && @comment.user.id == session[:user_id]
+    @comment.destroy #delete comment
+    redirect "/suggestions"#redirect back to comments index page
   else
     "error"
   end

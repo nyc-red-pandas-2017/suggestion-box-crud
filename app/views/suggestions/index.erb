@@ -1,0 +1,8 @@
+<a href="/users/current_user.id"> Profile </a>
+<br>
+<br>
+<% if @suggestions %>
+<% @suggestions.each do |suggestion| %>
+<a href="/suggestions/<%= suggestion.id %>"><ul><li><%= suggestion.title %></li></ul></a>
+<% end %>
+<% end %>

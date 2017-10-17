@@ -1,0 +1,9 @@
+
+<h1>Edit Suggestion</h1>
+<form action="/suggestions/<%= @suggestion.id %>" method="post">
+  <input type="hidden" name="_method" value="patch">
+  <input type="text" name="suggestion[title]" value="<%= @suggestion.title %>">
+  <textarea name="suggestion[description]"><%= @suggestion.description %></textarea>
+  <input type="submit" value="Submit">
+</form>
+<a href="/">Home</a>

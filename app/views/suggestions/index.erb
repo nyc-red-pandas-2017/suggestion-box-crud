@@ -1,0 +1,17 @@
+<% if @error %>
+  <%= @error %>
+<% end %>
+  <center><h1>Suggestions Box</h1></center>
+
+<center>
+  <strong><a href="/suggestions/new">Make a suggestion!</a></strong>
+    <ul>
+      <% @suggestions.each do |suggestion|%>
+      <strong><a href="/suggestions/<%= suggestion.id %>"><%= suggestion.title %></a></strong>
+
+      <br>
+      <% end %>
+    </ul>
+</center>
+
+

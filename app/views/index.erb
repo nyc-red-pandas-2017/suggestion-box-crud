@@ -1,0 +1,29 @@
+<h1> Welcome to Thomas's Suggetion Site! </h1>
+
+<!-- Style Nav Bar in future, probably should take Current User Info out and put in seperate div-->
+<nav>
+  <% if logged_in? %>
+    <p><a href ="/suggestions/new">New Suggestion</a></p>
+    <p><a href="/sessions/logout"> Log Out</a></p>
+  <% else %>
+    <p><a href="/sessions/new"> Login </a></p>
+    <p><a href="/users/new"> Sign Up!</a></p>
+  <% end %>
+</nav>
+
+<br><br>
+<div>
+  <% if logged_in? %>
+    <h3> Current User: <a href="/users/<%= @current_user.id %>"> <%= @current_user  .username %> </a><br></h3>
+    <%= erb :"partials/_logged_in_current_user", layout: false, locals: {user: @current_user} %>
+  <% end %>
+</div>
+<br><br>
+
+<!-- Once tested turn into partial, file already made -->
+<div>
+  <% @suggestions.each do |suggestion| %>
+    <h4><a href="/suggestions/<%= suggestion.id %>"><%= suggestion.title %></a> </h4>
+  <% end %>
+</div>
+

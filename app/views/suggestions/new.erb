@@ -1,0 +1,19 @@
+<h1> New Suggestion </h1>
+
+<% if @errors %>
+  <% @errors.each do |error| %>
+    <%= error %>
+  <% end %>
+<% end %>
+
+<form action="/suggestions" method="post">
+  <label for="title">Title</label>
+  <input type="text" name="suggestion[title]" placeholder="Title">
+  <label for="body">Wisdom that must be shared</label>
+  <input type="text" name="suggestion[body]" placeholder="Thoughts...">
+  <input type="submit" value="Suggest!">
+</form>
+
+<br>
+<br>
+<a href="/">Home</a>

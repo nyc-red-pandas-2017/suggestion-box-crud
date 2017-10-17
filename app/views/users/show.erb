@@ -1,0 +1,11 @@
+<div class="container">
+  <h3><a href='/suggestions/new'>New Suggestion</a></h3>
+  <h4>Welcome, <%= @user.username %>!</h4>
+<!-- Logic here is not quite working!!!  -->
+<!-- This is mixed up with index.erb in suggestions -->
+  <% @suggestions.each do |s| %>
+  <ul>
+    <li><%= s.title %> <a href="/suggestions/<%= s.id %>"> details</a></li>
+  </ul>
+  <% end %>
+</div>

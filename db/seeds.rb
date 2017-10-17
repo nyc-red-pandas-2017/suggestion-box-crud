@@ -1,0 +1,28 @@
+require 'faker'
+
+User.create(username: "cat", password: "cat")
+User.create(username: "tony", password: "tony1")
+User.create(username: "pan", password: "pan1")
+User.create(username: Faker::StarWars.character, password: Faker::StarWars.droid)
+User.create(username: Faker::StarWars.character, password: Faker::StarWars.droid)
+User.create(username: Faker::StarWars.character, password: Faker::StarWars.droid)
+User.create(username: Faker::StarWars.character, password: Faker::StarWars.droid)
+User.create(username: Faker::StarWars.character, password: Faker::StarWars.droid)
+
+Suggestion.create(title: "Suggestion 1", description: "suggestion", user_id: 1)
+Suggestion.create(title: "Suggestion 2", description: "suggestion", user_id: 2)
+Suggestion.create(title: "Suggestion 3", description: "suggestion", user_id: 3)
+Suggestion.create(title: Faker::StarWars.planet, description: Faker::StarWars.specie, user_id: 4)
+Suggestion.create(title: Faker::StarWars.planet, description: Faker::StarWars.specie, user_id: 5)
+Suggestion.create(title: Faker::StarWars.planet, description: Faker::StarWars.specie, user_id: 6)
+Suggestion.create(title: Faker::StarWars.planet, description: Faker::StarWars.specie, user_id: 7)
+Suggestion.create(title: Faker::StarWars.planet, description: Faker::StarWars.specie, user_id: 8)
+
+Comment.create(text: "test comment", suggestion_id: 1, user_id: 1)
+Comment.create(text: "test comment 2", suggestion_id: 2, user_id: 2)
+Comment.create(text: "test comment 3", suggestion_id: 3, user_id: 3)
+Comment.create(text: Faker::StarWars.wookie_sentence, suggestion_id: 4, user_id: 4)
+Comment.create(text: Faker::StarWars.wookie_sentence, suggestion_id: 5, user_id: 5)
+Comment.create(text: Faker::StarWars.wookie_sentence, suggestion_id: 6, user_id: 6)
+Comment.create(text: Faker::StarWars.wookie_sentence, suggestion_id: 7, user_id: 7)
+Comment.create(text: Faker::StarWars.wookie_sentence, suggestion_id: 8, user_id: 8)

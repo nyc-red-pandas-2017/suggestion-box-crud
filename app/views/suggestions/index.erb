@@ -1,0 +1,50 @@
+<h1>All Suggestions</h1>
+<p><a href="<%="/users/#{@user.id}"%>">Back to profile</a></p>
+<% @sorted_suggestions.each do |suggestion| %>
+  <div id="suggestion">
+    <ul>
+      <h3><a href="<%="/suggestions/#{suggestion.id}"%>"><%=suggestion.title%></a></h3>
+      <li><%=suggestion.description%></li>
+    </ul>
+    <div>
+        <form action ="/suggestions/<%=suggestion.id%>/upvote" method="post" id="upvote">
+          <input type="hidden" name="suggestion_id" value="<%= params[:vote] %>">
+          <button id="button" type="submit" name="submit" value="submit_value">
+          <p>Thumbs Up</p>
+          </button>
+        </form>
+    </div>
+    <br />
+
+      <form action ="/suggestions/<%=suggestion.id%>/undo" method="post" id="undo">
+        <input type="hidden" name="suggestion_id" value="<%= params[:vote] %>">
+        <button id="button" type="submit" name="submit" value="submit_value">
+        <p>Undo Thumbs Up</p>
+        </button>
+      </form>
+    <p>Total Thumbs Ups: <%=suggestion.votes.count%></p>
+
+     <h3>New Comment</h3>
+      <form action="/suggestions/<%=suggestion.id%>/comments" method="post">
+        <label for="text">Text:</label>
+        <input type="text" name="comment[text]">
+        <input type="submit" value="Submit">
+      </form>
+
+    <% suggestion.comments.each do |comment| %>
+    <ul>
+      <li><%=comment.text%></li>
+    </ul>
+        <p><a href="/suggestions/<%=suggestion.id%>/comments/<%=comment.id%>/edit">Edit Comment</a></p>
+        <form action='/suggestions/<%=suggestion.id%>/comments/<%=comment.id%>' method= "post">
+        <input type="hidden" name="_method" value="delete">
+        <input type="Submit" value="Delete">
+      </form>
+    <% end %>
+    </div>
+  <% end %>
+  </div>
+
+
+
+

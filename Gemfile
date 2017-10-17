@@ -9,9 +9,9 @@ gem 'sinatra-contrib'
 
 gem 'activesupport', '~>5.1.0'
 gem 'activerecord', '~>5.1.0'
-
+gem 'pry'
 gem 'rake'
-
+gem 'bcrypt'
 gem 'shotgun', '~>0.9.1'
 
 group :test do
@@ -23,5 +23,5 @@ end
 
 group :test, :development do
   gem 'factory_girl'
-  gem 'faker'
+  gem 'faker', git: "git://github.com/stympy/faker.git", branch: "master"
 end

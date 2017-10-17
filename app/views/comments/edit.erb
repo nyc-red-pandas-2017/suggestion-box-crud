@@ -1,0 +1,8 @@
+<h1>Edit Comment</h1>
+<form id="edit-comment" method="POST" action="/comments/<%= @comment.user_id %>">
+  <input type="hidden" name="_method" value="put">
+
+  <h3><%= @comment.user.firstname %></h3>
+  <input class="text" type="text" name="comment[body]" value="<%= @comment.body %>">
+  <input type="submit" value="Edit Comment">
+</form>

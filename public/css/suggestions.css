@@ -1,0 +1,17 @@
+.suggestion-box {
+  padding: 20px;
+}
+
+.suggestion-section {
+  margin-bottom: 105px;
+}
+
+.comment-section {
+  border: 1px solid orange;
+  margin-left: 55px;
+  padding: 25px;
+}
+
+.comment {
+  background: #eee;
+}

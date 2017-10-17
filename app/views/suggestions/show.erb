@@ -1,0 +1,30 @@
+<h2> Suggestion Detail</h2>
+
+<ul>
+  <li>User: <%=@suggestion.user.firstname %></li>
+  <li><%= @suggestion.thumbs_up %> readers have thumbs up'd this suggestion.</li>
+  <li>Title: <%=@suggestion.title%></li>
+  <li>Description: <%=@suggestion.description%></li>
+  <li>Posted time: <%=longform_date(@suggestion.created_at)%></li>
+  <a class="edit" href='/suggestions/<%= @suggestion.id %>/edit'> Edit </a>
+
+  <br>
+  <a class="delete" href='/suggestions/<%= @suggestion.id %>'> Delete </a>
+</ul>
+
+<a href="/suggestions"> Profile </a>
+
+
+
+
+
+ <!-- <form id="comment_edit_form" action='/comments/<% comment.id %>' method="POST">
+                  <input name="_method" type="hidden" value="put" />
+                  <input type="submit" name="submit" value="Edit" class="button">
+                </form>
+                <form id="comment_delete_form" action='/comments/<% comment.id %>' method="POST">
+                  <input name="_method" type="hidden" value="delete" />
+                  <input type="submit" name="submit" value="Delete" class="button">
+                </form> -->
+
+

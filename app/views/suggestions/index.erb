@@ -1,0 +1,116 @@
+<div class="container-fluid">
+  <div class="row content">
+
+    <!-- side bar -->
+    <div class="col-sm-3 sidenav">
+      <h4> Give a Suggestion </h4>
+      <ul class="nav nav-pills nav-stacked">
+        <li class="active"><a href="/">Home</a></li>
+        <li><a href="/suggestions/new">Post a Suggestion</a></li>
+        <li><a href="/">Blah Blah</a></li>
+        <br>
+        <% if session[:user_id] %>
+        <li><a href="/session/delete">Logout</a>
+        <% end %></li>
+      </ul><br>
+      <div class="input-group">
+        <input type="text" class="form-control" placeholder="Search for suggestions..">
+        <span class="input-group-btn">
+          <button class="btn btn-default" type="button">
+            <span class="glyphicon glyphicon-search"></span>
+          </button>
+        </span>
+      </div>
+    </div>
+    <!-- side bar -->
+
+    <!-- col-sm-9 -->
+    <div class="col-sm-9">
+      <h4>
+        <small>RECENT SUGGESTIONS</small>
+      </h4>
+      <hr>
+      <% @suggestions.each do |suggestion| %>
+      <div class="suggestion-section">
+        <h2><%= suggestion.title%></h2>
+        <h5><span class="glyphicon glyphicon-time"></span> <%= authorship_tagline(suggestion)%></h5>
+
+        <!-- panel body -->
+        <div class="panel-body" style="border: 1px solid #DDD">
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="suggestion-box panel panel-default text-center">
+                  <h3>
+                    <span class="label">
+                      <a href="suggestions/<%= suggestion.id %>">
+                        Details
+                      </a>
+                    </span>
+                  </h3>
+                  <p class="suggestion-detail-line"><%= thumbs_up_report(suggestion) %></p>
+
+                  <form id="suggestion-list-up" method="post" action="suggestions/<%= suggestion.id %>/thumbs_up" >
+                    <button type="submit" class="thumbs_up">
+                      <span class="glyphicon glyphicon-thumbs-up"></span>
+                      Thumbs Up
+                    </button>
+                  </form>
+
+                  <form id="suggestion-list-down" method="post" action="suggestions/<%= suggestion.id %>/thumbs_down" >
+                    <button type="submit" class="thumbs_down">
+                      <span class="glyphicon glyphicon-thumbs-down"></span>
+                      Thumbs Down
+                    </button>
+                  </form>
+                </div>
+              </div>
+            </div>
+
+            <hr>
+            <p><%= suggestion.description%></p>
+        </div>
+
+        <div class="comment-section">
+          <h4>Leave a Comment:</h4>
+            <form role="form" class="submit-comment" method="post" action="/suggestions/<%= suggestion.id %>/comments/new">
+              <div class="form-group">
+                <textarea class="form-control" rows="3" required name="body"></textarea>
+              </div>
+              <button type="submit" class="btn btn-success">Submit</button>
+            </form>
+          <!-- comment list -->
+          <% suggestion.comments.each do |comment| %>
+          <div class="comment">
+              <p>Comment:</p>
+              <div class="row">
+                <div class="col-sm-10">
+
+                  <h4><%= comment.user.firstname%> <small><%= comment.created_at%></small></h4>
+                  <p><%= comment.body %></p>
+                  <br>
+
+                </div>
+              </div>
+            </div>
+              <% if comment.user_id == current_user.id %>
+                <a class="edit" href='/comments/<%= comment.id %>/edit'> Edit </a>
+                <br>
+                <a class="delete" href='/comments/<%= comment.id %>'> Delete </a>
+
+              <% end %>
+              <br>
+            <% end %>
+          <!-- end comment list -->
+        </div>
+      </div>
+      <!-- end suggestion-section -->
+      <% end %>
+      <!-- end panel body -->
+    </div>
+    <!-- end col-sm-9 -->
+  </div>
+</div>
+
+<footer class="container-fluid">
+  <p>Khadija Franklin</p>
+</footer>

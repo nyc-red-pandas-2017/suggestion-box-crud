@@ -1,0 +1,11 @@
+<h2> Comment Detail</h2>
+
+<ul>
+  <li>User: <%=@comment.user.username %></li>
+  <li>Comment: <%=@comment.body%></li>
+  <a class="edit" href='/comments/<% @comment.id %>/edit'> Edit </a>
+  <br>
+  <a class="delete" href='/comments/<% @comment.id %>'> Delete </a>
+</ul>
+
+<a href="/suggestions"> Profile </a>

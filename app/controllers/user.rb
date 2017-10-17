@@ -10,7 +10,7 @@ end
 
 get '/users/:id' do
   @user = User.find_by(id: params[:id])
-  redirect '/' unless @user.id = session[:user_id]
+  redirect '/' unless @user = current_user
   erb :'session/login'
 end
 

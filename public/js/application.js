@@ -1,7 +1,46 @@
-$(document).ready(function() {
-  // This is called after the document has loaded in its entirety
-  // This guarantees that any elements we bind to will exist on the page
-  // when we try to bind to them
+// $(document).ready(function() {
+//   upvote();
+//   downvote();
+// });
 
-  // See: http://docs.jquery.com/Tutorials:Introducing_$(document).ready()
-});
+
+// var thumbs_up = function(){
+//   $("div.vote-container").on('submit', '.thumbs_up', function(e){
+//     e.preventDefault()
+//     addthumbs_up(this)
+//   })
+// };
+
+// var thumbs_down = function(){
+//   $("div.vote-container").on('submit', '.thumbs_down', function(e){
+//     e.preventDefault()
+//     addthumbs_down(this)
+//   });
+// };
+
+
+
+// var addthumbs_up = function(a){
+//   $.ajax({
+//     url: $(event.target).attr("action");
+//     method: 'post'
+//   })
+
+//   .done(function(msg){
+//       $("#suggestion-" + msg.id + "p.thumbs_up").text(msg.content)
+//   })
+// };
+
+// var addthumbs_down = function(a){
+//   $.ajax({
+//   url: $(event.target).attr("action");
+//   method: "post"
+//   })
+
+//   .done(function(msg){
+//       $("#suggestion-" + msg.id + "p.thumbs_up").text(msg.content)
+//   })
+// };
+
+
+

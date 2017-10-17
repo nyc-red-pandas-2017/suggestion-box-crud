@@ -4,9 +4,9 @@ end
 
 
 post '/session' do
-  user = User.authenticate(params[:user])
+  user = User.authenticate(params[:username],params[:password] )
   if user
-    session['user_id'] = user.id
+    session[:user_id] = user.id
     redirect '/suggestions'
   else
     @error = "Error"
@@ -14,7 +14,7 @@ post '/session' do
   end
 end
 
-get '/session/delete' do
-  session.clear
-  redirect '/'
-end
+# get '/session/delete' do
+#   session.delete
+#   redirect '/'
+# end

@@ -1,5 +1,5 @@
 get '/suggestions' do
-  @comments = Comment.all
+  #@comments = Comment.all
   @suggestions = Suggestion.all #define instance variable for view
   erb :'suggestions/index' #show all suggestions view (index)
 end
@@ -10,17 +10,26 @@ get '/suggestions/new' do
 end
 
 post '/suggestions' do
-  # user = User.find_by(id: @user)
-  # @suggestion = user.suggestions.new(params[:suggestion])
-   # binding.pry
+   #user = User.find_by(id: @user)
+   #@suggestion = user.suggestions.new(params[:suggestion])
+
    @suggestion = Suggestion.new(params[:suggestion])
-   #@suggestion.user = current_user
-   #binding.pry
+   @suggestion.user = current_user
+
   if @suggestion.save
-    redirect '/suggestions'
+    if request.xhr?
+      erb :"/suggestions/new", layout: false, locals: {suggestion: @suggestion}
+    else
+      redirect "/suggestions/#{@suggestion.id}"
+    end
   else
-    @errors = @suggestion.errors.full_messages
-    erb :'suggestions/new'
+    @errors = @suggestion.errors.values.flatten
+    if request.xhr?
+      error 404
+      erb :_errors, layout: false
+    else
+      erb :"/suggestions/new"
+    end
   end
 end
 

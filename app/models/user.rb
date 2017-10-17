@@ -12,15 +12,18 @@ class User < ApplicationRecord
     @password ||= BCrypt::Password.new(password_hash)
   end
 
-  def password=(new_password)
-    @password = BCrypt::Password.create(new_password)
+  def password=(plaintext_password)
+    @password = BCrypt::Password.create(plaintext_password)
     self.password_hash = @password
   end
 
-  def self.authenticate(username)
-    return nil unless user = find_by(username: username)
-    return user if user.password == plaintext_password
-    return nil
+  def self.authenticate(username, plaintext_password)
+    user = find_by(username: username)
+    if user && user.password == plaintext_password
+      return user
+    else
+      nil
+    end
   end
 
 end

@@ -1,13 +1,11 @@
  helpers do
 
   def current_user
-    if session[:user_id]
       @current_user ||= User.find_by_id(session[:user_id])
-    end
   end
 
   def logged_in?
-    !current_user.nil?
+    !!current_user
   end
 
   def with_line_breaks(body)
@@ -34,6 +32,10 @@
     date.strftime("%B %d, %Y")
   end
 
+
+  def comment_page(comment)
+    "#{comment.body}"
+    end
 end
 
 
